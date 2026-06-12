@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         header.classList.remove('scrolled');
       }
     };
-    
+
     // Initial check in case page is refreshed scrolled down
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (contactForm && formSuccess) {
     contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      
+
       // Basic input capture (can be extended for integrations)
       const formData = {
         name: document.getElementById('name').value,
@@ -92,9 +92,9 @@ document.addEventListener('DOMContentLoaded', () => {
         subject: document.getElementById('subject').value,
         message: document.getElementById('message').value
       };
-      
+
       console.log('Form Submitted successfully:', formData);
-      
+
       // Hide form, show success message
       contactForm.style.display = 'none';
       formSuccess.style.setProperty('display', 'block', 'important');

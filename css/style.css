@@ -1,0 +1,383 @@
+/* css/style.css - Design System for Muyaka Ngulube-Banda GRC Consultant Website */
+
+/* 1. Design Tokens & Custom Properties */
+:root {
+  --font-serif: 'Playfair Display', serif;
+  --font-sans: 'Inter', sans-serif;
+  
+  /* Color Palette */
+  --color-primary: #6E1E2E;          /* Burgundy / Crimson */
+  --color-primary-hover: #5A1825;    /* Dark Burgundy */
+  --color-secondary: #3B2A4A;        /* Plum / Violet */
+  --color-background: #F5F4F2;       /* Warm Off-white */
+  --color-foreground: #2A2A2A;       /* Dark Charcoal */
+  --color-muted: #EDEBE8;            /* Light Warm Gray */
+  --color-muted-foreground: #6B6560; /* Medium Warm Gray */
+  --color-white: #FFFFFF;
+}
+
+/* 2. Global Resets & Typography */
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6, .font-serif {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  color: var(--color-foreground);
+}
+
+.text-primary-color {
+  color: var(--color-primary) !important;
+}
+
+.bg-primary-color {
+  background-color: var(--color-primary) !important;
+}
+
+.bg-secondary-color {
+  background-color: var(--color-secondary) !important;
+}
+
+.bg-warm-light {
+  background-color: var(--color-background) !important;
+}
+
+.text-muted-custom {
+  color: var(--color-muted-foreground) !important;
+}
+
+/* 3. Header & Navigation */
+header.sticky-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1030;
+  background-color: var(--color-background);
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+header.sticky-header.scrolled {
+  background-color: rgba(245, 244, 242, 0.97);
+  border-bottom: 1px solid rgba(110, 30, 46, 0.10);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+}
+
+.nav-link-custom {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-foreground) !important;
+  letter-spacing: 0.02em;
+  border-bottom: 2px solid transparent;
+  padding: 6px 0 !important;
+  transition: color 0.2s, border-color 0.2s;
+  display: inline-block;
+}
+
+.nav-link-custom:hover, .nav-link-custom.active {
+  color: var(--color-primary) !important;
+}
+
+.nav-link-custom.active {
+  border-bottom-color: var(--color-primary);
+}
+
+.btn-primary-custom {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-white) !important;
+  background-color: var(--color-primary) !important;
+  border: 1px solid var(--color-primary) !important;
+  padding: 10px 24px;
+  border-radius: 8px;
+  letter-spacing: 0.02em;
+  transition: background-color 0.2s, border-color 0.2s, transform 0.2s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-primary-custom:hover {
+  background-color: var(--color-primary-hover) !important;
+  border-color: var(--color-primary-hover) !important;
+  transform: translateY(-1px);
+}
+
+.btn-outline-custom {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-foreground) !important;
+  background-color: transparent !important;
+  border: 1px solid rgba(42, 42, 42, 0.25) !important;
+  padding: 10px 24px;
+  border-radius: 8px;
+  letter-spacing: 0.02em;
+  transition: border-color 0.2s, color 0.2s, transform 0.2s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-outline-custom:hover {
+  border-color: var(--color-primary) !important;
+  color: var(--color-primary) !important;
+  transform: translateY(-1px);
+}
+
+.btn-white-custom {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-primary) !important;
+  background-color: var(--color-white) !important;
+  border: 1px solid var(--color-white) !important;
+  padding: 14px 36px;
+  border-radius: 8px;
+  letter-spacing: 0.02em;
+  transition: background-color 0.2s, transform 0.2s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-white-custom:hover {
+  background-color: var(--color-background) !important;
+  transform: translateY(-1px);
+}
+
+/* 4. Layout & Card Enhancements */
+.card-hover-effect {
+  background-color: var(--color-white);
+  border: 1px solid rgba(110, 30, 46, 0.08);
+  border-radius: 10px;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+  overflow: hidden;
+}
+
+.card-hover-effect:hover {
+  box-shadow: 0 10px 30px rgba(59, 42, 74, 0.10) !important;
+  transform: translateY(-4px) !important;
+}
+
+.card-warm-bg {
+  background-color: var(--color-background);
+  border: 1px solid rgba(110, 30, 46, 0.06);
+  border-radius: 10px;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+  overflow: hidden;
+}
+
+.card-warm-bg:hover {
+  box-shadow: 0 10px 30px rgba(59, 42, 74, 0.10) !important;
+  transform: translateY(-3px) !important;
+}
+
+/* 5. Custom Sections & Elements */
+.decorative-sidebar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 100%;
+  background-color: var(--color-secondary);
+}
+
+.credential-item {
+  display: flex;
+  gap: 16px;
+  padding: 20px 24px;
+  background-color: var(--color-background);
+  border-radius: 10px;
+  border-left: 3px solid var(--color-secondary);
+  transition: transform 0.2s ease;
+}
+
+.credential-item:hover {
+  transform: translateX(4px);
+}
+
+.qualification-card {
+  background-color: var(--color-white);
+  border-radius: 10px;
+  padding: 24px;
+  border-left: 3px solid var(--color-primary);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  height: 100%;
+}
+
+.qualification-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* 6. Timeline styling */
+.timeline-container {
+  position: relative;
+}
+
+.timeline-line {
+  position: absolute;
+  left: 56px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: rgba(110, 30, 46, 0.15);
+}
+
+.timeline-item {
+  display: flex;
+  gap: 32px;
+  padding-bottom: 48px;
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.timeline-year {
+  width: 72px;
+  flex-shrink: 0;
+  text-align: right;
+  font-family: var(--font-serif);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-primary);
+  padding-top: 2px;
+}
+
+.timeline-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  flex-shrink: 0;
+  margin-top: 6px;
+  margin-left: -6px;
+  z-index: 1;
+}
+
+.timeline-content {
+  flex: 1;
+  padding-top: 0;
+}
+
+/* 7. Blog Categories Filter */
+.category-btn {
+  padding: 18px 20px;
+  border: none;
+  border-bottom: 2px solid transparent;
+  background-color: transparent;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-muted-foreground);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.2s, border-bottom-color 0.2s, font-weight 0.2s;
+}
+
+.category-btn:hover, .category-btn.active {
+  color: var(--color-primary);
+}
+
+.category-btn.active {
+  border-bottom-color: var(--color-primary);
+  font-weight: 600;
+}
+
+.category-badge-custom {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+}
+
+.featured-badge {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-white);
+  background-color: var(--color-primary);
+  padding: 3px 10px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+/* 8. Contact Form Styling */
+.form-label-custom {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-foreground);
+  margin-bottom: 8px;
+  letter-spacing: 0.02em;
+}
+
+.form-control-custom {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(42, 42, 42, 0.18);
+  background-color: var(--color-white);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  color: var(--color-foreground);
+  outline: none;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.form-control-custom:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 1px var(--color-primary);
+}
+
+.form-select-custom {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B6560' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+}
+
+/* 9. Footer */
+footer {
+  background-color: var(--color-secondary);
+  color: var(--color-background);
+}
+
+footer a {
+  color: rgba(245, 244, 242, 0.75);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+footer a:hover {
+  color: var(--color-white);
+}
+
+/* 10. Responsive Utilities */
+@media (max-width: 991.98px) {
+  .timeline-line {
+    left: 24px;
+  }
+  .timeline-item {
+    gap: 16px;
+  }
+  .timeline-year {
+    width: 48px;
+    font-size: 13px;
+  }
+}

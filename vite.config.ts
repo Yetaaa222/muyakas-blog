@@ -17,6 +17,10 @@ function figmaAssetResolver() {
 }
 
 export default defineConfig({
+  // If you are deploying to GitHub Pages at https://<USERNAME>.github.io/<REPO>/
+  // set base to '/<REPO>/'. For Vercel/Netlify, this is usually not needed.
+  // base: '/',
+
   plugins: [
     figmaAssetResolver(),
     // The React and Tailwind plugins are both required for Make, even if

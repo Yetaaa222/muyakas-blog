@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Why Board-Level GRC Ownership Is No Longer Optional | Muyaka Ngulube-Banda</title>
+  <meta name="description" content="Read Muyaka Ngulube-Banda's article on why GRC ownership is no longer optional at the board level, and three practical steps to establish GRC accountability." />
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  
+  <!-- Custom Design System styles -->
+  <link rel="stylesheet" href="/css/style.css" />
+  
+  <style>
+    /* Custom style for circular numbers in post list */
+    .step-number-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background-color: var(--color-primary);
+      color: var(--color-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="sticky-header">
+    <div class="container-xxl px-4 px-md-5">
+      <nav class="navbar navbar-expand-md py-3 justify-content-between align-items-center">
+        <!-- Logo -->
+        <a href="/index.html" class="text-decoration-none">
+          <div class="d-flex flex-column lh-sm">
+            <span class="font-serif fs-5 fw-semibold text-primary-color tracking-tight">Muyaka Ngulube-Banda</span>
+            <span class="text-uppercase tracking-wider text-muted-custom" style="font-size: 11px; letter-spacing: 0.12em;">GRC Consultant</span>
+          </div>
+        </a>
+
+        <!-- Mobile Toggle Button -->
+        <button class="navbar-toggler border-0 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar Links -->
+        <div class="collapse navbar-collapse justify-content-end" id="mainNavbar">
+          <ul class="navbar-nav align-items-md-center gap-4 mt-3 mt-md-0">
+            <li class="nav-item">
+              <a class="nav-link nav-link-custom" href="/index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-custom" href="/about.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-custom" href="/services.html">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-custom active" aria-current="page" href="/insights.html">Insights</a>
+            </li>
+            <li class="nav-item ms-md-2">
+              <a class="btn-primary-custom" href="/contact.html">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main style="padding-top: 72px;">
+    
+    <!-- Featured Image -->
+    <div class="w-100 overflow-hidden" style="height: 420px; background-color: var(--color-muted);">
+      <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1400&h=840&fit=crop&auto=format" alt="Board meeting and governance discussion" class="w-100 h-100 object-fit-cover" />
+    </div>
+
+    <!-- Article Section -->
+    <section class="bg-white py-5" style="padding-bottom: 80px !important;">
+      <div class="container-xxl px-4 px-md-5">
+        <div class="mx-auto" style="max-width: 720px;">
+          
+          <!-- Breadcrumb navigation -->
+          <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb mb-0 small" style="--bs-breadcrumb-divider: '/';">
+              <li class="breadcrumb-item"><a href="/insights.html" class="text-decoration-none text-primary-color">Insights</a></li>
+              <li class="breadcrumb-item active text-muted-custom" aria-current="page">Governance</li>
+            </ol>
+          </nav>
+
+          <!-- Post Category & Metadata -->
+          <div class="d-flex align-items-center gap-3 mb-3 small text-muted-custom">
+            <span class="text-uppercase tracking-wider fw-semibold text-secondary-color" style="font-size: 11px; letter-spacing: 0.12em; color: var(--color-secondary) !important;">Governance</span>
+            <span>&middot;</span>
+            <span>5 June 2026</span>
+            <span>&middot;</span>
+            <span>6 min read</span>
+          </div>
+
+          <!-- Title -->
+          <h1 class="display-5 font-serif fw-bold mb-4 text-dark lh-sm" style="font-size: clamp(28px, 4vw, 44px);">
+            Why Board-Level GRC Ownership Is No Longer Optional
+          </h1>
+
+          <!-- Author Info block -->
+          <div class="d-flex align-items-center gap-3 py-3 border-top border-bottom border-light mb-5">
+            <div class="rounded-circle overflow-hidden flex-shrink-0" style="width: 44px; height: 44px; background-color: var(--color-muted);">
+              <img src="https://images.unsplash.com/photo-1573496799652-408c2ac9fe98?w=88&h=88&fit=crop&auto=format" alt="Muyaka Ngulube-Banda" class="w-100 h-100 object-fit-cover" />
+            </div>
+            <div>
+              <div class="fw-semibold text-dark" style="font-size: 14px;">Muyaka Ngulube-Banda</div>
+              <div class="small text-muted-custom" style="font-size: 13px;">GRC Consultant & Advisor</div>
+            </div>
+          </div>
+
+          <!-- Article Content Body -->
+          <div class="article-body-text fs-6 text-dark" style="line-height: 1.85;">
+            <p class="mb-4">
+              For too long, Governance, Risk, and Compliance has been treated as an operational function &mdash; something managed by a team in the compliance department, reported upward quarterly, and largely invisible to the board until something went wrong. That model is no longer adequate, and organisations that cling to it are accumulating hidden liabilities.
+            </p>
+
+            <p class="mb-4">
+              The shift is not simply regulatory, though regulators have certainly played their part. It is strategic. In an environment of heightened stakeholder scrutiny, rapid regulatory change, and reputational risk that can materialise overnight, boards that do not own their GRC agenda are effectively outsourcing one of their most consequential responsibilities.
+            </p>
+
+            <h2 class="h3 font-serif fw-bold mt-5 mb-3 text-dark" style="font-size: clamp(20px, 2.5vw, 26px); line-height: 1.3;">
+              What Board Ownership Actually Means
+            </h2>
+
+            <p class="mb-4">
+              Board-level GRC ownership does not mean that directors should be reviewing individual compliance checklists or attending every risk workshop. It means that the board holds itself accountable for the adequacy of the organisation's governance architecture &mdash; and actively engages with the strategic dimensions of risk and compliance, not just the operational outcomes.
+            </p>
+
+            <!-- Pull Quote -->
+            <blockquote class="my-5 p-4 rounded-end" style="border-left: 3px solid var(--color-secondary); background-color: rgba(59,42,74,0.04);">
+              <p class="font-serif fs-5 font-italic text-secondary-color mb-0 lh-base" style="color: var(--color-secondary) !important; font-style: italic;">
+                "The board that waits for a compliance breach to engage with its governance framework has already failed in one of its primary fiduciary responsibilities."
+              </p>
+            </blockquote>
+
+            <p class="mb-4">
+              In practice, this looks like: a dedicated governance and risk committee with clear terms of reference; a chief risk officer or equivalent who has direct and unfiltered access to the board; a risk appetite statement that is set at the board level and cascaded consistently across the organisation; and a culture of challenge and accountability that is modelled from the top.
+            </p>
+
+            <h2 class="h3 font-serif fw-bold mt-5 mb-3 text-dark" style="font-size: clamp(20px, 2.5vw, 26px); line-height: 1.3;">
+              The NGO Imperative
+            </h2>
+
+            <p class="mb-4">
+              While the conversation about board governance has historically centred on listed companies, the stakes for NGOs are equally high &mdash; arguably higher, given the direct dependence on donor trust and the vulnerability to reputational damage. An NGO board that is passive on compliance is not just exposing its organisation to regulatory risk; it is eroding the credibility that makes its work possible.
+            </p>
+
+            <p class="mb-4">
+              Institutional donors &mdash; bilateral agencies, multilateral funds, major foundations &mdash; are increasingly sophisticated in their assessment of governance quality. A strong GRC posture is no longer simply a compliance requirement; it is a competitive advantage in grant-seeking and partnership formation.
+            </p>
+
+            <h2 class="h3 font-serif fw-bold mt-5 mb-3 text-dark" style="font-size: clamp(20px, 2.5vw, 26px); line-height: 1.3;">
+              Three Practical Starting Points
+            </h2>
+
+            <!-- Numbered Steps -->
+            <div class="d-flex gap-3 mb-4">
+              <div class="step-number-circle">1</div>
+              <div>
+                <div class="fw-bold text-dark mb-1">Conduct a governance self-assessment</div>
+                <p class="small text-muted-custom mb-0" style="line-height: 1.65;">Use a structured tool &mdash; King IV, the Governance Institute's frameworks, or a customised instrument &mdash; to establish where the board currently sits against best practice. Benchmark honestly, including on less comfortable dimensions like independence and succession.</p>
+              </div>
+            </div>
+            
+            <div class="d-flex gap-3 mb-4">
+              <div class="step-number-circle">2</div>
+              <div>
+                <div class="fw-bold text-dark mb-1">Establish a dedicated risk appetite conversation</div>
+                <p class="small text-muted-custom mb-0" style="line-height: 1.65;">The board should be having an explicit, documented conversation about how much risk the organisation is willing to accept in pursuit of its strategic objectives. This conversation should precede, not follow, the annual planning cycle.</p>
+              </div>
+            </div>
+            
+            <div class="d-flex gap-3 mb-4">
+              <div class="step-number-circle">3</div>
+              <div>
+                <div class="fw-bold text-dark mb-1">Create direct lines of escalation</div>
+                <p class="small text-muted-custom mb-0" style="line-height: 1.65;">Compliance and risk functions should have a clear, protected channel to escalate concerns to the board &mdash; bypassing executive management where necessary. This requires both structural provision and cultural willingness to use it.</p>
+              </div>
+            </div>
+
+            <p class="mb-0 mt-5">
+              The organisations that will lead in the coming decade are not those with the most sophisticated compliance software or the thickest policy manuals. They are those where the board has decided &mdash; genuinely decided &mdash; that governance excellence is a strategic priority, and has organised the institution accordingly.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Related Articles Section -->
+    <section class="bg-warm-light py-5" style="padding-top: 72px !important; padding-bottom: 72px !important;">
+      <div class="container-xxl px-4 px-md-5">
+        <h2 class="h3 font-serif fw-bold mb-4 text-dark" style="font-size: clamp(22px, 2.5vw, 30px);">Related Articles</h2>
+        
+        <div class="row g-4">
+          <!-- Related Post 1 -->
+          <div class="col-md-4">
+            <a href="/blog-post.html" class="text-decoration-none">
+              <article class="bg-white rounded overflow-hidden shadow-sm card-hover-effect">
+                <div style="height: 160px; overflow: hidden; background-color: var(--color-muted);">
+                  <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=320&fit=crop&auto=format" alt="Risk Culture" class="w-100 h-100 object-fit-cover" />
+                </div>
+                <div class="p-4">
+                  <div class="category-badge-custom mb-2">Risk</div>
+                  <h3 class="h6 font-serif fw-bold text-dark mb-2 lh-base" style="font-size: 16px;">Building a Risk Culture That Sticks</h3>
+                  <div class="small text-muted-custom" style="font-size: 12px;">22 May 2026</div>
+                </div>
+              </article>
+            </a>
+          </div>
+          
+          <!-- Related Post 2 -->
+          <div class="col-md-4">
+            <a href="/blog-post.html" class="text-decoration-none">
+              <article class="bg-white rounded overflow-hidden shadow-sm card-hover-effect">
+                <div style="height: 160px; overflow: hidden; background-color: var(--color-muted);">
+                  <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600&h=320&fit=crop&auto=format" alt="Donor Compliance" class="w-100 h-100 object-fit-cover" />
+                </div>
+                <div class="p-4">
+                  <div class="category-badge-custom mb-2">Compliance</div>
+                  <h3 class="h6 font-serif fw-bold text-dark mb-2 lh-base" style="font-size: 16px;">Navigating Donor Compliance in a Multi-Funder Environment</h3>
+                  <div class="small text-muted-custom" style="font-size: 12px;">29 April 2026</div>
+                </div>
+              </article>
+            </a>
+          </div>
+          
+          <!-- Related Post 3 -->
+          <div class="col-md-4">
+            <a href="/blog-post.html" class="text-decoration-none">
+              <article class="bg-white rounded overflow-hidden shadow-sm card-hover-effect">
+                <div style="height: 160px; overflow: hidden; background-color: var(--color-muted);">
+                  <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&h=320&fit=crop&auto=format" alt="Compliance Officer Partner" class="w-100 h-100 object-fit-cover" />
+                </div>
+                <div class="p-4">
+                  <div class="category-badge-custom mb-2">Leadership</div>
+                  <h3 class="h6 font-serif fw-bold text-dark mb-2 lh-base" style="font-size: 16px;">The Compliance Officer as Strategic Partner</h3>
+                  <div class="small text-muted-custom" style="font-size: 12px;">15 April 2026</div>
+                </div>
+              </article>
+            </a>
+          </div>
+        </div>
+        
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-5 mt-auto">
+    <div class="container-xxl px-4 px-md-5">
+      <div class="row g-5 mb-5">
+        <!-- Brand / About info -->
+        <div class="col-lg-4 col-md-6">
+          <div class="mb-3">
+            <div class="font-serif fs-5 fw-semibold text-white mb-1">Muyaka Ngulube-Banda</div>
+            <div class="text-uppercase tracking-wider small text-muted-custom" style="font-size: 11px; letter-spacing: 0.12em; color: rgba(245,244,242,0.6) !important;">GRC Consultant</div>
+          </div>
+          <p class="small text-muted-custom mb-0" style="max-width: 260px; line-height: 1.7; color: rgba(245,244,242,0.7) !important;">
+            Empowering organisations to govern confidently, manage risk wisely, and comply with integrity.
+          </p>
+        </div>
+        
+        <!-- Navigation links -->
+        <div class="col-lg-2 col-md-6">
+          <h4 class="text-uppercase tracking-wider text-muted-custom mb-4" style="font-size: 11px; letter-spacing: 0.14em; color: rgba(245,244,242,0.5) !important;">Navigation</h4>
+          <div class="d-flex flex-column gap-2 small">
+            <a href="/index.html">Home</a>
+            <a href="/about.html">About</a>
+            <a href="/services.html">Services</a>
+            <a href="/insights.html">Insights</a>
+            <a href="/contact.html">Contact</a>
+          </div>
+        </div>
+        
+        <!-- Services summary -->
+        <div class="col-lg-3 col-md-6">
+          <h4 class="text-uppercase tracking-wider text-muted-custom mb-4" style="font-size: 11px; letter-spacing: 0.14em; color: rgba(245,244,242,0.5) !important;">Services</h4>
+          <div class="d-flex flex-column gap-2 small text-muted-custom" style="color: rgba(245,244,242,0.75) !important;">
+            <span>GRC Advisory</span>
+            <span>Mentorship & Coaching</span>
+            <span>Organisations Development</span>
+            <span>SOP Development</span>
+            <span>Assets Management</span>
+            <span>Grants Management</span>
+          </div>
+        </div>
+        
+        <!-- Contact details -->
+        <div class="col-lg-3 col-md-6">
+          <h4 class="text-uppercase tracking-wider text-muted-custom mb-4" style="font-size: 11px; letter-spacing: 0.14em; color: rgba(245,244,242,0.5) !important;">Contact</h4>
+          <div class="d-flex flex-column gap-2 small">
+            <a href="mailto:muyaka@ngulubebanda.com">muyaka@ngulubebanda.com</a>
+            <span class="text-muted-custom" style="color: rgba(245,244,242,0.75) !important;">Lusaka, Zambia</span>
+            <div class="d-flex gap-3 mt-2">
+              <a href="#" aria-label="LinkedIn" class="text-muted-custom" style="color: rgba(245,244,242,0.7) !important;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                  <rect x="2" y="9" width="4" height="12"/>
+                  <circle cx="4" cy="4" r="2"/>
+                </svg>
+              </a>
+              <a href="#" aria-label="Twitter" class="text-muted-custom" style="color: rgba(245,244,242,0.7) !important;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Footer Copyright bar -->
+      <div class="pt-4 border-top border-secondary d-flex flex-wrap justify-content-between align-items-center gap-3 small text-muted-custom" style="border-color: rgba(245,244,242,0.12) !important; color: rgba(245,244,242,0.45) !important;">
+        <div>&copy; 2026 Muyaka Ngulube-Banda. All rights reserved.</div>
+        <div>Governance &middot; Risk &middot; Compliance</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  
+  <!-- Custom JS -->
+  <script type="module" src="/js/main.js"></script>
+</body>
+</html>

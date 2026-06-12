@@ -127,4 +127,75 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // 5. Scroll Reveal Animations & Counters (Intersection Observer)
+  const revealElements = document.querySelectorAll('.reveal, .reveal-group');
+  const counterValues = document.querySelectorAll('.counter-value');
+  
+  const animateCounter = (el) => {
+    const target = parseInt(el.getAttribute('data-target'));
+    const suffix = el.getAttribute('data-suffix') || '';
+    const duration = 2000; // 2 seconds
+    const frameRate = 60;
+    const totalFrames = (duration / 1000) * frameRate;
+    let currentFrame = 0;
+
+    const easeOutQuad = (t) => t * (2 - t);
+
+    const updateCounter = () => {
+      currentFrame++;
+      const progress = easeOutQuad(currentFrame / totalFrames);
+      const currentValue = Math.round(target * progress);
+
+      el.textContent = currentValue + suffix;
+
+      if (currentFrame < totalFrames) {
+        requestAnimationFrame(updateCounter);
+      } else {
+        el.textContent = target + suffix;
+      }
+    };
+
+    requestAnimationFrame(updateCounter);
+  };
+
+  if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          
+          // If the intersecting element contains counters, animate them
+          const countersInTarget = entry.target.querySelectorAll('.counter-value');
+          if (countersInTarget.length > 0) {
+            countersInTarget.forEach(counter => animateCounter(counter));
+          } else if (entry.target.classList.contains('counter-value')) {
+            animateCounter(entry.target);
+          }
+
+          // Once revealed, we can stop observing it
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.15,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+    // Also observe individual counter values if they are not inside a reveal-group
+    counterValues.forEach(el => {
+      if (!el.closest('.reveal-group')) {
+        revealObserver.observe(el);
+      }
+    });
+  } else {
+    // Fallback for older browsers
+    revealElements.forEach(el => el.classList.add('active'));
+    counterValues.forEach(el => {
+      const target = el.getAttribute('data-target');
+      const suffix = el.getAttribute('data-suffix') || '';
+      el.textContent = target + suffix;
+    });
+  }
 });

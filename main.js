@@ -82,22 +82,49 @@ document.addEventListener('DOMContentLoaded', () => {
   const formSuccess = document.getElementById('form-success-message');
 
   if (contactForm && formSuccess) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      // Basic input capture (can be extended for integrations)
-      const formData = {
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        subject: document.getElementById('subject').value,
-        message: document.getElementById('message').value
-      };
+      const submitButton = contactForm.querySelector('button[type="submit"]');
+      const originalButtonText = submitButton.textContent;
+      
+      // Update UI to show sending state
+      submitButton.disabled = true;
+      submitButton.textContent = 'Sending...';
 
-      console.log('Form Submitted successfully:', formData);
+      // Capture form data
+      const formData = new FormData(contactForm);
 
-      // Hide form, show success message
-      contactForm.style.display = 'none';
-      formSuccess.style.setProperty('display', 'block', 'important');
+      try {
+        // REPLACE 'YOUR_FORMSPREE_ID' with your actual Formspree ID from formspree.io
+        const response = await fetch('https://formspree.io/f/mbdepgaj', {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          // Hide form, show success message
+          contactForm.style.display = 'none';
+          formSuccess.style.setProperty('display', 'block', 'important');
+          console.log('Form Submitted successfully');
+        } else {
+          const data = await response.json();
+          if (Object.hasOwn(data, 'errors')) {
+            alert(data["errors"].map(error => error["message"]).join(", "));
+          } else {
+            alert("Oops! There was a problem submitting your form");
+          }
+          submitButton.disabled = false;
+          submitButton.textContent = originalButtonText;
+        }
+      } catch (error) {
+        alert("Oops! There was a problem submitting your form");
+        submitButton.disabled = false;
+        submitButton.textContent = originalButtonText;
+      }
     });
   }
 });

@@ -29,8 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 3. Blog Category Filtering (insights.html)
   const categoryButtons = document.querySelectorAll('.category-btn');
-  const postCards = document.querySelectorAll('.post-card-col');
-  const featuredArticle = document.getElementById('featured-article-container');
   const emptyState = document.getElementById('no-posts-alert');
 
   if (categoryButtons.length > 0) {
@@ -43,7 +41,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const selectedCategory = button.getAttribute('data-category');
         let visibleCount = 0;
 
-        // Filter cards
+        // Filter cards (query dynamically to support asynchronously rendered articles)
+        const postCards = document.querySelectorAll('.post-card-col');
         postCards.forEach(card => {
           const cardCategory = card.getAttribute('data-category');
           if (selectedCategory === 'All' || cardCategory === selectedCategory) {
@@ -54,7 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         });
 
-        // Handle featured post visibility (only show when category is All or matches Governance)
+        // Handle featured post visibility (query dynamically to support asynchronously rendered articles)
+        const featuredArticle = document.getElementById('featured-article-container');
         if (featuredArticle) {
           const featuredCategory = featuredArticle.getAttribute('data-category');
           if (selectedCategory === 'All' || selectedCategory === featuredCategory) {

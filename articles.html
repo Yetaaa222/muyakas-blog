@@ -153,7 +153,7 @@
         </div>
 
         <!-- Post Cards Grid -->
-        <div class="row g-4 mb-5 reveal-group">
+        <div class="row g-4 mb-5 reveal-group" id="articles-grid">
 
           <!-- Post 2: Risk -->
           <div class="col-md-6 col-lg-4 post-card-col" data-category="Risk">
@@ -404,6 +404,129 @@
 
   <!-- Custom JS -->
   <script type="module" src="main.js"></script>
+
+  <!-- Supabase dynamic article rendering -->
+  <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm'
+    const supabaseUrl = 'https://fvvlslrapleqdofvfpzu.supabase.co'
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ2dmxzbHJhcGxlcWRvZnZmcHp1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE4ODU5MjYsImV4cCI6MjA5NzQ2MTkyNn0.WWDr6GM3OzhzxfuImyrpROWYjnjkSc80eMNB0roTIhg'
+    const supabase = createClient(supabaseUrl, supabaseKey)
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const { data: articles, error } = await supabase
+          .from('articles')
+          .select('*')
+          .eq('status', 'published')
+          .order('published_at', { ascending: false });
+
+        if (error) throw error;
+
+        if (articles && articles.length > 0) {
+          const featuredContainer = document.getElementById('featured-article-container');
+          const gridContainer = document.getElementById('articles-grid');
+
+          // Render Featured Article
+          const featured = articles[0];
+          const wordsCount = (featured.content || '').split(/\s+/).length;
+          const readTimeVal = Math.max(1, Math.round(wordsCount / 200));
+          const pubDate = new Date(featured.published_at || featured.created_at).toLocaleDateString('en-GB', {
+            day: 'numeric',
+            month: 'short',
+            year: 'numeric'
+          });
+
+          const featuredImg = featured.cover_image || '';
+
+          featuredContainer.setAttribute('data-category', featured.category || 'Governance');
+          featuredContainer.innerHTML = `
+            <a href="blog-post.html?slug=${featured.slug}" class="text-decoration-none text-dark">
+              <article class="card-warm-bg featured-article p-0 animate-reveal">
+                <div class="row g-0 align-items-stretch">
+                  <div class="col-lg-6 overflow-hidden" style="min-height: 280px; max-height: 360px;">
+                    <img src="${escapeAttr(featuredImg)}" alt="${escapeAttr(featured.title)}" class="w-100 h-100 object-fit-cover" />
+                  </div>
+                  <div class="col-lg-6 d-flex flex-column justify-content-center p-4 p-md-5">
+                    <div class="d-flex gap-3 align-items-center mb-3">
+                      <span class="featured-badge">Featured</span>
+                      <span class="category-badge-custom mb-0">${escapeHtml(featured.category || 'Governance')}</span>
+                    </div>
+                    <h2 class="h3 font-serif fw-bold mb-3 lh-sm text-dark">${escapeHtml(featured.title)}</h2>
+                    <p class="small text-muted-custom mb-4" style="line-height: 1.75;">
+                      ${escapeHtml(featured.excerpt || '')}
+                    </p>
+                    <div class="d-flex gap-2 align-items-center small text-muted-custom" style="font-size: 13px;">
+                      <span>${pubDate}</span>
+                      <span>&middot;</span>
+                      <span>${readTimeVal} min read</span>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </a>
+          `;
+
+          // Render Grid Articles
+          const gridArticles = articles.slice(1);
+          if (gridArticles.length > 0) {
+            gridContainer.innerHTML = gridArticles.map(art => {
+              const artWords = (art.content || '').split(/\s+/).length;
+              const artReadTime = Math.max(1, Math.round(artWords / 200));
+              const artDate = new Date(art.published_at || art.created_at).toLocaleDateString('en-GB', {
+                day: 'numeric',
+                month: 'short',
+                year: 'numeric'
+              });
+              const artImg = art.cover_image || '';
+
+              return `
+                <div class="col-md-6 col-lg-4 post-card-col" data-category="${escapeAttr(art.category || 'Governance')}">
+                  <a href="blog-post.html?slug=${art.slug}" class="text-decoration-none text-dark">
+                    <article class="card-warm-bg h-100 animate-reveal">
+                      <div style="height: 200px; overflow: hidden; background-color: var(--color-muted);">
+                        <img src="${escapeAttr(artImg)}" alt="${escapeAttr(art.title)}" class="w-100 h-100 object-fit-cover" />
+                      </div>
+                      <div class="p-4">
+                        <div class="category-badge-custom mb-2">${escapeHtml(art.category || 'Governance')}</div>
+                        <h3 class="h5 font-serif mb-2 text-dark">${escapeHtml(art.title)}</h3>
+                        <p class="small text-muted-custom mb-4" style="line-height: 1.7;">
+                          ${escapeHtml(art.excerpt || '')}
+                        </p>
+                        <div class="d-flex gap-2 align-items-center small text-muted-custom" style="font-size: 12px;">
+                          <span>${artDate}</span>
+                          <span>&middot;</span>
+                          <span>${artReadTime} min read</span>
+                        </div>
+                      </div>
+                    </article>
+                  </a>
+                </div>
+              `;
+            }).join('');
+          } else {
+            gridContainer.innerHTML = '';
+          }
+
+          // Trigger categories reveal & animations if active
+          featuredContainer.classList.add('active');
+          const gridCols = gridContainer.querySelectorAll('.post-card-col');
+          gridCols.forEach(col => col.classList.add('active'));
+        }
+      } catch (err) {
+        console.error('Error loading dynamic articles:', err);
+      }
+    });
+
+    function escapeHtml(str) {
+      const div = document.createElement('div');
+      div.textContent = str || '';
+      return div.innerHTML;
+    }
+
+    function escapeAttr(str) {
+      return (str || '').replace(/"/g, '&quot;');
+    }
+  </script>
 </body>
 
 </html>

@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin | Muyaka Ngulube-Banda</title>
+    <meta name="robots" content="noindex, nofollow" />
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+        rel="stylesheet">
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+    <style>
+        body {
+            --color-muted: #000000;
+            /* Force all muted text to black */
+            background-color: var(--color-background);
+            min-height: 100vh;
+        }
+
+        /* Override custom muted classes and inputs for better visibility */
+        .text-muted-custom,
+        .small.text-muted-custom {
+            color: #000000 !important;
+        }
+
+        .form-control-custom,
+        textarea#fldContent,
+        .ql-editor {
+            color: #000000 !important;
+        }
+
+        .ql-toolbar {
+            background: #fff;
+            border-color: rgba(59, 42, 74, 0.15) !important;
+            border-radius: 6px 6px 0 0;
+        }
+
+        .ql-container {
+            border-color: rgba(59, 42, 74, 0.15) !important;
+            border-radius: 0 0 6px 6px;
+            font-family: 'Inter', sans-serif !important;
+            font-size: 14.5px !important;
+            background: var(--color-warm-light, #F4F1EA);
+            min-height: 360px;
+        }
+
+        #authGate {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .auth-card {
+            width: 100%;
+            max-width: 380px;
+            background: #fff;
+            border-radius: 8px;
+            padding: 48px 40px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        .auth-mark {
+            width: 6px;
+            height: 28px;
+            background-color: var(--color-secondary);
+            border-radius: 2px;
+            display: inline-block;
+            margin-bottom: 18px;
+        }
+
+        .form-control-custom {
+            border: 1px solid rgba(59, 42, 74, 0.15);
+            border-radius: 6px;
+            padding: 11px 14px;
+            font-size: 14.5px;
+            background: var(--color-warm-light, #F4F1EA);
+            transition: border-color .15s ease, background-color .15s ease;
+        }
+
+        .form-control-custom:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(59, 42, 74, 0.08);
+        }
+
+        .auth-error {
+            font-size: 13px;
+            color: #b3413a;
+            background: rgba(179, 65, 58, 0.08);
+            border: 1px solid rgba(179, 65, 58, 0.18);
+            border-radius: 6px;
+            padding: 10px 12px;
+            display: none;
+        }
+
+        /* ---- Admin shell ---- */
+        #adminShell {
+            display: none;
+        }
+
+        .admin-topbar {
+            background: #fff;
+            border-bottom: 1px solid rgba(59, 42, 74, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .admin-brand {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--color-primary);
+        }
+
+        .admin-eyebrow {
+            font-size: 10.5px;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--color-muted, #000000);
+        }
+
+        .admin-nav-pill {
+            border: none;
+            background: transparent;
+            color: var(--color-muted, #000000);
+            font-size: 13.5px;
+            font-weight: 500;
+            padding: 7px 14px;
+            border-radius: 6px;
+            transition: background-color .15s ease, color .15s ease;
+        }
+
+        .admin-nav-pill:hover {
+            color: var(--color-primary);
+            background: rgba(59, 42, 74, 0.05);
+        }
+
+        .admin-nav-pill.active {
+            color: #fff;
+            background: var(--color-primary);
+        }
+
+        /* ---- Status badges ---- */
+        .status-pill {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .status-pill::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: currentColor;
+        }
+
+        .status-published {
+            color: #2f6e4f;
+            background: rgba(47, 110, 79, 0.1);
+        }
+
+        .status-draft {
+            color: #8a6d1f;
+            background: rgba(138, 109, 31, 0.12);
+        }
+
+        /* ---- Article list ---- */
+        .article-row {
+            background: #fff;
+            border-radius: 8px;
+            border: 1px solid rgba(59, 42, 74, 0.07);
+            transition: border-color .15s ease, box-shadow .15s ease;
+        }
+
+        .article-row:hover {
+            border-color: rgba(59, 42, 74, 0.16);
+            box-shadow: 0 4px 14px rgba(59, 42, 74, 0.06);
+        }
+
+        .article-thumb {
+            width: 64px;
+            height: 64px;
+            border-radius: 6px;
+            object-fit: cover;
+            background: var(--color-warm-light, #F4F1EA);
+            flex-shrink: 0;
+        }
+
+        .icon-btn {
+            width: 34px;
+            height: 34px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            border: 1px solid rgba(59, 42, 74, 0.12);
+            background: #fff;
+            color: var(--color-primary);
+            font-size: 14px;
+            transition: background-color .15s ease, border-color .15s ease;
+        }
+
+        .icon-btn:hover {
+            background: var(--color-warm-light, #F4F1EA);
+            border-color: rgba(59, 42, 74, 0.22);
+        }
+
+        .icon-btn.danger {
+            color: #b3413a;
+        }
+
+        .icon-btn.danger:hover {
+            background: rgba(179, 65, 58, 0.07);
+            border-color: rgba(179, 65, 58, 0.25);
+        }
+
+        /* ---- Editor ---- */
+        .editor-card {
+            background: #fff;
+            border-radius: 8px;
+            border: 1px solid rgba(59, 42, 74, 0.07);
+        }
+
+        .editor-title-input {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            border: none;
+            width: 100%;
+            background: transparent;
+            color: #1f1b24;
+        }
+
+        .editor-title-input:focus {
+            outline: none;
+        }
+
+        .editor-title-input::placeholder {
+            color: rgba(31, 27, 36, 0.3);
+        }
+
+        .editor-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--color-muted, #8a8378);
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        textarea#fldContent {
+            font-family: 'Inter', sans-serif;
+            font-size: 14.5px;
+            line-height: 1.8;
+            resize: vertical;
+            min-height: 360px;
+        }
+
+        .char-count {
+            font-size: 12px;
+            color: var(--color-muted, #8a8378);
+        }
+
+        .autosave-indicator {
+            font-size: 12px;
+            color: var(--color-muted, #8a8378);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .autosave-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #c9c3b6;
+        }
+
+        .autosave-dot.saving {
+            background: #d6a847;
+            animation: pulse 1s infinite;
+        }
+
+        .autosave-dot.saved {
+            background: #2f6e4f;
+        }
+
+        @keyframes pulse {
+            50% {
+                opacity: .35;
+            }
+        }
+
+        /* ---- Toast ---- */
+        .toast-custom {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #1f1b24;
+            color: #fff;
+            padding: 13px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 200;
+            transform: translateY(16px);
+            opacity: 0;
+            pointer-events: none;
+            transition: transform .25s ease, opacity .25s ease;
+        }
+
+        .toast-custom.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast-custom .bi {
+            color: #6fcf97;
+        }
+
+        .toast-custom.is-error .bi {
+            color: #e08a82;
+        }
+
+        /* ---- Preview modal ---- */
+        .preview-frame-wrap {
+            background: var(--color-warm-light, #F4F1EA);
+            border-radius: 8px;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .preview-doc {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 56px 24px;
+            background: #fff;
+        }
+
+        .preview-doc img.cover {
+            width: 100%;
+            max-height: 320px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 28px;
+        }
+
+        .preview-doc h1 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 2rem;
+            margin-bottom: 14px;
+        }
+
+        .preview-doc .preview-meta {
+            font-size: 13px;
+            color: var(--color-muted, #8a8378);
+            margin-bottom: 32px;
+        }
+
+        .preview-doc .preview-body {
+            font-size: 16px;
+            line-height: 1.85;
+            color: #3a3530;
+            white-space: pre-wrap;
+        }
+
+        /* ---- Empty state ---- */
+        .empty-state {
+            text-align: center;
+            padding: 80px 24px;
+            color: var(--color-muted, #8a8378);
+        }
+
+        .empty-state .bi {
+            font-size: 2rem;
+            opacity: .4;
+            margin-bottom: 14px;
+            display: block;
+        }
+
+        /* ---- Misc ---- */
+        .btn-primary-admin {
+            background: var(--color-primary);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 9px 18px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: opacity .15s ease;
+        }
+
+        .btn-primary-admin:hover {
+            opacity: .88;
+            color: #fff;
+        }
+
+        .btn-primary-admin:disabled {
+            opacity: .5;
+        }
+
+        .btn-ghost-admin {
+            background: transparent;
+            color: var(--color-primary);
+            border: 1px solid rgba(59, 42, 74, 0.18);
+            border-radius: 6px;
+            padding: 9px 18px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background-color .15s ease;
+        }
+
+        .btn-ghost-admin:hover {
+            background: rgba(59, 42, 74, 0.05);
+            color: var(--color-foreground);
+        }
+
+        .skeleton {
+            background: linear-gradient(90deg, rgba(59, 42, 74, .05) 25%, rgba(59, 42, 74, .09) 37%, rgba(59, 42, 74, .05) 63%);
+            background-size: 400% 100%;
+            animation: skeleton-loading 1.4s ease infinite;
+            border-radius: 6px;
+        }
+
+        @keyframes skeleton-loading {
+            0% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0 50%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ============================================
+       AUTH GATE
+       ============================================ -->
+    <div id="authGate">
+        <div class="auth-card">
+            <span class="auth-mark"></span>
+            <div class="admin-eyebrow mb-1">GRC Consultant</div>
+            <h1 class="font-serif h4 mb-1" style="color:#1f1b24;">Sign in to write</h1>
+            <p class="small text-muted-custom mb-4">Articles admin for Muyaka Ngulube-Banda</p>
+
+            <div id="authError" class="auth-error mb-3"></div>
+
+            <form id="loginForm" novalidate>
+                <div class="mb-3">
+                    <label class="editor-label" for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" class="form-control form-control-custom"
+                        placeholder="you@example.com" required autocomplete="username" />
+                </div>
+                <div class="mb-4">
+                    <label class="editor-label" for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" class="form-control form-control-custom"
+                        placeholder="••••••••" required autocomplete="current-password" />
+                </div>
+                <button type="submit" id="loginBtn" class="btn-primary-admin w-100">Sign in</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ============================================
+       ADMIN SHELL
+       ============================================ -->
+    <div id="adminShell">
+
+        <!-- Topbar -->
+        <header class="admin-topbar ">
+            <div class="container-xxl px-4 px-md-5">
+                <nav class="d-flex align-items-center justify-content-between py-3">
+                    <div class="d-flex align-items-center gap-3">
+                        <div>
+                            <div class="admin-brand">Muyaka Ngulube-Banda</div>
+                            <div class="admin-eyebrow">Articles Admin</div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center gap-2 text-primary-color">
+                        <button class="admin-nav-pill active " data-view="list" id="navList">All
+                            Articles</button>
+                        <button class="admin-nav-pill" id="navNew">New Article</button>
+                        <div class="vr mx-2" style="opacity:.15;"></div>
+                        <a href="index.html" target="_blank" class="admin-nav-pill" title="View live site">
+                            <i class="bi bi-box-arrow-up-right me-1"></i>Site
+                        </a>
+                        <button class="admin-nav-pill" id="btnSignOut">Sign out</button>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <main class="container-xxl px-4 px-md-5 py-5">
+
+            <!-- ============== LIST VIEW ============== -->
+            <section id="viewList">
+                <div class="d-flex flex-wrap justify-content-between align-items-end gap-3 mb-4">
+                    <div>
+                        <h1 class="h2 font-serif mb-1">Articles</h1>
+                        <p class="small text-muted-custom mb-0" id="articleCountLabel">Loading…</p>
+                    </div>
+                    <div class="d-flex gap-2 align-items-center">
+                        <select id="filterStatus" class="form-select form-control-custom"
+                            style="width:auto; font-size:13.5px; padding:9px 32px 9px 14px;">
+                            <option value="all">All statuses</option>
+                            <option value="published">Published</option>
+                            <option value="draft">Drafts</option>
+                        </select>
+                        <button class="btn-primary-admin" id="btnNewArticle"><i class="bi bi-plus-lg me-1"></i>New
+                            Article</button>
+                    </div>
+                </div>
+
+                <div id="listLoading">
+                    <div class="skeleton mb-3" style="height:84px;"></div>
+                    <div class="skeleton mb-3" style="height:84px;"></div>
+                    <div class="skeleton" style="height:84px;"></div>
+                </div>
+
+                <div id="articleList" class="d-flex flex-column gap-3" style="display:none !important;"></div>
+
+                <div id="emptyState" class="empty-state" style="display:none;">
+                    <i class="bi bi-journal-richtext"></i>
+                    <h2 class="h5 font-serif mb-2">No articles yet</h2>
+                    <p class="small mb-4">Start writing your first piece — it'll appear here as a draft until you
+                        publish it.</p>
+                    <button class="btn-primary-admin" id="btnEmptyNew">Write an article</button>
+                </div>
+            </section>
+
+            <!-- ============== EDITOR VIEW ============== -->
+            <section id="viewEditor" style="display:none;">
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+                    <button class="btn-ghost-admin" id="btnBackToList"><i class="bi bi-arrow-left me-1"></i>Back to
+                        articles</button>
+                    <div class="d-flex align-items-center gap-3">
+                        <span class="autosave-indicator" id="autosaveIndicator">
+                            <span class="autosave-dot" id="autosaveDot"></span>
+                            <span id="autosaveText">Not saved yet</span>
+                        </span>
+                        <span id="editorStatusPill" class="status-pill status-draft">Draft</span>
+                    </div>
+                </div>
+
+                <div class="editor-card p-4 p-md-5">
+                    <input type="text" id="fldTitle" class="editor-title-input mb-2" placeholder="Article title…" />
+                    <div class="small text-muted-custom mb-4" id="slugPreview">/articles/your-article-slug</div>
+
+                    <div class="row g-4 mb-4">
+                        <div class="col-md-6">
+                            <label class="editor-label" for="fldCategory">Category</label>
+                            <select id="fldCategory" class="form-select form-control-custom">
+                                <option value="Governance">Governance</option>
+                                <option value="Risk">Risk</option>
+                                <option value="Compliance">Compliance</option>
+                                <option value="Mentorship">Mentorship</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="editor-label" for="fldCoverImageFile">Cover image</label>
+                            <div class="d-flex flex-column gap-2">
+                                <input type="file" id="fldCoverImageFile" class="form-control form-control-custom"
+                                    accept="image/*" />
+                                <input type="hidden" id="fldCoverImage" />
+                                <div id="coverImageLoading" class="small text-muted-custom" style="display:none;"><span
+                                        class="spinner-border spinner-border-sm me-1" role="status"></span>Uploading to
+                                    bucket...</div>
+                                <img id="coverImagePreview" src="" alt="Cover Preview"
+                                    style="display:none; width: 100%; max-height: 140px; object-fit: cover; border-radius: 6px; border: 1px solid rgba(59, 42, 74, 0.15);" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="editor-label" for="fldExcerpt">Excerpt <span
+                                class="fw-normal text-muted-custom text-lowercase">— shown on the homepage and articles
+                                list</span></label>
+                        <textarea id="fldExcerpt" class="form-control form-control-custom" rows="2" maxlength="220"
+                            placeholder="A one or two sentence summary…"></textarea>
+                        <div class="char-count text-end mt-1"><span id="excerptCount">0</span>/220</div>
+                    </div>
+
+                    <div class="mb-2">
+                        <label class="editor-label" for="editor-container">Article body</label>
+                        <div id="editor-container"></div>
+                        <div class="d-flex justify-content-between mt-1">
+                            <span class="char-count" id="wordCount">0 words</span>
+                            <span class="char-count" id="readTime">~0 min read</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mt-4">
+                    <button class="icon-btn danger" id="btnDelete" title="Delete article"
+                        style="width:auto; padding:0 14px;">
+                        <i class="bi bi-trash3 me-1"></i><span class="small fw-semibold">Delete</span>
+                    </button>
+                    <div class="d-flex gap-2">
+                        <button class="btn-ghost-admin" id="btnPreview"><i class="bi bi-eye me-1"></i>Preview</button>
+                        <button class="btn-ghost-admin" id="btnSaveDraft">Save draft</button>
+                        <button class="btn-primary-admin" id="btnPublish">Publish</button>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- ============================================
+       PREVIEW MODAL
+       ============================================ -->
+    <div class="modal fade" id="previewModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content" style="border-radius:10px; border:none;">
+                <div class="modal-header" style="border-bottom:1px solid rgba(59,42,74,.08);">
+                    <div>
+                        <div class="admin-eyebrow mb-1">Preview</div>
+                        <div class="small text-muted-custom" style="font-size:12px;">This is how the article will look
+                            on the site</div>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-0">
+                    <div class="preview-frame-wrap">
+                        <div class="preview-doc" id="previewDoc">
+                            <img class="cover" id="previewCover" src="" alt="" style="display:none;" />
+                            <div class="category-badge-custom mb-2" id="previewCategory">Governance</div>
+                            <h1 id="previewTitle">Untitled article</h1>
+                            <div class="preview-meta" id="previewMeta">Draft · 0 min read</div>
+                            <div class="preview-body" id="previewBody"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+       DELETE CONFIRM MODAL
+       ============================================ -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="border-radius:10px; border:none;">
+                <div class="modal-body p-4">
+                    <h2 class="h5 font-serif mb-2">Delete this article?</h2>
+                    <p class="small text-muted-custom mb-4">This can't be undone. The article will be permanently
+                        removed, including if it's currently published.</p>
+                    <div class="d-flex justify-content-end gap-2">
+                        <button class="btn-ghost-admin" data-bs-dismiss="modal">Cancel</button>
+                        <button class="btn-primary-admin" id="btnConfirmDelete" style="background:#b3413a;">Delete
+                            article</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast-custom" id="toast">
+        <i class="bi bi-check-circle-fill"></i>
+        <span id="toastText">Saved</span>
+    </div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <!-- Quill JS -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+    <!-- Supabase JS client -->
+    <script type="module">
+
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm'
+        const supabaseUrl = 'https://fvvlslrapleqdofvfpzu.supabase.co'
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ2dmxzbHJhcGxlcWRvZnZmcHp1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE4ODU5MjYsImV4cCI6MjA5NzQ2MTkyNn0.WWDr6GM3OzhzxfuImyrpROWYjnjkSc80eMNB0roTIhg'
+        const supabase = createClient(supabaseUrl, supabaseKey)
+
+        // ============================================
+        // STATE
+        // ============================================
+        let articles = [];
+        let currentArticle = null; // null = new article
+        let autosaveTimer = null;
+        let filterStatus = 'all';
+
+        // ============================================
+        // DOM SHORTCUTS & QUILL INIT
+        // ============================================
+        const $ = (id) => document.getElementById(id);
+
+        const authGate = $('authGate');
+        const adminShell = $('adminShell');
+
+        const quill = new Quill('#editor-container', {
+            theme: 'snow',
+            placeholder: 'Write the article here. Use the toolbar for styling...',
+            modules: {
+                toolbar: [
+                    [{ 'font': [] }, { 'size': ['small', false, 'large', 'huge'] }],
+                    [{ 'header': [1, 2, 3, false] }],
+                    ['bold', 'italic', 'underline', 'strike'],
+                    [{ 'color': [] }, { 'background': [] }],
+                    [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'indent': '-1' }, { 'indent': '+1' }],
+                    [{ 'align': [] }],
+                    ['blockquote', 'code-block', 'link'],
+                    ['clean']
+                ]
+            }
+        });
+
+        quill.on('text-change', () => {
+            updateWordCount();
+            scheduleAutosave();
+        });
+
+        // ============================================
+        // AUTH
+        // ============================================
+        async function checkSession() {
+            const { data: { session } } = await supabase.auth.getSession();
+            if (session) {
+                showAdmin();
+            } else {
+                showAuthGate();
+            }
+        }
+
+        function showAuthGate() {
+            authGate.style.display = 'flex';
+            adminShell.style.display = 'none';
+        }
+
+        function showAdmin() {
+            authGate.style.display = 'none';
+            adminShell.style.display = 'block';
+            loadArticles();
+        }
+
+        $('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = $('loginEmail').value.trim();
+            const password = $('loginPassword').value;
+            const btn = $('loginBtn');
+            const errBox = $('authError');
+            errBox.style.display = 'none';
+            btn.disabled = true;
+            btn.textContent = 'Signing in…';
+
+            const { error } = await supabase.auth.signInWithPassword({ email, password });
+
+            btn.disabled = false;
+            btn.textContent = 'Sign in';
+
+            if (error) {
+                errBox.textContent = error.message === 'Invalid login credentials'
+                    ? 'Incorrect email or password. Try again.'
+                    : error.message;
+                errBox.style.display = 'block';
+                return;
+            }
+            showAdmin();
+        });
+
+        $('btnSignOut').addEventListener('click', async () => {
+            await supabase.auth.signOut();
+            showAuthGate();
+        });
+
+        // ============================================
+        // NAVIGATION
+        // ============================================
+        function showListView() {
+            $('viewList').style.display = 'block';
+            $('viewEditor').style.display = 'none';
+            $('navList').classList.add('active');
+            $('navNew').classList.remove('active');
+            loadArticles();
+        }
+
+        function showEditorView(article) {
+            currentArticle = article || null;
+            $('viewList').style.display = 'none';
+            $('viewEditor').style.display = 'block';
+            $('navList').classList.remove('active');
+            $('navNew').classList.add('active');
+            populateEditor(currentArticle);
+        }
+
+        $('navList').addEventListener('click', showListView);
+        $('btnBackToList').addEventListener('click', showListView);
+        $('navNew').addEventListener('click', () => showEditorView(null));
+        $('btnNewArticle').addEventListener('click', () => showEditorView(null));
+        $('btnEmptyNew').addEventListener('click', () => showEditorView(null));
+
+        $('filterStatus').addEventListener('change', (e) => {
+            filterStatus = e.target.value;
+            renderArticleList();
+        });
+
+        // ============================================
+        // LOAD + RENDER ARTICLE LIST
+        // ============================================
+        async function loadArticles() {
+            $('listLoading').style.display = 'block';
+            $('articleList').style.setProperty('display', 'none', 'important');
+            $('emptyState').style.display = 'none';
+
+            const { data, error } = await supabase
+                .from('articles')
+                .select('*')
+                .order('updated_at', { ascending: false });
+
+            $('listLoading').style.display = 'none';
+
+            if (error) {
+                showToast('Could not load articles: ' + error.message, true);
+                return;
+            }
+
+            articles = data || [];
+            renderArticleList();
+        }
+
+        function renderArticleList() {
+            const filtered = articles.filter(a => {
+                if (filterStatus === 'all') return true;
+                return a.status === filterStatus;
+            });
+
+            $('articleCountLabel').textContent =
+                `${articles.length} article${articles.length === 1 ? '' : 's'} · ${articles.filter(a => a.status === 'published').length} published`;
+
+            const listEl = $('articleList');
+
+            if (filtered.length === 0) {
+                listEl.style.setProperty('display', 'none', 'important');
+                $('emptyState').style.display = 'block';
+                $('emptyState').querySelector('h2').textContent =
+                    articles.length === 0 ? 'No articles yet' : 'Nothing matches this filter';
+                return;
+            }
+
+            $('emptyState').style.display = 'none';
+            listEl.style.setProperty('display', 'flex', 'important');
+
+            listEl.innerHTML = filtered.map(a => {
+                const isPublished = a.status === 'published';
+                const dateLabel = isPublished && a.published_at
+                    ? formatDate(a.published_at)
+                    : `Edited ${formatDate(a.updated_at)}`;
+                const thumb = a.cover_image
+                    ? `<img src="${escapeAttr(a.cover_image)}" class="article-thumb" alt="" />`
+                    : `<div class="article-thumb d-flex align-items-center justify-content-center text-muted-custom"><i class="bi bi-image"></i></div>`;
+
+                return `
+          <div class="article-row p-3 d-flex align-items-center gap-3" data-id="${a.id}">
+            ${thumb}
+            <div class="flex-grow-1 min-w-0">
+              <div class="d-flex align-items-center gap-2 mb-1">
+                <span class="status-pill ${isPublished ? 'status-published' : 'status-draft'}">${isPublished ? 'Published' : 'Draft'}</span>
+                <span class="small text-muted-custom" style="font-size:12px;">${a.category || 'Uncategorised'}</span>
+              </div>
+              <div class="fw-semibold text-truncate" style="max-width:480px; color:#1f1b24;">${escapeHtml(a.title || 'Untitled article')}</div>
+              <div class="small text-muted-custom" style="font-size:12.5px;">${dateLabel}</div>
+            </div>
+            <div class="d-flex gap-2">
+              <button class="icon-btn act-preview" title="Preview" data-id="${a.id}"><i class="bi bi-eye"></i></button>
+              <button class="icon-btn act-edit" title="Edit" data-id="${a.id}"><i class="bi bi-pencil"></i></button>
+              <button class="icon-btn danger act-delete" title="Delete" data-id="${a.id}"><i class="bi bi-trash3"></i></button>
+            </div>
+          </div>
+        `;
+            }).join('');
+
+            listEl.querySelectorAll('.act-edit').forEach(btn =>
+                btn.addEventListener('click', () => {
+                    const a = articles.find(x => x.id === btn.dataset.id);
+                    showEditorView(a);
+                }));
+
+            listEl.querySelectorAll('.act-preview').forEach(btn =>
+                btn.addEventListener('click', () => {
+                    const a = articles.find(x => x.id === btn.dataset.id);
+                    openPreview(a);
+                }));
+
+            listEl.querySelectorAll('.act-delete').forEach(btn =>
+                btn.addEventListener('click', () => {
+                    const a = articles.find(x => x.id === btn.dataset.id);
+                    confirmDelete(a);
+                }));
+        }
+
+        // ============================================
+        // EDITOR
+        // ============================================
+        function populateEditor(article) {
+            $('fldTitle').value = article?.title || '';
+            $('fldCategory').value = article?.category || 'Governance';
+            $('fldCoverImage').value = article?.cover_image || '';
+
+            if (article?.cover_image) {
+                $('coverImagePreview').src = article.cover_image;
+                $('coverImagePreview').style.display = 'block';
+            } else {
+                $('coverImagePreview').src = '';
+                $('coverImagePreview').style.display = 'none';
+            }
+            $('fldCoverImageFile').value = '';
+
+            $('fldExcerpt').value = article?.excerpt || '';
+
+            // Setting Quill content
+            if (article?.content) {
+                // To avoid parsing issues, we use clipboard module to set raw HTML reliably
+                quill.clipboard.dangerouslyPasteHTML(article.content);
+            } else {
+                quill.setText('');
+            }
+
+            updateSlugPreview();
+            updateExcerptCount();
+            updateWordCount();
+            updateStatusPill(article?.status || 'draft');
+            setAutosaveState('idle', article ? `Last saved ${formatDate(article.updated_at)}` : 'Not saved yet');
+        }
+
+        function updateSlugPreview() {
+            const slug = slugify($('fldTitle').value) || 'your-article-slug';
+            $('slugPreview').textContent = `/articles/${slug}`;
+        }
+
+        function updateExcerptCount() {
+            $('excerptCount').textContent = $('fldExcerpt').value.length;
+        }
+
+        function updateWordCount() {
+            const text = quill.getText().trim();
+            const words = text ? text.split(/\s+/).length : 0;
+            $('wordCount').textContent = `${words} word${words === 1 ? '' : 's'}`;
+            $('readTime').textContent = `~${Math.max(1, Math.round(words / 200))} min read`;
+        }
+
+        function updateStatusPill(status) {
+            const pill = $('editorStatusPill');
+            const isPublished = status === 'published';
+            pill.textContent = isPublished ? 'Published' : 'Draft';
+            pill.className = `status-pill ${isPublished ? 'status-published' : 'status-draft'}`;
+        }
+
+        function slugify(str) {
+            return str.toLowerCase().trim()
+                .replace(/[^\w\s-]/g, '')
+                .replace(/\s+/g, '-')
+                .replace(/-+/g, '-');
+        }
+
+        ['input'].forEach(evt => {
+            $('fldTitle').addEventListener(evt, () => { updateSlugPreview(); scheduleAutosave(); });
+            $('fldExcerpt').addEventListener(evt, () => { updateExcerptCount(); scheduleAutosave(); });
+            $('fldCategory').addEventListener('change', scheduleAutosave);
+        });
+
+        $('fldCoverImageFile').addEventListener('change', async (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            $('coverImageLoading').style.display = 'block';
+            $('coverImagePreview').style.display = 'none';
+
+            try {
+                const fileExt = file.name.split('.').pop();
+                const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
+                const filePath = `${fileName}`;
+
+                const { error: uploadError } = await supabase.storage
+                    .from('article-covers')
+                    .upload(filePath, file, { cacheControl: '3600', upsert: false });
+
+                if (uploadError) throw uploadError;
+
+                const { data: { publicUrl } } = supabase.storage
+                    .from('article-covers')
+                    .getPublicUrl(filePath);
+
+                $('fldCoverImage').value = publicUrl;
+                $('coverImagePreview').src = publicUrl;
+                $('coverImagePreview').style.display = 'block';
+                scheduleAutosave();
+            } catch (err) {
+                console.error('Upload error:', err);
+                showToast('Upload failed! Check if "article-covers" bucket exists and is public.', true);
+            } finally {
+                $('coverImageLoading').style.display = 'none';
+            }
+        });
+
+        function gatherFormData() {
+            return {
+                title: $('fldTitle').value.trim(),
+                slug: slugify($('fldTitle').value),
+                category: $('fldCategory').value,
+                cover_image: $('fldCoverImage').value.trim() || null,
+                excerpt: $('fldExcerpt').value.trim(),
+                content: quill.root.innerHTML,
+            };
+        }
+
+        // ---- Autosave (drafts only, debounced) ----
+        function scheduleAutosave() {
+            if (!$('fldTitle').value.trim() && !quill.getText().trim()) return; // nothing worth saving yet
+            clearTimeout(autosaveTimer);
+            setAutosaveState('saving', 'Saving…');
+            autosaveTimer = setTimeout(saveDraftSilently, 1200);
+        }
+
+        async function saveDraftSilently() {
+            const formData = gatherFormData();
+            if (!formData.title) { setAutosaveState('idle', 'Add a title to save'); return; }
+
+            try {
+                if (currentArticle?.id) {
+                    const { data, error } = await supabase
+                        .from('articles')
+                        .update({ ...formData, updated_at: new Date().toISOString() })
+                        .eq('id', currentArticle.id)
+                        .select()
+                        .single();
+                    if (error) throw error;
+                    currentArticle = data;
+                } else {
+                    const { data, error } = await supabase
+                        .from('articles')
+                        .insert({ ...formData, status: 'draft' })
+                        .select()
+                        .single();
+                    if (error) throw error;
+                    currentArticle = data;
+                }
+                setAutosaveState('saved', `Saved ${formatDate(new Date())}`);
+            } catch (err) {
+                setAutosaveState('idle', 'Could not autosave — check connection');
+            }
+        }
+
+        function setAutosaveState(state, text) {
+            const dot = $('autosaveDot');
+            dot.className = 'autosave-dot' + (state === 'saving' ? ' saving' : state === 'saved' ? ' saved' : '');
+            $('autosaveText').textContent = text;
+        }
+
+        // ---- Explicit save / publish ----
+        $('btnSaveDraft').addEventListener('click', async () => {
+            const formData = gatherFormData();
+            if (!formData.title) { showToast('Give the article a title before saving.', true); return; }
+
+            try {
+                const result = await upsertArticle(formData, 'draft');
+                currentArticle = result;
+                updateStatusPill('draft');
+                showToast('Draft saved');
+            } catch (err) {
+                showToast('Could not save: ' + err.message, true);
+            }
+        });
+
+        $('btnPublish').addEventListener('click', async () => {
+            const formData = gatherFormData();
+            if (!formData.title) { showToast('Give the article a title before publishing.', true); return; }
+            if (!quill.getText().trim()) { showToast('Add some content before publishing.', true); return; }
+
+            const btn = $('btnPublish');
+            btn.disabled = true;
+            btn.textContent = 'Publishing…';
+
+            try {
+                const wasAlreadyPublished = currentArticle?.status === 'published';
+                const result = await upsertArticle(
+                    formData,
+                    'published',
+                    wasAlreadyPublished ? undefined : new Date().toISOString()
+                );
+                currentArticle = result;
+                updateStatusPill('published');
+                showToast('Article published');
+            } catch (err) {
+                showToast('Could not publish: ' + err.message, true);
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Publish';
+            }
+        });
+
+        async function upsertArticle(formData, status, publishedAt) {
+            const payload = { ...formData, status, updated_at: new Date().toISOString() };
+            if (publishedAt) payload.published_at = publishedAt;
+
+            if (currentArticle?.id) {
+                const { data, error } = await supabase
+                    .from('articles')
+                    .update(payload)
+                    .eq('id', currentArticle.id)
+                    .select()
+                    .single();
+                if (error) throw error;
+                return data;
+            } else {
+                const { data, error } = await supabase
+                    .from('articles')
+                    .insert(payload)
+                    .select()
+                    .single();
+                if (error) throw error;
+                return data;
+            }
+        }
+
+        // ============================================
+        // PREVIEW
+        // ============================================
+        const previewModal = new bootstrap.Modal($('previewModal'));
+
+        $('btnPreview').addEventListener('click', () => {
+            openPreview({ ...gatherFormData(), status: currentArticle?.status || 'draft', updated_at: new Date().toISOString() });
+        });
+
+        function openPreview(article) {
+            $('previewTitle').textContent = article.title || 'Untitled article';
+            $('previewCategory').textContent = article.category || 'Governance';
+
+            const cover = $('previewCover');
+            if (article.cover_image) {
+                cover.src = article.cover_image;
+                cover.style.display = 'block';
+            } else {
+                cover.style.display = 'none';
+            }
+
+            const words = (article.content || '').trim() ? quill.getText().trim().split(/\s+/).length : 0;
+            const readMin = Math.max(1, Math.round(words / 200));
+            const statusLabel = article.status === 'published' ? 'Published' : 'Draft';
+            $('previewMeta').textContent = `${statusLabel} · ${readMin} min read`;
+
+            $('previewBody').innerHTML = article.content || 'Nothing written yet.';
+
+            previewModal.show();
+        }
+
+        // ============================================
+        // DELETE
+        // ============================================
+        const deleteModal = new bootstrap.Modal($('deleteModal'));
+        let pendingDeleteId = null;
+
+        $('btnDelete').addEventListener('click', () => {
+            if (!currentArticle?.id) { showToast('Nothing to delete yet.', true); return; }
+            confirmDelete(currentArticle);
+        });
+
+        function confirmDelete(article) {
+            pendingDeleteId = article.id;
+            deleteModal.show();
+        }
+
+        $('btnConfirmDelete').addEventListener('click', async () => {
+            if (!pendingDeleteId) return;
+            const { error } = await supabase.from('articles').delete().eq('id', pendingDeleteId);
+            deleteModal.hide();
+
+            if (error) {
+                showToast('Could not delete: ' + error.message, true);
+                return;
+            }
+
+            showToast('Article deleted');
+            pendingDeleteId = null;
+
+            if (currentArticle?.id === pendingDeleteId || $('viewEditor').style.display !== 'none') {
+                showListView();
+            } else {
+                loadArticles();
+            }
+        });
+
+        // ============================================
+        // HELPERS
+        // ============================================
+        function formatDate(d) {
+            const date = new Date(d);
+            return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+        }
+
+        function escapeHtml(str) {
+            const div = document.createElement('div');
+            div.textContent = str || '';
+            return div.innerHTML;
+        }
+
+        function escapeAttr(str) {
+            return (str || '').replace(/"/g, '&quot;');
+        }
+
+        let toastTimer = null;
+        function showToast(message, isError = false) {
+            const toast = $('toast');
+            $('toastText').textContent = message;
+            toast.classList.toggle('is-error', isError);
+            toast.querySelector('.bi').className = isError ? 'bi bi-exclamation-circle-fill' : 'bi bi-check-circle-fill';
+            toast.classList.add('show');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // ============================================
+        // INIT
+        // ============================================
+        checkSession();
+    </script>
+</body>
+
+</html>

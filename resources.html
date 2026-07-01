@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resources | Muyaka Ngulube-Banda GRC Consultant</title>
+  <meta name="description"
+    content="Articles, training videos, SOP guides, and governance resources from Muyaka Ngulube-Banda." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+    rel="stylesheet">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    .header-accent-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 6px;
+      height: 100%;
+      background-color: var(--color-secondary);
+    }
+
+    /* Tab switcher */
+    .resource-tab-btn {
+      background: transparent;
+      border: none;
+      font-family: var(--font-sans);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--color-muted-foreground);
+      padding: 12px 28px;
+      border-bottom: 3px solid transparent;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .resource-tab-btn.active {
+      color: var(--color-primary);
+      border-bottom-color: var(--color-primary);
+    }
+
+    .resource-tab-btn:hover {
+      color: var(--color-primary);
+    }
+
+    /* Video card */
+    .video-card {
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(110, 30, 46, 0.08);
+      transition: box-shadow 0.25s ease, transform 0.25s ease;
+    }
+
+    .video-card:hover {
+      box-shadow: 0 10px 30px rgba(59, 42, 74, 0.12);
+      transform: translateY(-4px);
+    }
+
+    .video-thumbnail-wrap {
+      position: relative;
+      height: 190px;
+      overflow: hidden;
+      background-color: var(--color-secondary);
+    }
+
+    .video-thumbnail-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.85;
+      transition: opacity 0.2s;
+    }
+
+    .video-card:hover .video-thumbnail-wrap img {
+      opacity: 1;
+    }
+
+    .play-btn-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .play-circle {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.92);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .video-card:hover .play-circle {
+      transform: scale(1.1);
+      background: #fff;
+    }
+
+    .play-circle svg {
+      fill: var(--color-primary);
+      margin-left: 4px;
+    }
+
+    /* Video modal */
+    .video-modal-wrap {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .video-modal-wrap.open {
+      display: flex;
+    }
+
+    .video-modal-inner {
+      position: relative;
+      width: 100%;
+      max-width: 860px;
+    }
+
+    .video-modal-inner video,
+    .video-modal-inner iframe {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border-radius: 10px;
+      display: block;
+    }
+
+    .video-modal-close {
+      position: absolute;
+      top: -44px;
+      right: 0;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 28px;
+      cursor: pointer;
+      line-height: 1;
+      opacity: 0.8;
+    }
+
+    .video-modal-close:hover {
+      opacity: 1;
+    }
+
+    .duration-badge {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(0, 0, 0, 0.72);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <header class="sticky-header">
+    <div class="container-xxl px-4 px-md-5">
+      <nav class="navbar navbar-expand-md py-3 justify-content-between align-items-center">
+        <a href="index.html" class="text-decoration-none">
+          <div class="d-flex flex-column lh-sm">
+            <span class="font-serif fs-5 fw-semibold text-primary-color tracking-tight">Muyaka Ngulube-Banda</span>
+            <span class="text-uppercase tracking-wider text-muted-custom"
+              style="font-size: 11px; letter-spacing: 0.12em;">GRC Consultant</span>
+          </div>
+        </a>
+
+        <button class="navbar-toggler border-0 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+          aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="mainNavbar">
+          <ul class="navbar-nav align-items-md-center gap-4 mt-3 mt-md-0">
+            <li class="nav-item"><a class="nav-link nav-link-custom" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link nav-link-custom" href="about.html">About</a></li>
+            <li class="nav-item"><a class="nav-link nav-link-custom" href="services.html">Services</a></li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-custom active" aria-current="page" href="resources.html">Resources</a>
+            </li>
+            <li class="nav-item ms-md-2">
+              <a class="btn-primary-custom" href="contact.html">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main style="padding-top: 80px;">
+
+    <!-- Page Header -->
+    <section class="bg-warm-light py-5 position-relative overflow-hidden">
+      <div class="header-accent-bar"></div>
+      <div class="container-xxl px-4 px-md-5 reveal">
+        <div class="text-primary-color fw-semibold text-uppercase mb-3"
+          style="font-size: 11px; letter-spacing: 0.18em;">Resources</div>
+        <h1 class="display-4 fw-bold font-serif mb-3 lh-sm" style="font-size: clamp(32px, 5vw, 52px);">
+          Knowledge &amp; Training<br />Resources
+        </h1>
+        <p class="fs-5 text-muted-custom mb-0" style="max-width: 520px; line-height: 1.75;">
+          Articles, perspectives, and training videos to help compliance professionals and organisational leaders grow.
+        </p>
+      </div>
+    </section>
+
+    <!-- Tab Switcher -->
+    <section class="bg-white border-bottom">
+      <div class="container-xxl px-4 px-md-5">
+        <div class="d-flex">
+          <button class="resource-tab-btn active" id="tabArticles" data-tab="articles">📄 Articles</button>
+          <button class="resource-tab-btn" id="tabVideos" data-tab="videos">🎬 Training Videos</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ARTICLES SECTION ===== -->
+    <section id="sectionArticles" class="bg-white py-5" style="padding: 64px 0 100px;">
+      <div class="container-xxl px-4 px-md-5">
+
+        <!-- Category filter -->
+        <div class="d-flex gap-2 flex-wrap mb-5">
+          <button class="category-btn active" data-category="All">All</button>
+          <button class="category-btn" data-category="Governance">Governance</button>
+          <button class="category-btn" data-category="Risk">Risk</button>
+          <button class="category-btn" data-category="Compliance">Compliance</button>
+          <button class="category-btn" data-category="Leadership">Leadership</button>
+          <button class="category-btn" data-category="SOPs">SOPs</button>
+        </div>
+
+        <!-- Featured article -->
+        <div id="featured-article-container" class="mb-5 reveal"></div>
+
+        <!-- Articles grid -->
+        <div class="row g-4 reveal-group" id="articles-grid">
+          <div class="col-12 text-muted-custom small">Loading articles…</div>
+        </div>
+
+        <div id="no-articles-alert" class="text-center py-5 d-none text-muted-custom">
+          No articles in this category yet. Check back soon.
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== VIDEOS SECTION (hidden by default) ===== -->
+    <section id="sectionVideos" class="bg-warm-light py-5" style="padding: 64px 0 100px; display:none;">
+      <div class="container-xxl px-4 px-md-5">
+
+        <div class="mb-5 reveal">
+          <div class="text-primary-color fw-semibold text-uppercase mb-2"
+            style="font-size: 11px; letter-spacing: 0.18em;">Training Library</div>
+          <h2 class="h1 font-serif mb-2">Learn at Your Own Pace</h2>
+          <p class="text-muted-custom" style="max-width: 480px; line-height: 1.75;">
+            Watch practical training videos on governance, risk, compliance, and capacity building — designed for
+            professionals at every level.
+          </p>
+        </div>
+
+        <!-- Videos grid -->
+        <div class="row g-4 reveal-group" id="videos-grid">
+          <div class="col-12 text-muted-custom small">Loading videos…</div>
+        </div>
+
+        <div id="no-videos-alert" class="text-center py-5 d-none text-muted-custom">
+          No training videos uploaded yet. Check back soon.
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Video Modal -->
+  <div class="video-modal-wrap" id="videoModal">
+    <div class="video-modal-inner">
+      <button class="video-modal-close" id="videoModalClose" aria-label="Close video">&times;</button>
+      <video id="videoPlayer" controls playsinline></video>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="py-5 mt-auto">
+    <div class="container-xxl px-4 px-md-5">
+      <div class="row g-5 mb-5">
+        <div class="col-lg-4 col-md-6">
+          <div class="mb-3">
+            <div class="font-serif fs-5 fw-semibold text-white mb-1">Muyaka Ngulube-Banda</div>
+            <div class="text-uppercase tracking-wider small text-muted-custom"
+              style="font-size: 11px; letter-spacing: 0.12em; color: rgba(245,244,242,0.6) !important;">GRC Consultant
+            </div>
+          </div>
+          <p class="small text-muted-custom mb-0"
+            style="max-width: 260px; line-height: 1.7; color: rgba(245,244,242,0.7) !important;">
+            Empowering organisations to govern confidently, manage risk wisely, and comply with integrity.
+          </p>
+        </div>
+
+        <div class="col-lg-2 col-md-6">
+          <h4 class="text-uppercase tracking-wider text-muted-custom mb-4"
+            style="font-size: 11px; letter-spacing: 0.14em; color: rgba(245,244,242,0.5) !important;">Navigation</h4>
+          <div class="d-flex flex-column gap-2 small">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="resources.html">Resources</a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+          <h4 class="text-uppercase tracking-wider text-muted-custom mb-4"
+            style="font-size: 11px; letter-spacing: 0.14em; color: rgba(245,244,242,0.5) !important;">Services</h4>
+          <div class="d-flex flex-column gap-2 small text-muted-custom"
+            style="color: rgba(245,244,242,0.75) !important;">
+            <span>GRC Advisory</span>
+            <span>Mentorship &amp; Coaching</span>
+            <span>Organisations Development</span>
+            <span>SOP Development</span>
+            <span>Assets Management</span>
+            <span>Grants Management</span>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+          <h4 class="text-uppercase tracking-wider text-muted-custom mb-4"
+            style="font-size: 11px; letter-spacing: 0.14em; color: rgba(245,244,242,0.5) !important;">Contact</h4>
+          <div class="d-flex flex-column gap-2 small">
+            <a href="mailto:Alitan08@yahoo.com">Alitan08@yahoo.com</a>
+            <span class="text-muted-custom" style="color: rgba(245,244,242,0.75) !important;">Lusaka, Zambia</span>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="pt-4 border-top border-secondary d-flex flex-wrap justify-content-between align-items-center gap-3 small text-muted-custom"
+        style="border-color: rgba(245,244,242,0.12) !important; color: rgba(245,244,242,0.45) !important;">
+        <div>&copy; 2026 Muyaka Ngulube-Banda. All rights reserved. Proudly created by <a
+            href="https://www.linkedin.com/in/mutumwenu-yeta-946b992bb/">Mutumwenu Yeta</a></div>
+        <div>Governance &middot; Risk &middot; Compliance</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+  <script type="module" src="main.js"></script>
+
+  <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm'
+    const supabase = createClient(
+      'https://fvvlslrapleqdofvfpzu.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ2dmxzbHJhcGxlcWRvZnZmcHp1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE4ODU5MjYsImV4cCI6MjA5NzQ2MTkyNn0.WWDr6GM3OzhzxfuImyrpROWYjnjkSc80eMNB0roTIhg'
+    )
+
+    // ===================== HELPERS =====================
+    function escapeHtml(str) {
+      const d = document.createElement('div');
+      d.textContent = str || '';
+      return d.innerHTML;
+    }
+    function escapeAttr(str) { return (str || '').replace(/"/g, '&quot;'); }
+
+    // ===================== TABS =====================
+    const tabBtns = document.querySelectorAll('.resource-tab-btn');
+    const sectionArticles = document.getElementById('sectionArticles');
+    const sectionVideos = document.getElementById('sectionVideos');
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        if (btn.dataset.tab === 'articles') {
+          sectionArticles.style.display = 'block';
+          sectionVideos.style.display = 'none';
+        } else {
+          sectionArticles.style.display = 'none';
+          sectionVideos.style.display = 'block';
+        }
+      });
+    });
+
+    // ===================== ARTICLES =====================
+    let allArticles = [];
+    let activeCategory = 'All';
+
+    async function loadArticles() {
+      const { data, error } = await supabase
+        .from('articles')
+        .select('*')
+        .eq('status', 'published')
+        .order('published_at', { ascending: false });
+
+      if (error || !data) return;
+      allArticles = data;
+      renderArticles();
+    }
+
+    function renderArticles() {
+      const filtered = activeCategory === 'All'
+        ? allArticles
+        : allArticles.filter(a => a.category === activeCategory);
+
+      const featured = document.getElementById('featured-article-container');
+      const grid = document.getElementById('articles-grid');
+      const noAlert = document.getElementById('no-articles-alert');
+
+      if (filtered.length === 0) {
+        featured.innerHTML = '';
+        grid.innerHTML = '';
+        noAlert.classList.remove('d-none');
+        return;
+      }
+      noAlert.classList.add('d-none');
+
+      // Featured
+      const f = filtered[0];
+      const fDate = new Date(f.published_at || f.created_at).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+      const fWords = (f.content || '').split(/\s+/).length;
+      const fRead = Math.max(1, Math.round(fWords / 200));
+      featured.innerHTML = `
+        <a href="blog-post.html?slug=${escapeAttr(f.slug)}" class="text-decoration-none text-dark">
+          <article class="card-warm-bg p-0">
+            <div class="row g-0 align-items-stretch">
+              <div class="col-lg-6 overflow-hidden" style="min-height:260px; max-height:340px;">
+                <img src="${escapeAttr(f.cover_image || '')}" alt="${escapeAttr(f.title)}" class="w-100 h-100 object-fit-cover"/>
+              </div>
+              <div class="col-lg-6 d-flex flex-column justify-content-center p-4 p-md-5">
+                <div class="d-flex gap-3 align-items-center mb-3">
+                  <span class="featured-badge">Featured</span>
+                  <span class="category-badge-custom mb-0">${escapeHtml(f.category || 'Governance')}</span>
+                </div>
+                <h2 class="h3 font-serif fw-bold mb-3 lh-sm text-dark">${escapeHtml(f.title)}</h2>
+                <p class="small text-muted-custom mb-4" style="line-height:1.75;">${escapeHtml(f.excerpt || '')}</p>
+                <div class="d-flex gap-2 align-items-center small text-muted-custom" style="font-size:13px;">
+                  <span>${fDate}</span><span>&middot;</span><span>${fRead} min read</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </a>`;
+
+      // Grid
+      const rest = filtered.slice(1);
+      if (rest.length === 0) { grid.innerHTML = ''; return; }
+      grid.innerHTML = rest.map(a => {
+        const aDate = new Date(a.published_at || a.created_at).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+        const aRead = Math.max(1, Math.round((a.content || '').split(/\s+/).length / 200));
+        return `
+          <div class="col-md-6 col-lg-4" data-category="${escapeAttr(a.category || '')}">
+            <a href="blog-post.html?slug=${escapeAttr(a.slug)}" class="text-decoration-none text-dark">
+              <article class="card-warm-bg h-100">
+                <div style="height:200px; overflow:hidden; background-color:var(--color-muted);">
+                  <img src="${escapeAttr(a.cover_image || '')}" alt="${escapeAttr(a.title)}" class="w-100 h-100 object-fit-cover"/>
+                </div>
+                <div class="p-4">
+                  <div class="category-badge-custom mb-2">${escapeHtml(a.category || 'Governance')}</div>
+                  <h3 class="h5 font-serif mb-2 text-dark">${escapeHtml(a.title)}</h3>
+                  <p class="small text-muted-custom mb-4" style="line-height:1.7;">${escapeHtml(a.excerpt || '')}</p>
+                  <div class="d-flex gap-2 align-items-center small text-muted-custom" style="font-size:12px;">
+                    <span>${aDate}</span><span>&middot;</span><span>${aRead} min read</span>
+                  </div>
+                </div>
+              </article>
+            </a>
+          </div>`;
+      }).join('');
+    }
+
+    // Category filter buttons
+    document.querySelectorAll('.category-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeCategory = btn.dataset.category;
+        renderArticles();
+      });
+    });
+
+    // ===================== VIDEOS =====================
+    async function loadVideos() {
+      const grid = document.getElementById('videos-grid');
+      const noAlert = document.getElementById('no-videos-alert');
+
+      const { data, error } = await supabase
+        .from('videos')
+        .select('*')
+        .eq('status', 'published')
+        .order('created_at', { ascending: false });
+
+      if (error || !data || data.length === 0) {
+        grid.innerHTML = '';
+        noAlert.classList.remove('d-none');
+        return;
+      }
+
+      noAlert.classList.add('d-none');
+      grid.innerHTML = data.map(v => `
+        <div class="col-md-6 col-lg-4">
+          <div class="video-card cursor-pointer" data-video-url="${escapeAttr(v.video_url)}" data-title="${escapeAttr(v.title)}">
+            <div class="video-thumbnail-wrap">
+              <img src="${escapeAttr(v.thumbnail_url || '')}" alt="${escapeAttr(v.title)}" />
+              <div class="play-btn-overlay">
+                <div class="play-circle">
+                  <svg width="20" height="20" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+              </div>
+              ${v.duration ? `<span class="duration-badge">${escapeHtml(v.duration)}</span>` : ''}
+            </div>
+            <div class="p-4">
+              ${v.category ? `<div class="category-badge-custom mb-2">${escapeHtml(v.category)}</div>` : ''}
+              <h3 class="h5 font-serif mb-2 text-dark">${escapeHtml(v.title)}</h3>
+              ${v.description ? `<p class="small text-muted-custom mb-0" style="line-height:1.7;">${escapeHtml(v.description)}</p>` : ''}
+            </div>
+          </div>
+        </div>`).join('');
+
+      // Wire up play buttons
+      grid.querySelectorAll('.video-card').forEach(card => {
+        card.addEventListener('click', () => openVideoModal(card.dataset.videoUrl, card.dataset.title));
+      });
+    }
+
+    // ===================== VIDEO MODAL =====================
+    const videoModal = document.getElementById('videoModal');
+    const videoPlayer = document.getElementById('videoPlayer');
+    const videoModalClose = document.getElementById('videoModalClose');
+
+    function openVideoModal(url, title) {
+      videoPlayer.src = url;
+      videoPlayer.title = title;
+      videoModal.classList.add('open');
+      videoPlayer.play();
+    }
+
+    function closeVideoModal() {
+      videoPlayer.pause();
+      videoPlayer.src = '';
+      videoModal.classList.remove('open');
+    }
+
+    videoModalClose.addEventListener('click', closeVideoModal);
+    videoModal.addEventListener('click', e => { if (e.target === videoModal) closeVideoModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeVideoModal(); });
+
+    // ===================== INIT =====================
+    document.addEventListener('DOMContentLoaded', () => {
+      loadArticles();
+      loadVideos();
+    });
+  </script>
+</body>
+
+</html>

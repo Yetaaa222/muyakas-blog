@@ -18,6 +18,7 @@
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
   <link rel="stylesheet" href="style.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
     .header-accent-bar {
@@ -173,6 +174,18 @@
       padding: 3px 8px;
       border-radius: 4px;
     }
+
+    .resource-tab-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .resource-tab-btn svg {
+      width: 18px;
+      height: 18px;
+      stroke-width: 2;
+    }
   </style>
 </head>
 
@@ -233,8 +246,12 @@
     <section class="bg-white border-bottom">
       <div class="container-xxl px-4 px-md-5">
         <div class="d-flex">
-          <button class="resource-tab-btn active" id="tabArticles" data-tab="articles">📄 Articles</button>
-          <button class="resource-tab-btn" id="tabVideos" data-tab="videos">🎬 Training Videos</button>
+          <button class="resource-tab-btn active" id="tabArticles" data-tab="articles">
+            <i data-lucide="file-text"></i> Articles
+          </button>
+          <button class="resource-tab-btn" id="tabVideos" data-tab="videos">
+            <i data-lucide="video"></i> Training Videos
+          </button>
         </div>
       </div>
     </section>
@@ -572,6 +589,8 @@
       loadArticles();
       loadVideos();
     });
+
+    lucide.createIcons();
   </script>
 </body>
 

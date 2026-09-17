@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UNSEEN | Muyaka Ngulube-Banda</title>
+  <meta name="description"
+    content="UNSEEN: The Invisible Work Behind Every Overnight Success — a book by Muyaka Ngulube-Banda." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <!-- Custom Design System styles -->
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* ---- Page-specific additions (kept out of style.css so it's easy to review/remove) ---- */
+
+    .header-accent-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 6px;
+      height: 100%;
+      background-color: var(--color-secondary);
+    }
+
+    /* Hero book cover with soft float + shadow, matching the .about photo treatment */
+    .book-cover-wrap {
+      position: relative;
+      max-width: 3000px;
+      margin: 0 auto;
+    }
+
+     .book-cover-wrap img {
+      width: 100%;
+      display: block;
+      border-radius: 6px;
+    
+    } 
+
+   
+
+    /* Pull quote blocks */
+    .pull-quote-card {
+      background-color: var(--color-primary);
+      color: #fff;
+      border-radius: 10px;
+      padding: 40px 32px;
+      height: 100%;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .pull-quote-card .quote-mark {
+      font-family: 'Playfair Display', serif;
+      font-size: 64px;
+      line-height: 1;
+      color: rgba(255, 255, 255, 0.35);
+      margin-bottom: 12px;
+    }
+
+    .pull-quote-card p.quote-text {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 19px;
+      line-height: 1.55;
+      margin-bottom: 0;
+    }
+
+    .pull-quote-card.alt {
+      background-color: var(--color-secondary);
+    }
+
+    .pull-quote-card.light {
+      background-color: var(--color-muted, #f1ece6);
+      color: var(--color-primary);
+    }
+
+    .pull-quote-card.light .quote-mark {
+      color: rgba(110, 30, 46, 0.18);
+    }
+
+    /* "What's inside" part cards */
+    .part-card {
+      border: 1px solid rgba(59, 42, 74, 0.10);
+      border-radius: 10px;
+      padding: 32px 28px;
+      height: 100%;
+      background-color: #fff;
+      transition: box-shadow 0.25s ease, transform 0.25s ease;
+    }
+
+    .part-card:hover {
+      box-shadow: 0 20px 40px rgba(59, 42, 74, 0.10);
+      transform: translateY(-4px);
+    }
+
+    .part-number {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 40px;
+      color: rgba(110, 30, 46, 0.14);
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+
+    /* Order section */
+    .order-panel {
+      background-color: #fff;
+      border-radius: 12px;
+      padding: 48px;
+      box-shadow: 0 20px 60px rgba(59, 42, 74, 0.12);
+    }
+
+    .order-check-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
+
+    .order-check-item i {
+      color: var(--color-secondary);
+      margin-top: 3px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <header class="sticky-header">
+    <div class="container-xxl px-4 px-md-5">
+      <nav class="navbar navbar-expand-md py-3 justify-content-between align-items-center">
+        <!-- Logo -->
+        <a href="index.html" class="text-decoration-none">
+          <div class="d-flex flex-column lh-sm">
+            <span class="font-serif fs-5 fw-semibold text-primary-color tracking-tight">Muyaka Ngulube-Banda</span>
+            <span class="text-uppercase tracking-wider text-muted-custom"
+              style="font-size: 11px; letter-spacing: 0.12em;">GRC Consultant</span>
+          </div>
+        </a>
+
+        <button class="navbar-toggler border-0 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+          aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="mainNavbar">
+          <ul class="navbar-nav align-items-md-center gap-4 mt-3 mt-md-0">
+            <li class="nav-item">
+              <a class="nav-link nav-link-custom" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-custom" href="about.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-custom" href="services.html">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-custom" href="resources.html">Resources</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-custom active" aria-current="page" href="book.html">Book</a>
+            </li>
+            <li class="nav-item ms-md-2">
+              <a class="btn-primary-custom" href="contact.html">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main style="padding-top: 72px;">
+
+    <!-- ============================================================ -->
+    <!-- 1. HERO — cover, title, hook line, ORDER button -->
+    <!-- ============================================================ -->
+    <section class="bg-warm-light py-5 py-md-5 position-relative overflow-hidden"
+      style="min-height: calc(100vh - 72px); display: flex; align-items: center;">
+      <div class="header-accent-bar"></div>
+      <div class="container-xxl px-4 px-md-5">
+        <div class="row align-items-center g-5">
+
+          <!-- Text Content -->
+          <div class="col-lg-6 order-lg-1 order-2 reveal">
+            <div class="d-inline-block text-primary-color fw-semibold text-uppercase mb-4 pb-2 border-bottom border-danger"
+              style="font-size: 11px; letter-spacing: 0.18em; border-color: var(--color-primary) !important;">
+              New Release &middot; By Muyaka Ngulube-Banda
+            </div>
+
+            <!--  <h1 class="display-3 fw-bold mb-3 font-serif lh-1" style="font-size: clamp(38px, 5.5vw, 62px);">
+              UNSEEN
+            </h1>
+          <div class="fs-5 mb-4" style="max-width: 480px; color: var(--color-secondary); font-style: italic;">
+              The Invisible Work Behind Every Overnight Success
+            </div> -->
+
+            <p class="fs-5 text-muted-custom mb-5" style="max-width: 500px; line-height: 1.85;">
+              [PLACEHOLDER hook line — one punchy sentence that makes someone stop scrolling. E.g. "Every success
+              story you admire has a chapter nobody published — this book is that chapter."]
+            </p>
+
+            <div class="d-flex flex-wrap gap-3">
+              <a href="#order" class="btn-primary-custom px-4 py-3">Order the Book</a>
+              <a href="#about-book" class="btn-outline-custom px-4 py-3">Read the Story</a>
+            </div>
+          </div>
+
+          <!-- Book Cover -->
+          <div class="col-lg-6 order-lg-2 order-1 d-flex justify-content-center reveal reveal-delay-">
+            <div class="book-cover-wrap">
+              <div class="book-cover-glow"></div>
+              <img src="BOOK-removebg-preview.png" alt="UNSEEN: The Invisible Work Behind Every Overnight Success — book cover by Muyaka Ngulube-Banda" />
+            </div>
+          </div>
+
+        </div>  
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 2. ABOUT THE BOOK — short description -->
+    <!-- ============================================================ -->
+    <section id="about-book" class="bg-white py-5 py-md-6" style="padding: 90px 0;">
+      <div class="container-xxl px-4 px-md-5">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 text-center reveal">
+            <div class="bg-primary-color mx-auto mb-4" style="width: 40px; height: 3px;"></div>
+            <div class="text-primary-color fw-semibold text-uppercase mb-3"
+              style="font-size: 11px; letter-spacing: 0.18em;">About the Book</div>
+            <h2 class="h1 font-serif mb-4 lh-sm">The Work No One Claps For</h2>
+            <p class="fs-5 text-muted-custom mb-0" style="line-height: 1.85;">
+              [PLACEHOLDER — 2–3 sentence short description. What is the book about, at the level you'd say it to
+              someone in an elevator? E.g. "UNSEEN pulls back the curtain on what really happens before the applause
+              — the discipline, the doubt, the quiet decisions — drawing on Muyaka Ngulube-Banda's own journey and
+              the leaders she has advised across Africa."]
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 3. LONG DESCRIPTION — full back-cover style copy -->
+    <!-- ============================================================ -->
+    <section class="bg-warm-light py-5 py-md-6" style="padding: 90px 0;">
+      <div class="container-xxl px-4 px-md-5">
+        <div class="row g-5 align-items-start">
+          <div class="col-lg-5 reveal">
+            <div class="text-primary-color fw-semibold text-uppercase mb-3"
+              style="font-size: 11px; letter-spacing: 0.18em;">The Full Story</div>
+            <h2 class="h1 font-serif mb-0 lh-sm">Behind Every<br />Overnight Success</h2>
+          </div>
+
+          <div class="col-lg-7 reveal">
+            <p class="text-muted-custom mb-3" style="font-size: 15px; line-height: 1.9;">
+              [PLACEHOLDER — paragraph 1 of the back-cover copy. Set the scene: what does the world see, and what
+              does it miss?]
+            </p>
+            <p class="text-muted-custom mb-3" style="font-size: 15px; line-height: 1.9;">
+              [PLACEHOLDER — paragraph 2. Introduce the tension or the author's own experience that led to writing
+              this book.]
+            </p>
+            <p class="text-muted-custom mb-3" style="font-size: 15px; line-height: 1.9;">
+              [PLACEHOLDER — paragraph 3. What will the reader walk away with — not just information, but a shift
+              in how they see their own "unseen" work.]
+            </p>
+            <p class="text-muted-custom mb-0" style="font-size: 15px; line-height: 1.9;">
+              [PLACEHOLDER — closing line. Often a single punchy sentence that could sit on the back cover on its
+              own.]
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 4. WHAT'S INSIDE — the four parts of the journey -->
+    <!-- ============================================================ -->
+    <section class="bg-white py-5 py-md-6" style="padding: 90px 0;">
+      <div class="container-xxl px-4 px-md-5">
+        <div class="text-center mb-5 reveal">
+          <div class="text-primary-color fw-semibold text-uppercase mb-2"
+            style="font-size: 11px; letter-spacing: 0.18em;">What's Inside</div>
+          <h2 class="h1 font-serif mb-3">The Four Parts of the Journey</h2>
+          <p class="text-muted-custom mx-auto" style="max-width: 560px;">
+            [PLACEHOLDER — one line framing the four-part structure of the book.]
+          </p>
+        </div>
+
+        <div class="row g-4 reveal-group">
+          <div class="col-md-6 col-lg-3">
+            <div class="part-card">
+              <div class="part-number">01</div>
+              <h3 class="h5 font-serif mb-2">Part One Title</h3>
+              <p class="small text-muted-custom mb-0" style="line-height: 1.75;">
+                [PLACEHOLDER — one or two sentences describing what this part of the journey covers.]
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="part-card">
+              <div class="part-number">02</div>
+              <h3 class="h5 font-serif mb-2">Part Two Title</h3>
+              <p class="small text-muted-custom mb-0" style="line-height: 1.75;">
+                [PLACEHOLDER — one or two sentences describing what this part of the journey covers.]
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="part-card">
+              <div class="part-number">03</div>
+              <h3 class="h5 font-serif mb-2">Part Three Title</h3>
+              <p class="small text-muted-custom mb-0" style="line-height: 1.75;">
+                [PLACEHOLDER — one or two sentences describing what this part of the journey covers.]
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="part-card">
+              <div class="part-number">04</div>
+              <h3 class="h5 font-serif mb-2">Part Four Title</h3>
+              <p class="small text-muted-custom mb-0" style="line-height: 1.75;">
+                [PLACEHOLDER — one or two sentences describing what this part of the journey covers.]
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 5. WHO THIS BOOK IS FOR -->
+    <!-- ============================================================ -->
+    <section class="bg-warm-light py-5 py-md-6" style="padding: 90px 0;">
+      <div class="container-xxl px-4 px-md-5">
+        <div class="row g-5 align-items-center">
+          <div class="col-lg-5 reveal">
+            <div class="bg-primary-color mb-4" style="width: 40px; height: 3px;"></div>
+            <div class="text-primary-color fw-semibold text-uppercase mb-3"
+              style="font-size: 11px; letter-spacing: 0.18em;">Who It's For</div>
+            <h2 class="h1 font-serif mb-3 lh-sm">This Book Was Written For You If&hellip;</h2>
+            <p class="text-muted-custom mb-0" style="line-height: 1.8;">
+              [PLACEHOLDER — one short paragraph inviting the right reader in.]
+            </p>
+          </div>
+
+          <div class="col-lg-7 reveal-group">
+            <div class="d-flex flex-column gap-3">
+              <div class="credential-item">
+                <div>
+                  <div class="fw-semibold mb-1">[Reader type 1]</div>
+                  <div class="small text-muted-custom">[PLACEHOLDER — why this book speaks to them]</div>
+                </div>
+              </div>
+              <div class="credential-item">
+                <div>
+                  <div class="fw-semibold mb-1">[Reader type 2]</div>
+                  <div class="small text-muted-custom">[PLACEHOLDER — why this book speaks to them]</div>
+                </div>
+              </div>
+              <div class="credential-item">
+                <div>
+                  <div class="fw-semibold mb-1">[Reader type 3]</div>
+                  <div class="small text-muted-custom">[PLACEHOLDER — why this book speaks to them]</div>
+                </div>
+              </div>
+              <div class="credential-item">
+                <div>
+                  <div class="fw-semibold mb-1">[Reader type 4]</div>
+                  <div class="small text-muted-custom">[PLACEHOLDER — why this book speaks to them]</div>
+                </div>
+              </div>
+              <div class="credential-item">
+                <div>
+                  <div class="fw-semibold mb-1">[Reader type 5]</div>
+                  <div class="small text-muted-custom">[PLACEHOLDER — why this book speaks to them]</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 6. PULL QUOTES — 3 designed quote blocks -->
+    <!-- ============================================================ -->
+    <section class="bg-white py-5 py-md-6" style="padding: 90px 0;">
+      <div class="container-xxl px-4 px-md-5">
+        <div class="text-center mb-5 reveal">
+          <div class="text-primary-color fw-semibold text-uppercase mb-2"
+            style="font-size: 11px; letter-spacing: 0.18em;">From the Pages</div>
+          <h2 class="h1 font-serif">Lines That Stay With You</h2>
+        </div>
+
+        <div class="row g-4 reveal-group">
+          <div class="col-lg-4">
+            <div class="pull-quote-card">
+              <div>
+                <div class="quote-mark">&ldquo;</div>
+                <p class="quote-text">[PLACEHOLDER pull quote one — a striking one- or two-sentence line from the
+                  book.]</p>
+              </div>
+              <div class="small mt-4" style="color: rgba(255,255,255,0.65); letter-spacing: 0.05em;">— UNSEEN, p.
+                [XX]</div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="pull-quote-card alt">
+              <div>
+                <div class="quote-mark">&ldquo;</div>
+                <p class="quote-text">[PLACEHOLDER pull quote two — a striking one- or two-sentence line from the
+                  book.]</p>
+              </div>
+              <div class="small mt-4" style="color: rgba(255,255,255,0.65); letter-spacing: 0.05em;">— UNSEEN, p.
+                [XX]</div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="pull-quote-card light">
+              <div>
+                <div class="quote-mark">&ldquo;</div>
+                <p class="quote-text">[PLACEHOLDER pull quote three — a striking one- or two-sentence line from the
+                  book.]</p>
+              </div>
+              <div class="small mt-4" style="color: rgba(59,42,74,0.55); letter-spacing: 0.05em;">— UNSEEN, p.
+                [XX]</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 7. ORDER SECTION — Amazon link + what to expect -->
+    <!-- ============================================================ -->
+    <section id="order" class="bg-secondary-color py-5 py-md-6" style="padding: 90px 0;">
+      <div class="container-xxl px-4 px-md-5">
+        <div class="row g-5 align-items-center">
+
+          <div class="col-lg-5 reveal text-white">
+            <div class="text-uppercase fw-semibold mb-3" style="font-size: 11px; letter-spacing: 0.18em; color: rgba(245,244,242,0.7);">
+              Get Your Copy
+            </div>
+            <h2 class="display-5 fw-bold font-serif text-white mb-3 lh-sm">Own the Story Behind the Success</h2>
+            <p class="fs-6 mb-4" style="color: rgba(255,255,255,0.8); line-height: 1.75;">
+              [PLACEHOLDER — a short closing invitation to order, one to two sentences.]
+            </p>
+            <a href="#" class="btn-white-custom py-3 px-5">
+              <i class="fa-brands fa-amazon me-2"></i> Order on Amazon
+            </a>
+            <div class="small mt-3" style="color: rgba(245,244,242,0.6);">
+              
+            </div>
+          </div>
+
+          <div class="col-lg-7 reveal">
+            <div class="order-panel">
+              <h3 class="h5 font-serif mb-4">What to Expect</h3>
+
+              <div class="order-check-item">
+                <i class="fa-solid fa-circle-check"></i>
+                <div class="small text-muted-custom">[PLACEHOLDER — e.g. format available: paperback & Kindle]</div>
+              </div>
+              <div class="order-check-item">
+                <i class="fa-solid fa-circle-check"></i>
+                <div class="small text-muted-custom">[PLACEHOLDER — e.g. shipping / delivery timeframe or region notes]</div>
+              </div>
+              <div class="order-check-item">
+                <i class="fa-solid fa-circle-check"></i>
+                <div class="small text-muted-custom">[PLACEHOLDER — e.g. page count / estimated read time]</div>
+              </div>
+              <div class="order-check-item">
+                <i class="fa-solid fa-circle-check"></i>
+                <div class="small text-muted-custom">[PLACEHOLDER — e.g. bonus: signed copies, bulk orders for teams, etc.]</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-5 mt-auto">
+    <div class="container-xxl px-4 px-md-5">
+      <div class="row g-5 mb-5">
+        <div class="col-lg-4 col-md-6">
+          <div class="mb-3">
+            <div class="font-serif fs-5 fw-semibold text-white mb-1">Muyaka Ngulube-Banda</div>
+            <div class="text-uppercase tracking-wider small text-muted-custom"
+              style="font-size: 11px; letter-spacing: 0.12em; color: rgba(245,244,242,0.6) !important;">GRC Consultant
+            </div>
+          </div>
+          <p class="small text-muted-custom mb-0"
+            style="max-width: 260px; line-height: 1.7; color: rgba(245,244,242,0.7) !important;">
+            Empowering organisations to govern confidently, manage risk wisely, and comply with integrity.
+          </p>
+        </div>
+
+        <div class="col-lg-2 col-md-6">
+          <h4 class="text-uppercase tracking-wider text-muted-custom mb-4"
+            style="font-size: 11px; letter-spacing: 0.14em; color: rgba(245,244,242,0.5) !important;">Navigation</h4>
+          <div class="d-flex flex-column gap-2 small">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="resources.html">Resources</a>
+            <a href="book.html">Book</a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+          <h4 class="text-uppercase tracking-wider text-muted-custom mb-4"
+            style="font-size: 11px; letter-spacing: 0.14em; color: rgba(245,244,242,0.5) !important;">Services</h4>
+          <div class="d-flex flex-column gap-2 small text-muted-custom"
+            style="color: rgba(245,244,242,0.75) !important;">
+            <span>GRC Advisory</span>
+            <span>Mentorship & Coaching</span>
+            <span>Organisations Development</span>
+            <span>SOP Development</span>
+            <span>Assets Management</span>
+            <span>Grants Management</span>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+          <h4 class="text-uppercase tracking-wider text-muted-custom mb-4"
+            style="font-size: 11px; letter-spacing: 0.14em; color: rgba(245,244,242,0.5) !important;">Contact</h4>
+          <div class="d-flex flex-column gap-2 small">
+            <a href="mailto:Alitan08@yahoo.com">Alitan08@yahoo.com</a>
+            <span class="text-muted-custom" style="color: rgba(245,244,242,0.75) !important;">Lusaka, Zambia</span>
+            <div class="d-flex gap-3 mt-2">
+              <a href="#" aria-label="LinkedIn" class="text-muted-custom"
+                style="color: rgba(245,244,242,0.7) !important;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                  <rect x="2" y="9" width="4" height="12" />
+                  <circle cx="4" cy="4" r="2" />
+                </svg>
+              </a>
+              <a href="#" aria-label="Twitter" class="text-muted-custom"
+                style="color: rgba(245,244,242,0.7) !important;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="pt-4 border-top border-secondary d-flex flex-wrap justify-content-between align-items-center gap-3 small text-muted-custom"
+        style="border-color: rgba(245,244,242,0.12) !important; color: rgba(245,244,242,0.45) !important;">
+        <div>&copy; 2026 Muyaka Ngulube-Banda. All rights reserved. Proudly created by <a
+            href="https://www.linkedin.com/in/mutumwenu-yeta-946b992bb/">Mutumwenu Yeta</a></div>
+        <div>Governance &middot; Risk &middot; Compliance</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+
+  <!-- Custom JS -->
+  <script type="module" src="main.js"></script>
+</body>
+
+</html>

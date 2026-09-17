@@ -32,6 +32,47 @@
       height: 100%;
       background-color: var(--color-secondary);
     }
+
+    /* Professional Timeline — subtle scroll-linked reveal.
+       Progressive enhancement only: browsers without support for
+       scroll-driven animations (e.g. Firefox) simply see the
+       timeline in its normal, fully-visible static state. */
+    @media (prefers-reduced-motion: no-preference) {
+      @supports ((animation-timeline: view()) and (animation-range: entry)) {
+
+        /* The vertical line draws downward as the section scrolls through view */
+        .timeline-container {
+          view-timeline: --timeline-progress block;
+        }
+
+        .timeline-line {
+          transform-origin: top;
+          scale: 1 0;
+          animation: timeline-draw linear both;
+          animation-timeline: --timeline-progress;
+          animation-range: cover 0% cover 85%;
+        }
+
+        @keyframes timeline-draw {
+          from { scale: 1 0; }
+          to { scale: 1 1; }
+        }
+
+        /* Each dot softly fades and settles into place as it's reached */
+        .timeline-dot {
+          opacity: 0;
+          scale: 0.5;
+          animation: timeline-dot-in linear both;
+          animation-timeline: view();
+          animation-range: entry 10% entry 60%;
+        }
+
+        @keyframes timeline-dot-in {
+          from { opacity: 0; scale: 0.5; }
+          to { opacity: 1; scale: 1; }
+        }
+      }
+    }
   </style>
 </head>
 
@@ -110,7 +151,7 @@
               <div class="rounded overflow-hidden shadow-lg"
                 style="box-shadow: 0 20px 60px rgba(59,42,74,0.12) !important;">
                 <img src="blog.jpg" alt="Muyaka Ngulube-Banda" class="w-100 object-fit-cover"
-                  style="height: 480px; display: block;" />
+                  style="height:700px; display: block;" />
               </div>
 
               <!-- Floating Badge -->

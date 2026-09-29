@@ -33,6 +33,60 @@
       background-color: var(--color-secondary);
     }
 
+    /* Recognition — award banner */
+    .award-banner {
+      background-color: var(--color-primary);
+      color: #fff;
+      border-radius: 12px;
+      padding: clamp(28px, 4vw, 44px);
+    }
+
+    .award-banner .award-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 10px;
+    }
+
+    .award-banner h3 {
+      color:#FFFFFF ;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(22px, 2.6vw, 28px);
+      margin-bottom: 14px;
+    }
+
+    .award-banner p {
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 14.5px;
+      line-height: 1.8;
+      margin-bottom: 0;
+    }
+
+    .award-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .award-links a {
+      font-size: 13px;
+      font-weight: 500;
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 7px;
+      padding: 9px 18px;
+      text-decoration: none;
+      transition: border-color .2s ease, background-color .2s ease;
+    }
+
+    .award-links a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.7);
+    }
+
     /* Professional Timeline — subtle scroll-linked reveal.
        Progressive enhancement only: browsers without support for
        scroll-driven animations (e.g. Firefox) simply see the
@@ -44,6 +98,11 @@
         .timeline-container {
           view-timeline: --timeline-progress block;
         }
+        
+       .timeline-year {
+          font-size: 13px;
+        }
+          
 
         .timeline-line {
           transform-origin: top;
@@ -54,8 +113,13 @@
         }
 
         @keyframes timeline-draw {
-          from { scale: 1 0; }
-          to { scale: 1 1; }
+          from {
+            scale: 1 0;
+          }
+
+          to {
+            scale: 1 1;
+          }
         }
 
         /* Each dot softly fades and settles into place as it's reached */
@@ -68,8 +132,15 @@
         }
 
         @keyframes timeline-dot-in {
-          from { opacity: 0; scale: 0.5; }
-          to { opacity: 1; scale: 1; }
+          from {
+            opacity: 0;
+            scale: 0.5;
+          }
+
+          to {
+            opacity: 1;
+            scale: 1;
+          }
         }
       }
     }
@@ -100,11 +171,11 @@
         <!-- Navbar Links -->
         <div class="collapse navbar-collapse justify-content-end" id="mainNavbar">
           <ul class="navbar-nav align-items-md-center gap-4 mt-3 mt-md-0">
-           <li class="nav-item">
+            <li class="nav-item">
               <a class="nav-link nav-link-custom" href="index.html">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link nav-link-custom active"  aria-current="page" href="about.html">About</a>
+              <a class="nav-link nav-link-custom active" aria-current="page" href="about.html">About</a>
             </li>
             <li class="nav-item">
               <a class="nav-link nav-link-custom" href="services.html">Services</a>
@@ -150,14 +221,14 @@
             <div class="position-relative me-0 me-md-4 mb-4 mb-lg-0">
               <div class="rounded overflow-hidden shadow-lg"
                 style="box-shadow: 0 20px 60px rgba(59,42,74,0.12) !important;">
-                <img src="blog.jpg" alt="Muyaka Ngulube-Banda" class="w-100 object-fit-cover"
+                <img src="home.jpeg" alt="Muyaka Ngulube-Banda" class="w-100 object-fit-cover"
                   style="height:700px; display: block;" />
               </div>
 
               <!-- Floating Badge -->
               <div class="position-absolute p-4 text-white rounded shadow-lg"
                 style="bottom: -20px; right: -20px; background-color: var(--color-primary); box-shadow: 0 8px 24px rgba(255, 255, 255, 0.25) !important;">
-                <div class="font-serif display-6 fw-bold" style="color: #fff;">15+</div>
+                <div class="font-serif display-6 fw-bold" style="color: #fff;">20+</div>
                 <div class="small text-white-50 mt-1" style="font-size: 12px;">Years of GRC Excellence</div>
               </div>
             </div>
@@ -169,25 +240,26 @@
             <h2 class="h2 font-serif mb-3">Muyaka Ngulube-Banda</h2>
             <div class="text-uppercase tracking-wider fw-semibold mb-4 text-secondary-color"
               style="font-size: 13px; letter-spacing: 0.12em; color: var(--color-secondary) !important;">
-              GRC Consultant &middot; Advisor &middot; Mentor
+              Finance & GRC Expert &middot; Advisor &middot; Mentor
             </div>
 
             <p class="text-muted-custom mb-3" style="font-size: 15px; line-height: 1.85;">
-              Muyaka Ngulube-Banda is one of Southern Africa's most respected voices in Governance, Risk, and
-              Compliance. With a career spanning financial services, international development, and the NGO sector, she
-              brings a rare combination of technical rigour and practical wisdom to every engagement.
+              Muyaka Ngulube-Banda is recognised Global Leader in Financial Management, Governance, Risk, and
+              Compliance. She has built a career dedicated to strengthening financial governance, managing complex
+              international programs, and ensuring development funds create real impact across communities worldwide.
+              She brings a rare combination of technical rigour and practical wisdom to every engagement.
             </p>
             <p class="text-muted-custom mb-3" style="font-size: 15px; line-height: 1.85;">
               Her advisory work is grounded in the belief that strong governance is not a constraint on organisational
-              ambition &mdash; it is its foundation. She has helped over 80 organisations across 12 countries redesign
-              their governance structures, build resilient risk cultures, and embed compliance as a driver of strategic
+              ambition — it is its foundation. She has helped over 70 organisations across 10 countries redesign their
+              governance structures, build resilient risk cultures, and embed compliance as a driver of strategic
               advantage.
             </p>
             <p class="text-muted-custom mb-0" style="font-size: 15px; line-height: 1.85;">
-              Beyond consulting, Muyaka is a committed mentor. She has coached more than 200 compliance professionals,
-              many of whom now lead GRC functions at leading institutions across the continent. She is a sought-after
-              speaker at governance forums and a published contributor to professional journals on corporate
-              accountability.
+              Beyond consulting, Muyaka is a committed mentor and coach. She has mentored more than 120 diverse
+              professionals, many of whom now lead finance and GRC functions at leading institutions across the
+              continent. She is also a champion of women empowerment and promotes their involvement in national
+              development agendas.
             </p>
           </div>
 
@@ -208,41 +280,161 @@
           <!-- Credentials list mapping -->
           <div class="col-md-6 col-lg-4">
             <div class="qualification-card">
-              <div class="fw-semibold mb-2" style="font-size: 14px; line-height: 1.35;">Certified Risk Manager (CRM)
+              <div class="fw-semibold mb-2" style="font-size: 14px; line-height: 1.35;">Governance Institute of
+                Australia
               </div>
-              <div class="small text-muted-custom">Institute of Risk Management, UK</div>
+              <div class="small text-muted-custom">Affiliate Member</div>
             </div>
           </div>
           <div class="col-md-6 col-lg-4">
             <div class="qualification-card">
-              <div class="fw-semibold mb-2" style="font-size: 14px; line-height: 1.35;">Certified Compliance Officer
-                (CCO)</div>
-              <div class="small text-muted-custom">International Compliance Association</div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4">
-            <div class="qualification-card">
-              <div class="fw-semibold mb-2" style="font-size: 14px; line-height: 1.35;">ISO 37001 Lead Implementer</div>
-              <div class="small text-muted-custom">Bureau Veritas Certification</div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4">
-            <div class="qualification-card">
-              <div class="fw-semibold mb-2" style="font-size: 14px; line-height: 1.35;">Advanced Corporate Governance
+              <div class="fw-semibold mb-2" style="font-size: 14px; line-height: 1.35;">Certified Governance, Risk
+                Management and Compliance Specialist
               </div>
-              <div class="small text-muted-custom">Governance Institute of Southern Africa</div>
+              <div class="small text-muted-custom">Global Academy of Finance and Management, USA</div>
             </div>
           </div>
           <div class="col-md-6 col-lg-4">
             <div class="qualification-card">
-              <div class="fw-semibold mb-2" style="font-size: 14px; line-height: 1.35;">MSc Development Management</div>
-              <div class="small text-muted-custom">University of Bath, UK</div>
+              <div class="fw-semibold mb-2" style="font-size: 14px; line-height: 1.35;">Certified Compliance Specialist
+              </div>
+              <div class="small text-muted-custom">American Institute of Business and Financial Management, USA</div>
             </div>
           </div>
           <div class="col-md-6 col-lg-4">
             <div class="qualification-card">
-              <div class="fw-semibold mb-2" style="font-size: 14px; line-height: 1.35;">BCom Accounting</div>
-              <div class="small text-muted-custom">University of Zambia</div>
+              <div class="fw-semibold mb-2" style="font-size: 14px; line-height: 1.35;">People and Teams Development
+              </div>
+              <div class="small text-muted-custom">Clarity 4D, United Kingdom</div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="qualification-card">
+              <div class="fw-semibold mb-2" style="font-size: 14px; line-height: 1.35;">Chartered Global Management
+                Accountant (CGMA)</div>
+              <div class="small text-muted-custom">AICPA-CIMA, United Kingdom</div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="qualification-card">
+              <div class="fw-semibold mb-2" style="font-size: 14px; line-height: 1.35;">Associate Chartered Management
+                Accountant (ACMA)</div>
+              <div class="small text-muted-custom">CIMA, United Kingdom</div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div class="qualification-card">
+              <div class="fw-semibold mb-2" style="font-size: 14px; line-height: 1.35;">Master of Science Strategic
+                Planning</div>
+              <div class="small text-muted-custom">Heriot Watt University, United Kingdom</div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div class="qualification-card">
+              <div class="fw-semibold mb-2" style="font-size: 14px; line-height: 1.35;">Master of Business
+                Administration
+              </div>
+              <div class="small text-muted-custom">Heriot Watt University, United Kingdom</div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div class="qualification-card">
+              <div class="fw-semibold mb-2" style="font-size: 14px; line-height: 1.35;">Bachelor Degree (Honours)
+                Accounting
+              </div>
+              <div class="small text-muted-custom">Athlone Institute of Technology, Ireland</div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div class="qualification-card">
+              <div class="fw-semibold mb-2" style="font-size: 14px; line-height: 1.35;">Leadership Management
+              </div>
+              <div class="small text-muted-custom">United Nations Campus, Bonn, Germany</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Recognition & Advocacy -->
+    <section class="bg-white py-5 py-md-6" style="padding: 80px 0;">
+      <div class="container-xxl px-4 px-md-5">
+        <div class="mb-5 reveal">
+          <div class="text-primary-color fw-semibold text-uppercase mb-2"
+            style="font-size: 11px; letter-spacing: 0.18em;">Recognition</div>
+          <h2 class="h1 font-serif">Recognition &amp; Advocacy</h2>
+        </div>
+
+        <div class="row g-5">
+          <div class="col-lg-5 reveal">
+            <div class="award-banner">
+              <div class="award-label">Featured In</div>
+              <h3>The Leaders 360 &mdash; World's Most Influential Business Women</h3>
+              <p>
+                Muyaka was featured in The Leaders 360's March 2026 issue, "The Power of Financial
+                Governance," part of the magazine's Global Development Leadership Insights series. The
+                cover story traces her path from Zambia to global development leadership, highlighting her
+                work across UNDP, Global Fund programmes, and international government partnerships to
+                advance transparency, compliance, and accountability in development funding.
+              </p>
+              <div class="award-links">
+                <a href="https://www.theleaders360.com/the-inspiring-global-leadership-journey-of-muyaka-ngulube/"
+                  target="_blank" rel="noopener noreferrer">View the feature</a>
+                
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-7 reveal-group">
+            <p class="text-muted-custom mb-4" style="font-size: 15px; line-height: 1.85;">
+              Driven by a passion for women's empowerment, Muyaka founded the Forum for Zambia Women
+              Accountants (FZWA) to give women in the profession a platform to engage, learn, and support
+              one another both within the accountancy field and in the wider national development agenda.
+              That advocacy has run alongside two decades of leadership within the profession itself:
+            </p>
+
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="qualification-card h-100">
+                  <div class="fw-semibold mb-2" style="font-size: 14px; line-height: 1.35;">Founder &amp; First
+                    National Coordinator</div>
+                  <div class="small text-muted-custom">Forum for Zambia Women Accountants (FZWA)</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="qualification-card h-100">
+                  <div class="fw-semibold mb-2" style="font-size: 14px; line-height: 1.35;">First Southern
+                    African President</div>
+                  <div class="small text-muted-custom">International Federation of Women Accountants (IFWA)</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="qualification-card h-100">
+                  <div class="fw-semibold mb-2" style="font-size: 14px; line-height: 1.35;">Council Member,
+                    6 Years &middot; Chairperson, Education</div>
+                  <div class="small text-muted-custom">Zambia Institute of Chartered Accountants</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="qualification-card h-100">
+                  <div class="fw-semibold mb-2" style="font-size: 14px; line-height: 1.35;">Past Chairperson
+                  </div>
+                  <div class="small text-muted-custom">Chartered Institute of Management Accountants (CIMA),
+                    Zambia Branch</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="qualification-card h-100">
+                  <div class="fw-semibold mb-2" style="font-size: 14px; line-height: 1.35;">Vice Chairperson
+                  </div>
+                  <div class="small text-muted-custom">CIMA Africa Regional Board, South Africa</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -264,63 +456,124 @@
 
           <div class="d-flex flex-column">
 
-            <!-- Timeline Item 2009 -->
+            <!-- Timeline Item 1995 -->
             <div class="timeline-item">
-              <div class="timeline-year">2009</div>
+              <div class="timeline-year" >1995</div>
               <div class="timeline-dot"></div>
               <div class="timeline-content">
-                <h3 class="h6 fw-semibold mb-1 text-dark">Risk & Compliance Analyst</h3>
-                <div class="small fw-semibold text-primary-color mb-2" style="font-size: 13px;">First National Bank
+                <h3 class="h6 fw-semibold mb-1 text-dark">Auditor</h3>
+                <div class="small fw-semibold text-primary-color mb-2" style="font-size: 13px;">Office of the Auditor
+                  General, Zambia</div>
+
+              </div>
+            </div>
+
+            <!-- Timeline Item 2003  -->
+            <div class="timeline-item">
+              <div class="timeline-year">2003 </div>
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3 class="h6 fw-semibold mb-1 text-dark">Accountant</h3>
+                <div class="small fw-semibold text-primary-color mb-2" style="font-size: 13px;"> NAC 2000 Corporation,
                   Zambia</div>
-                <p class="small text-muted-custom mb-0" style="line-height: 1.75;">
-                  Began professional career in financial sector compliance, supporting Basel II implementation and
-                  developing internal audit frameworks.
-                </p>
+
               </div>
             </div>
 
-            <!-- Timeline Item 2013 -->
+            <!-- Timeline Item 2005- 2011 -->
             <div class="timeline-item">
-              <div class="timeline-year">2013</div>
+              <div class="timeline-year">2005- 2011</div>
               <div class="timeline-dot"></div>
               <div class="timeline-content">
-                <h3 class="h6 fw-semibold mb-1 text-dark">Compliance Manager</h3>
-                <div class="small fw-semibold text-primary-color mb-2" style="font-size: 13px;">African Development Bank
-                  (Regional Office)</div>
-                <p class="small text-muted-custom mb-0" style="line-height: 1.75;">
-                  Led a team of six compliance officers, overseeing regulatory reporting and institutional risk
-                  assessments across Eastern Africa.
-                </p>
+                <h3 class="h6 fw-semibold mb-1 text-dark"> Logistics Performance Analyst, Supply Analyst, Counter Sales
+                  Office, Depot Cashier</h3>
+                <div class="small fw-semibold text-primary-color mb-2" style="font-size: 13px;">PUMA Energy, British
+                  Petroleum, Zambia</div>
               </div>
             </div>
 
-            <!-- Timeline Item 2016 -->
+            <!-- Timeline Item 2011 – 2016 -->
             <div class="timeline-item">
-              <div class="timeline-year">2016</div>
+              <div class="timeline-year">2011 – 2016</div>
               <div class="timeline-dot"></div>
               <div class="timeline-content">
-                <h3 class="h6 fw-semibold mb-1 text-dark">Head of Governance & Risk</h3>
-                <div class="small fw-semibold text-primary-color mb-2" style="font-size: 13px;">Southern African NGO
-                  Consortium</div>
-                <p class="small text-muted-custom mb-0" style="line-height: 1.75;">
-                  Designed governance architecture for a coalition of 28 NGOs, implementing grants management controls
-                  and donor reporting frameworks.
-                </p>
-              </div>
-            </div>
-
-            <!-- Timeline Item 2020 -->
-            <div class="timeline-item">
-              <div class="timeline-year">2020</div>
-              <div class="timeline-dot"></div>
-              <div class="timeline-content">
-                <h3 class="h6 fw-semibold mb-1 text-dark">Independent GRC Consultant</h3>
-                <div class="small fw-semibold text-primary-color mb-2" style="font-size: 13px;">Ngulube-Banda Advisory
+                <h3 class="h6 fw-semibold mb-1 text-dark"> Quality Assurance and Finance Advisor, Operations Quality
+                  Assurance Officer</h3>
+                <div class="small fw-semibold text-primary-color mb-2" style="font-size: 13px;"> United Nations
+                  Development Programme, Zambia
                 </div>
-                <p class="small text-muted-custom mb-0" style="line-height: 1.75;">
-                  Founded an independent advisory practice serving corporates, NGOs, and government bodies across
-                  Sub-Saharan Africa.
-                </p>
+              </div>
+            </div>
+
+            <!-- Timeline Item 2017 – 2018 –-->
+            <div class="timeline-item">
+              <div class="timeline-year">2017 – 2018</div>
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3 class="h6 fw-semibold mb-1 text-dark"> Quality Assurance and Compliance Specialist</h3>
+                <div class="small fw-semibold text-primary-color mb-2" style="font-size: 13px;"> United Nations
+                  Development Programme, South Sudan
+                </div>
+              </div>
+            </div>
+
+            <!-- Timeline Item 2019 – 2021  -->
+            <div class="timeline-item">
+              <div class="timeline-year">2019 – 2021</div>
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3 class="h6 fw-semibold mb-1 text-dark"> Group Leader, HIV and Malaria Portfolios</h3>
+                <div class="small fw-semibold text-primary-color mb-2" style="font-size: 13px;"> GFA Consulting Group
+                  Gmbh (Fiscal Agent), Nigeria
+                </div>
+              </div>
+            </div>
+
+            <!-- Timeline Item 2021 – 2022 -->
+            <div class="timeline-item">
+              <div class="timeline-year">2021 – 2022</div>
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3 class="h6 fw-semibold mb-1 text-dark"> Team Leader – Financial Management Technical Assistance</h3>
+                <div class="small fw-semibold text-primary-color mb-2" style="font-size: 13px;"> United Nations
+                  Development Programme, Indonesia
+                </div>
+              </div>
+            </div>
+
+            <!-- Timeline 2022 – 2023-->
+            <div class="timeline-item">
+              <div class="timeline-year">2022 – 2023</div>
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3 class="h6 fw-semibold mb-1 text-dark"> Country Team Leader</h3>
+                <div class="small fw-semibold text-primary-color mb-2" style="font-size: 13px;"> GFA Consulting Group
+                  Gmbh (Fiscal Agent), Liberia
+                </div>
+              </div>
+            </div>
+
+            <!-- Timeline Item 2023 – 2026 -->
+            <div class="timeline-item">
+              <div class="timeline-year">2023 – 2026</div>
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3 class="h6 fw-semibold mb-1 text-dark">Fiscal Agent Manager, Millenium Challenge Account</h3>
+                <div class="small fw-semibold text-primary-color mb-2" style="font-size: 13px;">GFA Consulting Group
+                  Gmbh, Timor Leste
+                </div>
+              </div>
+            </div>
+
+            <!-- Timeline Item 22026 -->
+            <div class="timeline-item">
+              <div class="timeline-year">2026 </div>
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3 class="h6 fw-semibold mb-1 text-dark"> Finance and GRC Consultant, Business Manager</h3>
+                <div class="small fw-semibold text-primary-color mb-2" style="font-size: 13px;"> Lemub Group Pty,
+                  Australia
+                </div>
               </div>
             </div>
 
@@ -358,6 +611,7 @@
             <a href="about.html">About</a>
             <a href="services.html">Services</a>
             <a href="resources.html">Resources</a>
+            <a href="book.html">Book</a>
             <a href="contact.html">Contact</a>
           </div>
         </div>
@@ -385,7 +639,7 @@
             <a href="mailto:Alitan08@yahoo.com">Alitan08@yahoo.com</a>
             <span class="text-muted-custom" style="color: rgba(245,244,242,0.75) !important;">Lusaka, Zambia</span>
             <div class="d-flex gap-3 mt-2">
-              <a href="#" aria-label="LinkedIn" class="text-muted-custom"
+              <a href="https://www.linkedin.com/in/mngulube/" aria-label="LinkedIn" class="text-muted-custom"
                 style="color: rgba(245,244,242,0.7) !important;">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />

@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Caveat:wght@500;600;700&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
@@ -24,6 +24,17 @@
   <link rel="stylesheet" href="style.css" />
 
   <style>
+    /* Cross-document view transitions: smooths navigation to other pages
+       (About, Services, Contact). Progressive enhancement — unsupported
+       browsers just get a normal instant navigation, nothing breaks.
+       This same rule needs to live on every page for it to take effect
+       both ways; ideally it belongs in style.css so it's site-wide. */
+    @media (prefers-reduced-motion: no-preference) {
+      @view-transition {
+        navigation: auto;
+      }
+    }
+
     /* ---- Page-specific additions (kept out of style.css so it's easy to review/remove) ---- */
 
     .header-accent-bar {
@@ -42,14 +53,14 @@
       margin: 0 auto;
     }
 
-     .book-cover-wrap img {
+    .book-cover-wrap img {
       width: 100%;
       display: block;
       border-radius: 6px;
-    
-    } 
 
-   
+    }
+
+
 
     /* Pull quote blocks */
     .pull-quote-card {
@@ -136,6 +147,244 @@
       color: var(--color-secondary);
       margin-top: 3px;
     }
+
+    /* ---- Author photo ---- */
+    .author-photo-wrap {
+      width: 100%;
+      max-width: 300px;
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto;
+      border: 1px solid rgba(59, 42, 74, 0.14);
+      box-shadow: 0 24px 50px rgba(59, 42, 74, 0.14);
+    }
+
+    .author-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .author-credentials-line {
+      margin-top: 20px;
+      font-size: 13px;
+      letter-spacing: 0.03em;
+    }
+
+    /* ---- A message from Muyaka ---- */
+    .message-card {
+      position: relative;
+      max-width: 720px;
+      margin: 0 auto;
+      background-color: #fff;
+      border: 1px solid rgba(110, 30, 46, 0.22);
+      border-radius: 4px;
+      padding: 48px;
+    }
+
+    .message-card p.message-line {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .message-card p.message-line:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .message-card-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      margin-top: 32px;
+    }
+
+    .message-signature {
+      font-family: 'Caveat', cursive;
+      font-size: 44px;
+      color: var(--color-primary);
+      line-height: 1;
+    }
+
+    .message-photo-wrap {
+      flex: none;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid rgba(110, 30, 46, 0.28);
+    }
+
+    .message-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ---- Order: 3-step redemption flow ---- */
+    .redeem-steps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 34px;
+    }
+
+    .redeem-step {
+      flex: 1 1 200px;
+      background-color: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(245, 244, 242, 0.16);
+      border-radius: 10px;
+      padding: 20px 18px;
+      text-align: center;
+    }
+
+    .redeem-step-n {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(245, 244, 242, 0.55);
+      margin-bottom: 10px;
+    }
+
+    .redeem-step-label {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      color: #fff;
+    }
+
+    .redeem-form-panel {
+      background-color: #fff;
+      border-radius: 12px;
+      padding: 36px;
+      box-shadow: 0 20px 60px rgba(23, 17, 30, 0.22);
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .redeem-form-sub {
+      font-size: 13.5px;
+      margin-bottom: 22px;
+    }
+
+    .redeem-form-panel label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .redeem-form-panel .field {
+      margin-bottom: 16px;
+    }
+
+    .redeem-form-panel input {
+      width: 100%;
+      font-size: 14.5px;
+      padding: 12px 14px;
+      border-radius: 7px;
+      border: 1px solid rgba(59, 42, 74, 0.18);
+      background-color: var(--color-background, #F5F4F2);
+    }
+
+    .redeem-form-panel input:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 1px;
+    }
+
+    .redeem-form-panel button {
+      width: 100%;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: #fff;
+      background-color: var(--color-primary);
+      border: 1px solid var(--color-primary);
+      border-radius: 7px;
+      padding: 13px;
+      cursor: pointer;
+      transition: background-color .2s ease;
+    }
+
+    .redeem-form-panel button:hover {
+      background-color: var(--color-primary-hover, #5A1825);
+    }
+
+    /* ---- Beyond the book: compact cross-link strip ----
+       Teasers, not duplicate sections — each links to the page that
+       already holds the full content (About, Services, Contact). */
+    .beyond-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      height: 100%;
+      background-color: #fff;
+      border: 1px solid rgba(59, 42, 74, 0.10);
+      border-radius: 10px;
+      padding: 22px 24px;
+      text-decoration: none;
+      color: inherit;
+      transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .beyond-card:hover {
+      box-shadow: 0 16px 32px rgba(59, 42, 74, 0.10);
+      transform: translateY(-3px);
+      border-color: rgba(110, 30, 46, 0.22);
+      color: inherit;
+    }
+
+    .beyond-card__icon {
+      flex: none;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--color-muted, #f1ece6);
+      color: var(--color-primary);
+      font-size: 17px;
+    }
+
+    .beyond-card__icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .beyond-card__title {
+      font-family: 'Playfair Display', serif;
+      font-size: 15.5px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .beyond-card__sub {
+      font-size: 12.5px;
+      color: var(--color-muted-custom, #6B6560);
+    }
+
+    .beyond-card__arrow {
+      margin-left: auto;
+      opacity: 0.35;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .beyond-card:hover .beyond-card__arrow {
+      opacity: 0.9;
+      transform: translateX(3px);
+    }
   </style>
 </head>
 
@@ -198,21 +447,21 @@
 
           <!-- Text Content -->
           <div class="col-lg-6 order-lg-1 order-2 reveal">
-            <div class="d-inline-block text-primary-color fw-semibold text-uppercase mb-4 pb-2 border-bottom border-danger"
+            <div
+              class="d-inline-block text-primary-color fw-semibold text-uppercase mb-4 pb-2 border-bottom border-danger"
               style="font-size: 11px; letter-spacing: 0.18em; border-color: var(--color-primary) !important;">
               New Release &middot; By Muyaka Ngulube-Banda
             </div>
 
-            <!--  <h1 class="display-3 fw-bold mb-3 font-serif lh-1" style="font-size: clamp(38px, 5.5vw, 62px);">
+            <h1 class="display-3 fw-bold mb-3 font-serif lh-1" style="font-size: clamp(38px, 5.5vw, 62px);">
               UNSEEN
             </h1>
-          <div class="fs-5 mb-4" style="max-width: 480px; color: var(--color-secondary); font-style: italic;">
+            <div class="fs-5 mb-4" style="max-width: 480px; color: var(--color-secondary); font-style: italic;">
               The Invisible Work Behind Every Overnight Success
-            </div> -->
+            </div>
 
             <p class="fs-5 text-muted-custom mb-5" style="max-width: 500px; line-height: 1.85;">
-              [PLACEHOLDER hook line — one punchy sentence that makes someone stop scrolling. E.g. "Every success
-              story you admire has a chapter nobody published — this book is that chapter."]
+              Every overnight success was built in a season nobody watched.
             </p>
 
             <div class="d-flex flex-wrap gap-3">
@@ -225,11 +474,12 @@
           <div class="col-lg-6 order-lg-2 order-1 d-flex justify-content-center reveal reveal-delay-">
             <div class="book-cover-wrap">
               <div class="book-cover-glow"></div>
-              <img src="BOOK-removebg-preview.png" alt="UNSEEN: The Invisible Work Behind Every Overnight Success — book cover by Muyaka Ngulube-Banda" />
+              <img src="BOOK-removebg-preview.png"
+                alt="UNSEEN: The Invisible Work Behind Every Overnight Success — book cover by Muyaka Ngulube-Banda" />
             </div>
           </div>
 
-        </div>  
+        </div>
       </div>
     </section>
 
@@ -245,10 +495,10 @@
               style="font-size: 11px; letter-spacing: 0.18em;">About the Book</div>
             <h2 class="h1 font-serif mb-4 lh-sm">The Work No One Claps For</h2>
             <p class="fs-5 text-muted-custom mb-0" style="line-height: 1.85;">
-              [PLACEHOLDER — 2–3 sentence short description. What is the book about, at the level you'd say it to
-              someone in an elevator? E.g. "UNSEEN pulls back the curtain on what really happens before the applause
-              — the discipline, the doubt, the quiet decisions — drawing on Muyaka Ngulube-Banda's own journey and
-              the leaders she has advised across Africa."]
+              UNSEEN is about the years that never make the highlight reel — the unglamorous discipline of
+              doing things properly when there is no audience and no applause. Drawing on her own path
+              through governance, risk and compliance, and on the leaders she has advised, Muyaka
+              Ngulube-Banda argues that the quiet work is not the price of success. It is the substance of it.
             </p>
           </div>
         </div>
@@ -269,20 +519,26 @@
 
           <div class="col-lg-7 reveal">
             <p class="text-muted-custom mb-3" style="font-size: 15px; line-height: 1.9;">
-              [PLACEHOLDER — paragraph 1 of the back-cover copy. Set the scene: what does the world see, and what
-              does it miss?]
+              The world meets people at their announcement. The promotion, the launch, the certification,
+              the stage. By the time anyone is watching, the difficult part is already over, and what gets
+              called an overnight success is simply the first night that anybody looked.
             </p>
             <p class="text-muted-custom mb-3" style="font-size: 15px; line-height: 1.9;">
-              [PLACEHOLDER — paragraph 2. Introduce the tension or the author's own experience that led to writing
-              this book.]
+              Muyaka Ngulube-Banda has spent her career in the parts of an organisation nobody photographs —
+              the registers, the controls, the policies, and the uncomfortable conversations held long
+              before a problem becomes a headline. She wrote this book after noticing the same pattern in
+              every leader she admired: the work that made them was work no one could see, and most of them
+              were quietly embarrassed by how ordinary it looked.
             </p>
             <p class="text-muted-custom mb-3" style="font-size: 15px; line-height: 1.9;">
-              [PLACEHOLDER — paragraph 3. What will the reader walk away with — not just information, but a shift
-              in how they see their own "unseen" work.]
+              UNSEEN is not a manual for working harder. It is an argument for taking your own invisible
+              hours seriously — for recognising that the draft nobody read, the standard you held when it
+              cost you, and the skill you built at night are not preparation for the real thing. They are
+              the real thing.
             </p>
-            <p class="text-muted-custom mb-0" style="font-size: 15px; line-height: 1.9;">
-              [PLACEHOLDER — closing line. Often a single punchy sentence that could sit on the back cover on its
-              own.]
+            <p class="mb-0" style="font-size: 18px; line-height: 1.6; font-family: 'Playfair Display', serif;
+              font-style: italic; color: var(--color-secondary);">
+              Nobody claps for this part. Do it anyway.
             </p>
           </div>
         </div>
@@ -299,7 +555,8 @@
             style="font-size: 11px; letter-spacing: 0.18em;">What's Inside</div>
           <h2 class="h1 font-serif mb-3">The Four Parts of the Journey</h2>
           <p class="text-muted-custom mx-auto" style="max-width: 560px;">
-            [PLACEHOLDER — one line framing the four-part structure of the book.]
+            The book follows one arc — from the moment the world starts watching, backwards through
+            everything it missed, and out the other side.
           </p>
         </div>
 
@@ -307,36 +564,40 @@
           <div class="col-md-6 col-lg-3">
             <div class="part-card">
               <div class="part-number">01</div>
-              <h3 class="h5 font-serif mb-2">Part One Title</h3>
+              <h3 class="h5 font-serif mb-2">The Announcement</h3>
               <p class="small text-muted-custom mb-0" style="line-height: 1.75;">
-                [PLACEHOLDER — one or two sentences describing what this part of the journey covers.]
+                Why we only ever meet each other at the finish line, and what that distortion costs the
+                person arriving as much as the people watching.
               </p>
             </div>
           </div>
           <div class="col-md-6 col-lg-3">
             <div class="part-card">
               <div class="part-number">02</div>
-              <h3 class="h5 font-serif mb-2">Part Two Title</h3>
+              <h3 class="h5 font-serif mb-2">The Long Middle</h3>
               <p class="small text-muted-custom mb-0" style="line-height: 1.75;">
-                [PLACEHOLDER — one or two sentences describing what this part of the journey covers.]
+                The years that produce no visible result: the repetition, the doubt, and the particular
+                loneliness of work that cannot yet be shown to anyone.
               </p>
             </div>
           </div>
           <div class="col-md-6 col-lg-3">
             <div class="part-card">
               <div class="part-number">03</div>
-              <h3 class="h5 font-serif mb-2">Part Three Title</h3>
+              <h3 class="h5 font-serif mb-2">The Standard</h3>
               <p class="small text-muted-custom mb-0" style="line-height: 1.75;">
-                [PLACEHOLDER — one or two sentences describing what this part of the journey covers.]
+                Holding a line when nobody is checking — and why integrity is a private habit long before
+                it becomes a public reputation.
               </p>
             </div>
           </div>
           <div class="col-md-6 col-lg-3">
             <div class="part-card">
               <div class="part-number">04</div>
-              <h3 class="h5 font-serif mb-2">Part Four Title</h3>
+              <h3 class="h5 font-serif mb-2">What the Light Finds</h3>
               <p class="small text-muted-custom mb-0" style="line-height: 1.75;">
-                [PLACEHOLDER — one or two sentences describing what this part of the journey covers.]
+                What eventually becomes visible, how to carry the unseen years without resentment, and what
+                to tell the person coming up behind you.
               </p>
             </div>
           </div>
@@ -356,7 +617,8 @@
               style="font-size: 11px; letter-spacing: 0.18em;">Who It's For</div>
             <h2 class="h1 font-serif mb-3 lh-sm">This Book Was Written For You If&hellip;</h2>
             <p class="text-muted-custom mb-0" style="line-height: 1.8;">
-              [PLACEHOLDER — one short paragraph inviting the right reader in.]
+              You are somewhere in the middle of something that hasn't paid off yet, and you are starting
+              to wonder whether it will.
             </p>
           </div>
 
@@ -364,32 +626,37 @@
             <div class="d-flex flex-column gap-3">
               <div class="credential-item">
                 <div>
-                  <div class="fw-semibold mb-1">[Reader type 1]</div>
-                  <div class="small text-muted-custom">[PLACEHOLDER — why this book speaks to them]</div>
+                  <div class="fw-semibold mb-1">You keep getting overlooked</div>
+                  <div class="small text-muted-custom">You are doing the work. You are not yet being seen
+                    doing it. This book is about what that period is actually for.</div>
                 </div>
               </div>
               <div class="credential-item">
                 <div>
-                  <div class="fw-semibold mb-1">[Reader type 2]</div>
-                  <div class="small text-muted-custom">[PLACEHOLDER — why this book speaks to them]</div>
+                  <div class="fw-semibold mb-1">You're early in your career</div>
+                  <div class="small text-muted-custom">You are building a foundation nobody is grading yet,
+                    and no one has told you whether it counts.</div>
                 </div>
               </div>
               <div class="credential-item">
                 <div>
-                  <div class="fw-semibold mb-1">[Reader type 3]</div>
-                  <div class="small text-muted-custom">[PLACEHOLDER — why this book speaks to them]</div>
+                  <div class="fw-semibold mb-1">You've already arrived</div>
+                  <div class="small text-muted-custom">You know exactly what it took. This is language for
+                    explaining it to the people coming up behind you.</div>
                 </div>
               </div>
               <div class="credential-item">
                 <div>
-                  <div class="fw-semibold mb-1">[Reader type 4]</div>
-                  <div class="small text-muted-custom">[PLACEHOLDER — why this book speaks to them]</div>
+                  <div class="fw-semibold mb-1">You're starting over</div>
+                  <div class="small text-muted-custom">A second beginning, with the humbling part happening
+                    in public this time.</div>
                 </div>
               </div>
               <div class="credential-item">
                 <div>
-                  <div class="fw-semibold mb-1">[Reader type 5]</div>
-                  <div class="small text-muted-custom">[PLACEHOLDER — why this book speaks to them]</div>
+                  <div class="fw-semibold mb-1">You mentor someone</div>
+                  <div class="small text-muted-custom">A book to hand to the person who is convinced they
+                    are behind.</div>
                 </div>
               </div>
             </div>
@@ -398,49 +665,71 @@
       </div>
     </section>
 
+
     <!-- ============================================================ -->
-    <!-- 6. PULL QUOTES — 3 designed quote blocks -->
+    <!-- 7. A MESSAGE FROM MUYAKA -->
     <!-- ============================================================ -->
     <section class="bg-white py-5 py-md-6" style="padding: 90px 0;">
       <div class="container-xxl px-4 px-md-5">
         <div class="text-center mb-5 reveal">
           <div class="text-primary-color fw-semibold text-uppercase mb-2"
-            style="font-size: 11px; letter-spacing: 0.18em;">From the Pages</div>
+            style="font-size: 11px; letter-spacing: 0.18em;">A Message From Muyaka</div>
+        </div>
+
+        <div class="message-card reveal">
+          <p class="message-line">I have been writing to you for years.</p>
+          <p class="message-line">If you are carrying something in a place nobody is watching, I wrote this
+            book for you.</p>
+          <p class="message-line">There is no access without process.</p>
+          <p class="message-line">Your season is not a verdict. It is a setup.</p>
+          <div class="message-card-foot">
+            <span class="message-signature">Muyaka</span>
+            <div class="message-photo-wrap">
+              <img src="blog.jpg" alt="Muyaka Ngulube-Banda" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 8. PULL QUOTES — 3 designed quote blocks -->
+    <!-- ============================================================ -->
+    <section class="bg-warm-light py-5 py-md-6" style="padding: 90px 0;">
+      <div class="container-xxl px-4 px-md-5">
+        <div class="text-center mb-5 reveal">
+          <div class="text-primary-color fw-semibold text-uppercase mb-2"
+            style="font-size: 11px; letter-spacing: 0.18em;">Words From The Book</div>
           <h2 class="h1 font-serif">Lines That Stay With You</h2>
         </div>
 
         <div class="row g-4 reveal-group">
           <div class="col-lg-4">
-            <div class="pull-quote-card">
+            <div class="pull-quote-card light">
               <div>
                 <div class="quote-mark">&ldquo;</div>
-                <p class="quote-text">[PLACEHOLDER pull quote one — a striking one- or two-sentence line from the
-                  book.]</p>
+                <p class="quote-text">The shoes were torn. The girl was not.</p>
               </div>
-              <div class="small mt-4" style="color: rgba(255,255,255,0.65); letter-spacing: 0.05em;">— UNSEEN, p.
-                [XX]</div>
+              <div class="small mt-4" style="color: rgba(59,42,74,0.55); letter-spacing: 0.05em;">— UNSEEN</div>
             </div>
           </div>
           <div class="col-lg-4">
-            <div class="pull-quote-card alt">
+            <div class="pull-quote-card">
               <div>
                 <div class="quote-mark">&ldquo;</div>
-                <p class="quote-text">[PLACEHOLDER pull quote two — a striking one- or two-sentence line from the
-                  book.]</p>
+                <p class="quote-text">What you carry in the unseen season is what you spend in the seen
+                  one.</p>
               </div>
-              <div class="small mt-4" style="color: rgba(255,255,255,0.65); letter-spacing: 0.05em;">— UNSEEN, p.
-                [XX]</div>
+              <div class="small mt-4" style="color: rgba(255,255,255,0.65); letter-spacing: 0.05em;">— UNSEEN</div>
             </div>
           </div>
           <div class="col-lg-4">
             <div class="pull-quote-card light">
               <div>
                 <div class="quote-mark">&ldquo;</div>
-                <p class="quote-text">[PLACEHOLDER pull quote three — a striking one- or two-sentence line from the
-                  book.]</p>
+                <p class="quote-text">Every overnight success was built in a season nobody watched.</p>
               </div>
-              <div class="small mt-4" style="color: rgba(59,42,74,0.55); letter-spacing: 0.05em;">— UNSEEN, p.
-                [XX]</div>
+              <div class="small mt-4" style="color: rgba(59,42,74,0.55); letter-spacing: 0.05em;">— UNSEEN</div>
             </div>
           </div>
         </div>
@@ -448,51 +737,114 @@
     </section>
 
     <!-- ============================================================ -->
-    <!-- 7. ORDER SECTION — Amazon link + what to expect -->
+    <!-- BEYOND THE BOOK — light teasers, not duplicate sections.
+         Contact already has a button in the header nav; About already
+         has Muyaka's full bio. These just point there. -->
+    <!-- ============================================================ -->
+    <section class="bg-white py-4">
+      <div class="container-xxl px-4 px-md-5">
+        <div class="row g-3 reveal-group">
+          <div class="col-md-4">
+            <a href="about.html" class="beyond-card">
+              <span class="beyond-card__icon">
+                <img src="blog.jpg" alt="" />
+              </span>
+              <span>
+                <span class="beyond-card__title d-block">Meet Muyaka</span>
+                <span class="beyond-card__sub">Her full story &amp; credentials</span>
+              </span>
+              <i class="fa-solid fa-arrow-right beyond-card__arrow"></i>
+            </a>
+          </div>
+          <div class="col-md-4">
+            <a href="services.html" class="beyond-card">
+              <span class="beyond-card__icon">
+                <i class="fa-solid fa-briefcase"></i>
+              </span>
+              <span>
+                <span class="beyond-card__title d-block">Work With Her</span>
+                <span class="beyond-card__sub">Advisory, coaching &amp; mentorship</span>
+              </span>
+              <i class="fa-solid fa-arrow-right beyond-card__arrow"></i>
+            </a>
+          </div>
+          <div class="col-md-4">
+            <a href="contact.html" class="beyond-card">
+              <span class="beyond-card__icon">
+                <i class="fa-solid fa-envelope"></i>
+              </span>
+              <span>
+                <span class="beyond-card__title d-block">Get in Touch</span>
+                <span class="beyond-card__sub">Speaking, booking &amp; enquiries</span>
+              </span>
+              <i class="fa-solid fa-arrow-right beyond-card__arrow"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 9. ORDER SECTION — Amazon link, what to expect, redemption flow -->
     <!-- ============================================================ -->
     <section id="order" class="bg-secondary-color py-5 py-md-6" style="padding: 90px 0;">
       <div class="container-xxl px-4 px-md-5">
-        <div class="row g-5 align-items-center">
+        <div class="row justify-content-center text-center mb-5">
 
-          <div class="col-lg-5 reveal text-white">
-            <div class="text-uppercase fw-semibold mb-3" style="font-size: 11px; letter-spacing: 0.18em; color: rgba(245,244,242,0.7);">
+          <div class="col-lg-7 reveal text-white">
+            <div class="text-uppercase fw-semibold mb-3"
+              style="font-size: 11px; letter-spacing: 0.18em; color: rgba(245,244,242,0.7);">
               Get Your Copy
             </div>
             <h2 class="display-5 fw-bold font-serif text-white mb-3 lh-sm">Own the Story Behind the Success</h2>
             <p class="fs-6 mb-4" style="color: rgba(255,255,255,0.8); line-height: 1.75;">
-              [PLACEHOLDER — a short closing invitation to order, one to two sentences.]
+              Available on Amazon in Kindle and paperback. If any of this sounds like the season you're in,
+              the book was written for it.
             </p>
             <a href="#" class="btn-white-custom py-3 px-5">
               <i class="fa-brands fa-amazon me-2"></i> Order on Amazon
             </a>
-            <div class="small mt-3" style="color: rgba(245,244,242,0.6);">
-              
-            </div>
           </div>
 
-          <div class="col-lg-7 reveal">
-            <div class="order-panel">
-              <h3 class="h5 font-serif mb-4">What to Expect</h3>
+        </div>
 
-              <div class="order-check-item">
-                <i class="fa-solid fa-circle-check"></i>
-                <div class="small text-muted-custom">[PLACEHOLDER — e.g. format available: paperback & Kindle]</div>
+        <!-- 3-step redemption flow + bonus-guide form -->
+        <div class="row reveal">
+          <div class="col-12">
+            <div class="redeem-steps">
+              <div class="redeem-step">
+                <div class="redeem-step-n">Step One</div>
+                <div class="redeem-step-label">Order the book from Amazon</div>
               </div>
-              <div class="order-check-item">
-                <i class="fa-solid fa-circle-check"></i>
-                <div class="small text-muted-custom">[PLACEHOLDER — e.g. shipping / delivery timeframe or region notes]</div>
+              <div class="redeem-step">
+                <div class="redeem-step-n">Step Two</div>
+                <div class="redeem-step-label">Complete the redemption form</div>
               </div>
-              <div class="order-check-item">
-                <i class="fa-solid fa-circle-check"></i>
-                <div class="small text-muted-custom">[PLACEHOLDER — e.g. page count / estimated read time]</div>
-              </div>
-              <div class="order-check-item">
-                <i class="fa-solid fa-circle-check"></i>
-                <div class="small text-muted-custom">[PLACEHOLDER — e.g. bonus: signed copies, bulk orders for teams, etc.]</div>
+              <div class="redeem-step">
+                <div class="redeem-step-n">Step Three</div>
+                <div class="redeem-step-label">Check your inbox</div>
               </div>
             </div>
-          </div>
 
+            <form class="redeem-form-panel" id="redeemForm">
+              <h3 class="h5 font-serif mb-2">Redeem Your Exclusive Guide</h3>
+              <p class="redeem-form-sub text-muted-custom">Enter your Amazon order number and we'll send the
+                companion guide straight to your inbox.</p>
+              <div class="field">
+                <label for="redeemName">First name</label>
+                <input type="text" id="redeemName" name="firstName" autocomplete="given-name" required />
+              </div>
+              <div class="field">
+                <label for="redeemEmail">Email</label>
+                <input type="email" id="redeemEmail" name="email" autocomplete="email" required />
+              </div>
+              <div class="field">
+                <label for="redeemOrder">Amazon order number</label>
+                <input type="text" id="redeemOrder" name="orderNumber" required />
+              </div>
+              <button type="submit">Send My Guide</button>
+            </form>
+          </div>
         </div>
       </div>
     </section>
@@ -550,7 +902,7 @@
             <a href="mailto:Alitan08@yahoo.com">Alitan08@yahoo.com</a>
             <span class="text-muted-custom" style="color: rgba(245,244,242,0.75) !important;">Lusaka, Zambia</span>
             <div class="d-flex gap-3 mt-2">
-              <a href="#" aria-label="LinkedIn" class="text-muted-custom"
+              <a href="https://www.linkedin.com/in/mngulube/" aria-label="LinkedIn" class="text-muted-custom"
                 style="color: rgba(245,244,242,0.7) !important;">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
@@ -587,6 +939,21 @@
 
   <!-- Custom JS -->
   <script type="module" src="main.js"></script>
+
+
+  <script>
+    (function () {
+      var redeemForm = document.getElementById('redeemForm');
+      if (redeemForm) {
+        redeemForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          redeemForm.innerHTML = '<h3 class="h5 font-serif mb-2">Guide On Its Way</h3>' +
+            '<p class="redeem-form-sub text-muted-custom mb-0">Check your inbox in the next few minutes ' +
+            '— and your spam folder, just in case.</p>';
+        });
+      }
+    })();
+  </script>
 </body>
 
 </html>

@@ -24,18 +24,14 @@
   <link rel="stylesheet" href="style.css" />
 
   <style>
-    /* Cross-document view transitions: smooths navigation to other pages
-       (About, Services, Contact). Progressive enhancement — unsupported
-       browsers just get a normal instant navigation, nothing breaks.
-       This same rule needs to live on every page for it to take effect
-       both ways; ideally it belongs in style.css so it's site-wide. */
+    /* Cross-document view transitions (progressive enhancement). */
     @media (prefers-reduced-motion: no-preference) {
       @view-transition {
         navigation: auto;
       }
     }
 
-    /* ---- Page-specific additions (kept out of style.css so it's easy to review/remove) ---- */
+    /* ---- Page-specific additions ---- */
 
     .header-accent-bar {
       position: absolute;
@@ -46,7 +42,6 @@
       background-color: var(--color-secondary);
     }
 
-    /* Hero book cover with soft float + shadow, matching the .about photo treatment */
     .book-cover-wrap {
       position: relative;
       max-width: 3000px;
@@ -57,10 +52,7 @@
       width: 100%;
       display: block;
       border-radius: 6px;
-
     }
-
-
 
     /* Pull quote blocks */
     .pull-quote-card {
@@ -314,13 +306,222 @@
       transition: background-color .2s ease;
     }
 
-    .redeem-form-panel button:hover {
+    .redeem-form-panel button:hover:not(:disabled) {
       background-color: var(--color-primary-hover, #5A1825);
     }
 
-    /* ---- Beyond the book: compact cross-link strip ----
-       Teasers, not duplicate sections — each links to the page that
-       already holds the full content (About, Services, Contact). */
+    .redeem-form-panel button:disabled {
+      opacity: 0.6;
+      cursor: wait;
+    }
+
+    /* Honeypot field for spam bots (hidden from humans) */
+    .hp-field {
+      position: absolute;
+      left: -9999px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+
+    /* Inline form error message */
+    .form-error {
+      display: none;
+      font-size: 13.5px;
+      color: #9b1c1c;
+      background-color: #fdecec;
+      border: 1px solid #f3b9b9;
+      border-radius: 7px;
+      padding: 10px 14px;
+      margin-bottom: 16px;
+    }
+
+    .form-error.is-visible {
+      display: block;
+    }
+
+    /* ---- Launch banner (hidden until LAUNCHED = true) ---- */
+    .launch-banner {
+      background-color: var(--color-primary);
+      color: #fff;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      padding: 10px 16px;
+    }
+
+    .launch-banner a {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    /* ---- This Book Will Help You ---- */
+    .help-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      counter-reset: help;
+    }
+
+    .help-list li {
+      counter-increment: help;
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(59, 42, 74, 0.10);
+      line-height: 1.7;
+    }
+
+    .help-list li:last-child {
+      border-bottom: 0;
+    }
+
+    .help-list li::before {
+      content: counter(help);
+      flex: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background-color: var(--color-primary);
+      color: #fff;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+    }
+
+    /* ---- Testimonials ---- */
+    .testimonial-card {
+      background-color: #fff;
+      border: 1px solid rgba(59, 42, 74, 0.10);
+      border-radius: 10px;
+      padding: 32px 28px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .testimonial-card .quote-mark {
+      font-family: 'Playfair Display', serif;
+      font-size: 48px;
+      line-height: 1;
+      color: rgba(110, 30, 46, 0.2);
+      margin-bottom: 8px;
+    }
+
+    .testimonial-card p.testimonial-text {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 16.5px;
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+
+    .testimonial-card .testimonial-name {
+      font-size: 12.5px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-primary);
+    }
+
+    /* ---- Email capture ---- */
+    .capture-form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    .capture-form input[type="text"],
+    .capture-form input[type="email"] {
+      flex: 1 1 220px;
+      font-size: 14.5px;
+      padding: 13px 14px;
+      border-radius: 7px;
+      border: 1px solid rgba(59, 42, 74, 0.18);
+      background-color: #fff;
+    }
+
+    .capture-form input:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 1px;
+    }
+
+    .capture-form button {
+      flex: 1 1 100%;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #fff;
+      background-color: var(--color-primary);
+      border: 1px solid var(--color-primary);
+      border-radius: 7px;
+      padding: 14px;
+      cursor: pointer;
+      transition: background-color .2s ease;
+    }
+
+    .capture-form button:hover:not(:disabled) {
+      background-color: var(--color-primary-hover, #5A1825);
+    }
+
+    .capture-form button:disabled {
+      opacity: 0.6;
+      cursor: wait;
+    }
+
+    /* ---- FAQ ---- */
+    .faq-item {
+      background-color: #fff;
+      border: 1px solid rgba(59, 42, 74, 0.10);
+      border-radius: 10px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+
+    .faq-item summary {
+      cursor: pointer;
+      list-style: none;
+      padding: 20px 24px;
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      font-size: 16.5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-item summary::after {
+      content: "+";
+      font-size: 22px;
+      color: var(--color-primary);
+      transition: transform .2s ease;
+    }
+
+    .faq-item[open] summary::after {
+      transform: rotate(45deg);
+    }
+
+    .faq-item .faq-answer {
+      padding: 0 24px 22px;
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    /* ---- Beyond the book: compact cross-link strip ---- */
     .beyond-card {
       display: flex;
       align-items: center;
@@ -392,6 +593,12 @@
 
   <!-- Navbar -->
   <header class="sticky-header">
+
+    <!-- #11 Top banner: hidden until LAUNCHED = true in the config script at the bottom of this file -->
+    <div class="launch-banner" id="launchBanner" hidden>
+      <a href="#order">Order UNSEEN today and receive the Seasons Reflection Guide free.</a>
+    </div>
+
     <div class="container-xxl px-4 px-md-5">
       <nav class="navbar navbar-expand-md py-3 justify-content-between align-items-center">
         <!-- Logo -->
@@ -434,10 +641,10 @@
     </div>
   </header>
 
-  <main style="padding-top: 72px;">
+  <main id="mainContent" style="padding-top: 72px;">
 
     <!-- ============================================================ -->
-    <!-- 1. HERO — cover, title, hook line, ORDER button -->
+    <!-- 1. HERO -->
     <!-- ============================================================ -->
     <section class="bg-warm-light py-5 py-md-5 position-relative overflow-hidden"
       style="min-height: calc(100vh - 72px); display: flex; align-items: center;">
@@ -447,10 +654,11 @@
 
           <!-- Text Content -->
           <div class="col-lg-6 order-lg-1 order-2 reveal">
-            <div
+            <!-- #12.1 label: COMING SOON until live on Amazon, then change to "New Release" -->
+            <div id="releaseLabel"
               class="d-inline-block text-primary-color fw-semibold text-uppercase mb-4 pb-2 border-bottom border-danger"
               style="font-size: 11px; letter-spacing: 0.18em; border-color: var(--color-primary) !important;">
-              New Release &middot; By Muyaka Ngulube-Banda
+              Coming Soon &middot; By Muyaka Ngulube-Banda
             </div>
 
             <h1 class="display-3 fw-bold mb-3 font-serif lh-1" style="font-size: clamp(38px, 5.5vw, 62px);">
@@ -466,7 +674,8 @@
 
             <div class="d-flex flex-wrap gap-3">
               <a href="#order" class="btn-primary-custom px-4 py-3">Order the Book</a>
-              <a href="#about-book" class="btn-outline-custom px-4 py-3">Read the Story</a>
+              <!-- #10 now points to the email capture instead of scrolling to the description -->
+              <a href="#read-first-chapter" class="btn-outline-custom px-4 py-3">Read the Story</a>
             </div>
           </div>
 
@@ -484,7 +693,7 @@
     </section>
 
     <!-- ============================================================ -->
-    <!-- 2. ABOUT THE BOOK — short description -->
+    <!-- 2. ABOUT THE BOOK — approved memoir copy (#3) -->
     <!-- ============================================================ -->
     <section id="about-book" class="bg-white py-5 py-md-6" style="padding: 90px 0;">
       <div class="container-xxl px-4 px-md-5">
@@ -495,10 +704,11 @@
               style="font-size: 11px; letter-spacing: 0.18em;">About the Book</div>
             <h2 class="h1 font-serif mb-4 lh-sm">The Work No One Claps For</h2>
             <p class="fs-5 text-muted-custom mb-0" style="line-height: 1.85;">
-              UNSEEN is about the years that never make the highlight reel — the unglamorous discipline of
-              doing things properly when there is no audience and no applause. Drawing on her own path
-              through governance, risk and compliance, and on the leaders she has advised, Muyaka
-              Ngulube-Banda argues that the quiet work is not the price of success. It is the substance of it.
+              Before the international career, the credentials and the titles, there was a girl in torn shoes
+              in Lusaka learning that what people see is built in seasons they never watch. UNSEEN is Muyaka
+              Ngulube-Banda&rsquo;s story: the marriage nobody knew was breaking, the body that said what her
+              mouth would not, the pastor who taught her about seasons, and the four steps that turned twenty
+              years of invisible work into a life she no longer has to prove.
             </p>
           </div>
         </div>
@@ -506,7 +716,7 @@
     </section>
 
     <!-- ============================================================ -->
-    <!-- 3. LONG DESCRIPTION — full back-cover style copy -->
+    <!-- 3. LONG DESCRIPTION — approved copy (#4) -->
     <!-- ============================================================ -->
     <section class="bg-warm-light py-5 py-md-6" style="padding: 90px 0;">
       <div class="container-xxl px-4 px-md-5">
@@ -519,26 +729,27 @@
 
           <div class="col-lg-7 reveal">
             <p class="text-muted-custom mb-3" style="font-size: 15px; line-height: 1.9;">
-              The world meets people at their announcement. The promotion, the launch, the certification,
-              the stage. By the time anyone is watching, the difficult part is already over, and what gets
-              called an overnight success is simply the first night that anybody looked.
+              The world saw the finance professional who moved from Zambia to South Sudan, Nigeria, Indonesia
+              and Liberia, turning around projects everyone else had given up on. The world did not see the
+              marriage quietly breaking behind the competence. It did not see the headaches that no scan could
+              explain, or the woman showing up every morning to a life she did not want to live.
             </p>
             <p class="text-muted-custom mb-3" style="font-size: 15px; line-height: 1.9;">
-              Muyaka Ngulube-Banda has spent her career in the parts of an organisation nobody photographs —
-              the registers, the controls, the policies, and the uncomfortable conversations held long
-              before a problem becomes a headline. She wrote this book after noticing the same pattern in
-              every leader she admired: the work that made them was work no one could see, and most of them
-              were quietly embarrassed by how ordinary it looked.
+              UNSEEN is Muyaka Ngulube-Banda&rsquo;s account of the seasons that made her: the girl mocked for
+              plastic shoes, the wife carrying silence in a house that looked complete, the mother burying a son
+              she raised, the executive who landed in a locked quarantine room and a hospital bed before she
+              finally stopped.
             </p>
             <p class="text-muted-custom mb-3" style="font-size: 15px; line-height: 1.9;">
-              UNSEEN is not a manual for working harder. It is an argument for taking your own invisible
-              hours seriously — for recognising that the draft nobody read, the standard you held when it
-              cost you, and the skill you built at night are not preparation for the real thing. They are
-              the real thing.
+              Then a pastor taught her one word that reorganized everything: seasons. That nothing she was living
+              was permanent, that every season releases something, and that what previous seasons deposit, you
+              carry forward. In this book she shares the four steps she has lived ever since: identify your
+              season, receive what it is releasing, carry what was deposited, and look forward to what is coming.
             </p>
-            <p class="mb-0" style="font-size: 18px; line-height: 1.6; font-family: 'Playfair Display', serif;
-              font-style: italic; color: var(--color-secondary);">
-              Nobody claps for this part. Do it anyway.
+            <p class="text-muted-custom mb-0" style="font-size: 15px; line-height: 1.9;">
+              Raw, warm and unpretentious, UNSEEN is for anyone whose growth is happening where nobody is
+              looking. If you are in a season nobody is watching, this book will help you understand what it is
+              building.
             </p>
           </div>
         </div>
@@ -546,7 +757,7 @@
     </section>
 
     <!-- ============================================================ -->
-    <!-- 4. WHAT'S INSIDE — the four parts of the journey -->
+    <!-- 4. WHAT'S INSIDE — the four parts (#2) -->
     <!-- ============================================================ -->
     <section class="bg-white py-5 py-md-6" style="padding: 90px 0;">
       <div class="container-xxl px-4 px-md-5">
@@ -564,40 +775,36 @@
           <div class="col-md-6 col-lg-3">
             <div class="part-card">
               <div class="part-number">01</div>
-              <h3 class="h5 font-serif mb-2">The Announcement</h3>
+              <h3 class="h5 font-serif mb-2">The Making</h3>
               <p class="small text-muted-custom mb-0" style="line-height: 1.75;">
-                Why we only ever meet each other at the finish line, and what that distortion costs the
-                person arriving as much as the people watching.
+                A childhood in Lusaka, the torn shoes, and the lessons nobody plans for.
               </p>
             </div>
           </div>
           <div class="col-md-6 col-lg-3">
             <div class="part-card">
               <div class="part-number">02</div>
-              <h3 class="h5 font-serif mb-2">The Long Middle</h3>
+              <h3 class="h5 font-serif mb-2">The Moment Everything Changed</h3>
               <p class="small text-muted-custom mb-0" style="line-height: 1.75;">
-                The years that produce no visible result: the repetition, the doubt, and the particular
-                loneliness of work that cannot yet be shown to anyone.
+                The pastor who listened, and the word that named her life: seasons.
               </p>
             </div>
           </div>
           <div class="col-md-6 col-lg-3">
             <div class="part-card">
               <div class="part-number">03</div>
-              <h3 class="h5 font-serif mb-2">The Standard</h3>
+              <h3 class="h5 font-serif mb-2">Seasons That Tested the Teaching</h3>
               <p class="small text-muted-custom mb-0" style="line-height: 1.75;">
-                Holding a line when nobody is checking — and why integrity is a private habit long before
-                it becomes a public reputation.
+                The hardest years, carried with a lens she did not have before.
               </p>
             </div>
           </div>
           <div class="col-md-6 col-lg-3">
             <div class="part-card">
               <div class="part-number">04</div>
-              <h3 class="h5 font-serif mb-2">What the Light Finds</h3>
+              <h3 class="h5 font-serif mb-2">The Due Season</h3>
               <p class="small text-muted-custom mb-0" style="line-height: 1.75;">
-                What eventually becomes visible, how to carry the unseen years without resentment, and what
-                to tell the person coming up behind you.
+                What was deposited finally comes due.
               </p>
             </div>
           </div>
@@ -665,11 +872,36 @@
       </div>
     </section>
 
+    <!-- ============================================================ -->
+    <!-- 6. THIS BOOK WILL HELP YOU (#5) — after "Who It's For", before the message -->
+    <!-- ============================================================ -->
+    <section id="will-help" class="bg-white py-5 py-md-6" style="padding: 90px 0;">
+      <div class="container-xxl px-4 px-md-5">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 reveal">
+            <div class="text-center mb-4">
+              <div class="bg-primary-color mx-auto mb-4" style="width: 40px; height: 3px;"></div>
+              <h2 class="h1 font-serif mb-3 lh-sm">This Book Will Help You</h2>
+              <p class="fs-5 text-muted-custom mb-0" style="line-height: 1.8;">
+                UNSEEN is not a memoir you only read. It is a lens you live with. This book will help you:
+              </p>
+            </div>
+            <ol class="help-list">
+              <li>Name the season you are standing in, instead of being named by it.</li>
+              <li>Stop performing survival as if it were strength.</li>
+              <li>Understand what your hardest season is releasing while you are still inside it.</li>
+              <li>Carry what past seasons deposited into the season you are entering.</li>
+              <li>Stop waiting to be seen before you build.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- ============================================================ -->
-    <!-- 7. A MESSAGE FROM MUYAKA -->
+    <!-- 7. A MESSAGE FROM MUYAKA — full approved copy (#6) -->
     <!-- ============================================================ -->
-    <section class="bg-white py-5 py-md-6" style="padding: 90px 0;">
+    <section class="bg-warm-light py-5 py-md-6" style="padding: 90px 0;">
       <div class="container-xxl px-4 px-md-5">
         <div class="text-center mb-5 reveal">
           <div class="text-primary-color fw-semibold text-uppercase mb-2"
@@ -678,10 +910,18 @@
 
         <div class="message-card reveal">
           <p class="message-line">I have been writing to you for years.</p>
-          <p class="message-line">If you are carrying something in a place nobody is watching, I wrote this
-            book for you.</p>
-          <p class="message-line">There is no access without process.</p>
-          <p class="message-line">Your season is not a verdict. It is a setup.</p>
+          <p class="message-line">If you have followed my posts, you know I talk about promises, principles and
+            prophecies. What God says about you. The process that releases it. What is coming.</p>
+          <p class="message-line">This book is where those posts were born.</p>
+          <p class="message-line">I did not write UNSEEN because my life was neat. I wrote it because for twenty
+            years I lived through seasons nobody could see: a marriage that looked complete and was quietly
+            breaking, a body that started saying what my mouth refused to say, a career that kept moving while I
+            was disappearing inside it.</p>
+          <p class="message-line">Then one word from a pastor reorganized my whole life: seasons.</p>
+          <p class="message-line">If you are carrying something in a place nobody is watching, a business you are
+            building, a calling you are incubating, a pain you cannot explain to anyone, I wrote this book for
+            you. There is no access without process. Your season is not a verdict. It is a setup.</p>
+          <p class="message-line">Read it slowly. Keep your pen near.</p>
           <div class="message-card-foot">
             <span class="message-signature">Muyaka</span>
             <div class="message-photo-wrap">
@@ -693,9 +933,9 @@
     </section>
 
     <!-- ============================================================ -->
-    <!-- 8. PULL QUOTES — 3 designed quote blocks -->
+    <!-- 8. PULL QUOTES -->
     <!-- ============================================================ -->
-    <section class="bg-warm-light py-5 py-md-6" style="padding: 90px 0;">
+    <section class="bg-white py-5 py-md-6" style="padding: 90px 0;">
       <div class="container-xxl px-4 px-md-5">
         <div class="text-center mb-5 reveal">
           <div class="text-primary-color fw-semibold text-uppercase mb-2"
@@ -737,9 +977,134 @@
     </section>
 
     <!-- ============================================================ -->
-    <!-- BEYOND THE BOOK — light teasers, not duplicate sections.
-         Contact already has a button in the header nav; About already
-         has Muyaka's full bio. These just point there. -->
+    <!-- 9. WHAT READERS SAY (#8)
+         NOTE: names are pending final approval. Fallback = replace each name with "A reader". -->
+    <!-- ============================================================ -->
+    <section class="bg-warm-light py-5 py-md-6" style="padding: 90px 0;">
+      <div class="container-xxl px-4 px-md-5">
+        <div class="text-center mb-5 reveal">
+          <div class="text-primary-color fw-semibold text-uppercase mb-2"
+            style="font-size: 11px; letter-spacing: 0.18em;">Testimonials</div>
+          <h2 class="h1 font-serif">What Readers Say</h2>
+        </div>
+
+        <div class="row g-4 reveal-group">
+          <div class="col-md-6 col-lg-3">
+            <div class="testimonial-card">
+              <div>
+                <div class="quote-mark">&ldquo;</div>
+                <p class="testimonial-text">It&rsquo;s because of your words that I now believe in my dreams.</p>
+              </div>
+              <div class="testimonial-name">Mubita Nyika</div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="testimonial-card">
+              <div>
+                <div class="quote-mark">&ldquo;</div>
+                <p class="testimonial-text">I read your posts and I am inspired and I begin to hope again.</p>
+              </div>
+              <div class="testimonial-name">Priscilla Nangwenya</div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="testimonial-card">
+              <div>
+                <div class="quote-mark">&ldquo;</div>
+                <p class="testimonial-text">You spoke right into my worries.</p>
+              </div>
+              <div class="testimonial-name">Lutinala Nalomba</div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="testimonial-card">
+              <div>
+                <div class="quote-mark">&ldquo;</div>
+                <p class="testimonial-text">I always remember your encouragement and you continue to inspire me.</p>
+              </div>
+              <div class="testimonial-name">Clara Bwalya</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 10. PRE-LAUNCH EMAIL CAPTURE (#10) — target of the "Read the Story" button -->
+    <!-- ============================================================ -->
+    <section id="read-first-chapter" class="bg-white py-5 py-md-6" style="padding: 90px 0;">
+      <div class="container-xxl px-4 px-md-5">
+        <div class="row justify-content-center text-center">
+          <div class="col-lg-8 reveal">
+            <div class="bg-primary-color mx-auto mb-4" style="width: 40px; height: 3px;"></div>
+            <h2 class="h1 font-serif mb-3 lh-sm">Read the first chapter before anyone else.</h2>
+            <p class="fs-6 text-muted-custom mb-4" style="line-height: 1.8;">
+              Subscribe and receive a chapter of UNSEEN free. You will also hear first when the book goes live,
+              and about the coaching, mentorship and speaking offers that follow.
+            </p>
+
+            <div id="captureWrap">
+              <form class="capture-form" id="captureForm" novalidate>
+                <div class="form-error w-100" id="captureError" role="alert"></div>
+                <input type="text" name="firstName" placeholder="Name (optional)" autocomplete="given-name"
+                  aria-label="Name (optional)" />
+                <input type="email" name="email" placeholder="Email" autocomplete="email" aria-label="Email"
+                  required />
+                <input type="text" name="_gotcha" class="hp-field" tabindex="-1" autocomplete="off"
+                  aria-hidden="true" />
+                <button type="submit">Send My Chapter</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 11. FAQ (#9) -->
+    <!-- ============================================================ -->
+    <section id="faq" class="bg-warm-light py-5 py-md-6" style="padding: 90px 0;">
+      <div class="container-xxl px-4 px-md-5">
+        <div class="text-center mb-5 reveal">
+          <div class="text-primary-color fw-semibold text-uppercase mb-2"
+            style="font-size: 11px; letter-spacing: 0.18em;">Questions</div>
+          <h2 class="h1 font-serif">Frequently Asked Questions</h2>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col-lg-8 reveal">
+            <details class="faq-item">
+              <summary>When is UNSEEN released?</summary>
+              <div class="faq-answer text-muted-custom">End of October 2026 on Amazon.</div>
+            </details>
+            <details class="faq-item">
+              <summary>What formats are available?</summary>
+              <div class="faq-answer text-muted-custom">Kindle and paperback. The paperback is print-on-demand and
+                arrives in about 3-4 days.</div>
+            </details>
+            <details class="faq-item">
+              <summary>Can I get it in Zambia?</summary>
+              <div class="faq-answer text-muted-custom">Yes. Amazon delivers internationally, and Muyaka will hold
+                copies for direct purchase locally.</div>
+            </details>
+            <details class="faq-item">
+              <summary>Is this a religious book?</summary>
+              <div class="faq-answer text-muted-custom">No. It is the memoir of a woman of faith. The teaching on
+                seasons comes from her walk with God, written in plain, practical language. You do not need to
+                share her faith to receive what the book carries.</div>
+            </details>
+            <details class="faq-item">
+              <summary>Is there a workbook or journal?</summary>
+              <div class="faq-answer text-muted-custom">A companion workbook is planned. The Seasons Reflection
+                Guide is the first taste of it.</div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- BEYOND THE BOOK -->
     <!-- ============================================================ -->
     <section class="bg-white py-4">
       <div class="container-xxl px-4 px-md-5">
@@ -785,7 +1150,7 @@
     </section>
 
     <!-- ============================================================ -->
-    <!-- 9. ORDER SECTION — Amazon link, what to expect, redemption flow -->
+    <!-- 12. ORDER SECTION — redemption flow (#1, #7) -->
     <!-- ============================================================ -->
     <section id="order" class="bg-secondary-color py-5 py-md-6" style="padding: 90px 0;">
       <div class="container-xxl px-4 px-md-5">
@@ -801,7 +1166,8 @@
               Available on Amazon in Kindle and paperback. If any of this sounds like the season you're in,
               the book was written for it.
             </p>
-            <a href="#" class="btn-white-custom py-3 px-5">
+            <!-- #12.2 Update the href with the live Amazon link at launch (see AMAZON_URL in the script below) -->
+            <a href="#" id="amazonBtn" class="btn-white-custom py-3 px-5">
               <i class="fa-brands fa-amazon me-2"></i> Order on Amazon
             </a>
           </div>
@@ -826,10 +1192,11 @@
               </div>
             </div>
 
-            <form class="redeem-form-panel" id="redeemForm">
-              <h3 class="h5 font-serif mb-2">Redeem Your Exclusive Guide</h3>
+            <form class="redeem-form-panel" id="redeemForm" novalidate>
+              <h3 class="h5 font-serif mb-2">Redeem Your Seasons Reflection Guide</h3>
               <p class="redeem-form-sub text-muted-custom">Enter your Amazon order number and we'll send the
-                companion guide straight to your inbox.</p>
+                Seasons Reflection Guide straight to your inbox.</p>
+              <div class="form-error" id="redeemError" role="alert"></div>
               <div class="field">
                 <label for="redeemName">First name</label>
                 <input type="text" id="redeemName" name="firstName" autocomplete="given-name" required />
@@ -842,6 +1209,8 @@
                 <label for="redeemOrder">Amazon order number</label>
                 <input type="text" id="redeemOrder" name="orderNumber" required />
               </div>
+              <input type="text" name="_gotcha" class="hp-field" tabindex="-1" autocomplete="off"
+                aria-hidden="true" />
               <button type="submit">Send My Guide</button>
             </form>
           </div>
@@ -899,6 +1268,7 @@
           <h4 class="text-uppercase tracking-wider text-muted-custom mb-4"
             style="font-size: 11px; letter-spacing: 0.14em; color: rgba(245,244,242,0.5) !important;">Contact</h4>
           <div class="d-flex flex-column gap-2 small">
+            <!-- #12.3 Swap for a professional, domain-based address once it exists (e.g. hello@yourdomain.com) -->
             <a href="mailto:Alitan08@yahoo.com">Alitan08@yahoo.com</a>
             <span class="text-muted-custom" style="color: rgba(245,244,242,0.75) !important;">Lusaka, Zambia</span>
             <div class="d-flex gap-3 mt-2">
@@ -940,18 +1310,107 @@
   <!-- Custom JS -->
   <script type="module" src="main.js"></script>
 
-
   <script>
+    /* =====================================================================
+       CONFIG — the only values that need editing at setup / launch
+       ===================================================================== */
+    var CONFIG = {
+      // #1  Redemption form backend. Create a form at formspree.io (or deploy a Google Apps Script
+      //     web app) and paste its endpoint URL here. Until this is set, the form shows an honest
+      //     "not available yet" error instead of a fake success message.
+      REDEEM_ENDPOINT: 'https://formspree.io/f/REPLACE_WITH_REDEEM_FORM_ID',
+
+      // #10 The chapter signup is wired in main.js (CAPTURE_FORMSPREE_ID), not here.
+
+      // #11 / #12  Flip to true on launch day. This shows the top banner, switches the label
+      //     to "New Release" and activates the Amazon link below.
+      LAUNCHED: false,
+      AMAZON_URL: '#' // paste the live Amazon product link here at launch
+    };
+
     (function () {
-      var redeemForm = document.getElementById('redeemForm');
-      if (redeemForm) {
-        redeemForm.addEventListener('submit', function (e) {
-          e.preventDefault();
-          redeemForm.innerHTML = '<h3 class="h5 font-serif mb-2">Guide On Its Way</h3>' +
-            '<p class="redeem-form-sub text-muted-custom mb-0">Check your inbox in the next few minutes ' +
-            '— and your spam folder, just in case.</p>';
-        });
+      /* ---------- Launch-day switches (#11, #12) ---------- */
+      var banner = document.getElementById('launchBanner');
+      var mainEl = document.getElementById('mainContent');
+      var label = document.getElementById('releaseLabel');
+      var amazonBtn = document.getElementById('amazonBtn');
+
+      if (CONFIG.LAUNCHED) {
+        if (banner) {
+          banner.hidden = false;
+          // keep content clear of the sticky header now that the banner adds height
+          mainEl.style.paddingTop = (72 + banner.offsetHeight) + 'px';
+        }
+        if (label) label.innerHTML = 'New Release &middot; By Muyaka Ngulube-Banda';
       }
+      if (amazonBtn && CONFIG.AMAZON_URL && CONFIG.AMAZON_URL !== '#') {
+        amazonBtn.href = CONFIG.AMAZON_URL;
+        amazonBtn.target = '_blank';
+        amazonBtn.rel = 'noopener';
+      }
+
+      /* ---------- Shared real form submission (#1, #10) ---------- */
+      function wireForm(form, errorEl, endpoint, formType, successHtml, validate) {
+        if (!form) return;
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          errorEl.classList.remove('is-visible');
+
+          var data = new FormData(form);
+          if (data.get('_gotcha')) return; // honeypot: silently drop bots
+
+          var problem = validate(data);
+          if (problem) { showError(problem); return; }
+
+          if (!endpoint || endpoint.indexOf('REPLACE_WITH') !== -1) {
+            showError('This form is not connected yet. Please email us directly and we will send your copy.');
+            return;
+          }
+
+          data.append('form_type', formType);
+          var btn = form.querySelector('button[type="submit"]');
+          var original = btn.textContent;
+          btn.disabled = true;
+          btn.textContent = 'Sending…';
+
+          fetch(endpoint, {
+            method: 'POST',
+            body: data,
+            headers: { 'Accept': 'application/json' }
+          }).then(function (res) {
+            if (!res.ok) throw new Error('HTTP ' + res.status);
+            form.innerHTML = successHtml; // only shown after the backend confirms receipt
+          }).catch(function () {
+            btn.disabled = false;
+            btn.textContent = original;
+            showError('Something went wrong and your details were not sent. Please try again in a moment.');
+          });
+        });
+
+        function showError(msg) {
+          errorEl.textContent = msg;
+          errorEl.classList.add('is-visible');
+        }
+      }
+
+      var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      // Redemption form: first name, email, Amazon order number (all required)
+      wireForm(
+        document.getElementById('redeemForm'),
+        document.getElementById('redeemError'),
+        CONFIG.REDEEM_ENDPOINT,
+        'seasons-reflection-guide-redemption',
+        '<h3 class="h5 font-serif mb-2">Guide On Its Way</h3>' +
+        '<p class="redeem-form-sub text-muted-custom mb-0">Check your inbox in the next few minutes ' +
+        '— and your spam folder, just in case.</p>',
+        function (d) {
+          if (!String(d.get('firstName') || '').trim()) return 'Please enter your first name.';
+          if (!emailRe.test(String(d.get('email') || '').trim())) return 'Please enter a valid email address.';
+          if (!String(d.get('orderNumber') || '').trim()) return 'Please enter your Amazon order number.';
+          return '';
+        }
+      );
     })();
   </script>
 </body>

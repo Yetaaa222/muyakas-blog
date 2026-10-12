@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const submitButton = contactForm.querySelector('button[type="submit"]');
       const originalButtonText = submitButton.textContent;
-      
+
       // Update UI to show sending state
       submitButton.disabled = true;
       submitButton.textContent = 'Sending...';
@@ -96,7 +96,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const formData = new FormData(contactForm);
 
       try {
-        // REPLACE 'YOUR_FORMSPREE_ID' with your actual Formspree ID from formspree.io
         const response = await fetch('https://formspree.io/f/mbdepgaj', {
           method: 'POST',
           body: formData,
@@ -128,10 +127,94 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 5. Scroll Reveal Animations & Counters (Intersection Observer)
+  // 5. Read-the-first-chapter email capture (book.html)
+  // Create a SEPARATE form at formspree.io for this so the chapter list stays apart
+  // from contact enquiries, then paste its ID below (the part after /f/).
+  const CAPTURE_FORMSPREE_ID = 'REPLACE_WITH_CAPTURE_FORM_ID';
+  // Optional: link to the chapter PDF (e.g. a Google Drive/Dropbox share link or a file on
+  // your site). If set, the success message shows it so readers get the chapter instantly,
+  // without waiting on an email automation. Leave '' to show the "check your inbox" message.
+  const CHAPTER_URL = '';
+
+  const captureForm = document.getElementById('captureForm');
+  const captureError = document.getElementById('captureError');
+
+  if (captureForm && captureError) {
+    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    const showCaptureError = (msg) => {
+      captureError.textContent = msg;
+      captureError.classList.add('is-visible');
+    };
+
+    captureForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      captureError.classList.remove('is-visible');
+
+      const formData = new FormData(captureForm);
+
+      // Honeypot: bots fill the hidden field, humans never see it
+      if (formData.get('_gotcha')) return;
+
+      const email = String(formData.get('email') || '').trim();
+      if (!emailRe.test(email)) {
+        showCaptureError('Please enter a valid email address.');
+        return;
+      }
+
+      if (CAPTURE_FORMSPREE_ID.includes('REPLACE_WITH')) {
+        showCaptureError('This form is not connected yet. Please check back soon.');
+        return;
+      }
+
+      formData.append('form_type', 'first-chapter-signup');
+
+      const submitButton = captureForm.querySelector('button[type="submit"]');
+      const originalButtonText = submitButton.textContent;
+      submitButton.disabled = true;
+      submitButton.textContent = 'Sending...';
+
+      try {
+        const response = await fetch(`https://formspree.io/f/${CAPTURE_FORMSPREE_ID}`, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          // Success is only shown after Formspree confirms it received the signup
+          const chapterLink = CHAPTER_URL
+            ? `<p class="mb-0"><a href="${CHAPTER_URL}" target="_blank" rel="noopener" class="btn-primary-custom px-4 py-3">Read Chapter One</a></p>`
+            : '<p class="text-muted-custom mb-0">Check your inbox shortly — and your spam folder, just in case.</p>';
+          captureForm.outerHTML =
+            '<div class="text-center">' +
+            '<h3 class="h5 font-serif mb-2">Your chapter is on its way</h3>' +
+            chapterLink +
+            '</div>';
+        } else {
+          let message = 'Something went wrong and your details were not sent. Please try again.';
+          try {
+            const data = await response.json();
+            if (data && Array.isArray(data.errors) && data.errors.length) {
+              message = data.errors.map(err => err.message).join(', ');
+            }
+          } catch (_) { /* keep default message */ }
+          showCaptureError(message);
+          submitButton.disabled = false;
+          submitButton.textContent = originalButtonText;
+        }
+      } catch (error) {
+        showCaptureError('Network problem. Please check your connection and try again.');
+        submitButton.disabled = false;
+        submitButton.textContent = originalButtonText;
+      }
+    });
+  }
+
+  // 6. Scroll Reveal Animations & Counters (Intersection Observer)
   const revealElements = document.querySelectorAll('.reveal, .reveal-group');
   const counterValues = document.querySelectorAll('.counter-value');
-  
+
   const animateCounter = (el) => {
     const target = parseInt(el.getAttribute('data-target'));
     const suffix = el.getAttribute('data-suffix') || '';
@@ -164,7 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('active');
-          
+
           // If the intersecting element contains counters, animate them
           const countersInTarget = entry.target.querySelectorAll('.counter-value');
           if (countersInTarget.length > 0) {

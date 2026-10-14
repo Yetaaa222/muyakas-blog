@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 5. Read-the-first-chapter email capture (book.html)
   // Create a SEPARATE form at formspree.io for this so the chapter list stays apart
   // from contact enquiries, then paste its ID below (the part after /f/).
-  const CAPTURE_FORMSPREE_ID = 'REPLACE_WITH_CAPTURE_FORM_ID';
+  const CAPTURE_FORMSPREE_ID = 'mbdepgaj';
   // Optional: link to the chapter PDF (e.g. a Google Drive/Dropbox share link or a file on
   // your site). If set, the success message shows it so readers get the chapter instantly,
   // without waiting on an email automation. Leave '' to show the "check your inbox" message.

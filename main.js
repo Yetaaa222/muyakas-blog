@@ -27,11 +27,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 3. Blog Category Filtering (insights.html)
+  // 3. Blog Category Filtering (static insights-style pages only).
+  // resources.html re-renders from Supabase and handles its own filters.
   const categoryButtons = document.querySelectorAll('.category-btn');
   const emptyState = document.getElementById('no-posts-alert');
+  const resourcesArticlesGrid = document.getElementById('articles-grid');
 
-  if (categoryButtons.length > 0) {
+  if (categoryButtons.length > 0 && !resourcesArticlesGrid) {
     categoryButtons.forEach(button => {
       button.addEventListener('click', () => {
         // Toggle active button class

@@ -440,6 +440,15 @@
     let allArticles = [];
     let activeCategory = 'All';
 
+    function articleCategory(article) {
+      return (article.category || 'Governance').trim();
+    }
+
+    function articleMatchesCategory(article, filter) {
+      if (filter === 'All') return true;
+      return articleCategory(article).toLowerCase() === filter.toLowerCase();
+    }
+
     async function loadArticles() {
       const { data, error } = await supabase
         .from('articles')
@@ -453,9 +462,7 @@
     }
 
     function renderArticles() {
-      const filtered = activeCategory === 'All'
-        ? allArticles
-        : allArticles.filter(a => a.category === activeCategory);
+      const filtered = allArticles.filter(a => articleMatchesCategory(a, activeCategory));
 
       const featured = document.getElementById('featured-article-container');
       const grid = document.getElementById('articles-grid');
@@ -463,6 +470,7 @@
 
       if (filtered.length === 0) {
         featured.innerHTML = '';
+        featured.style.display = '';
         grid.innerHTML = '';
         noAlert.classList.remove('d-none');
         return;
@@ -471,6 +479,9 @@
 
       // Featured
       const f = filtered[0];
+      const fCategory = articleCategory(f);
+      featured.dataset.category = fCategory;
+      featured.style.display = '';
       const fDate = new Date(f.published_at || f.created_at).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
       const fWords = (f.content || '').split(/\s+/).length;
       const fRead = Math.max(1, Math.round(fWords / 200));
@@ -484,7 +495,7 @@
               <div class="col-lg-6 d-flex flex-column justify-content-center p-4 p-md-5">
                 <div class="d-flex gap-3 align-items-center mb-3">
                   <span class="featured-badge">Featured</span>
-                  <span class="category-badge-custom mb-0">${escapeHtml(f.category || 'Governance')}</span>
+                  <span class="category-badge-custom mb-0">${escapeHtml(fCategory)}</span>
                 </div>
                 <h2 class="h3 font-serif fw-bold mb-3 lh-sm text-dark">${escapeHtml(f.title)}</h2>
                 <p class="small text-muted-custom mb-4" style="line-height:1.75;">${escapeHtml(f.excerpt || '')}</p>
@@ -500,17 +511,18 @@
       const rest = filtered.slice(1);
       if (rest.length === 0) { grid.innerHTML = ''; return; }
       grid.innerHTML = rest.map(a => {
+        const aCategory = articleCategory(a);
         const aDate = new Date(a.published_at || a.created_at).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
         const aRead = Math.max(1, Math.round((a.content || '').split(/\s+/).length / 200));
         return `
-          <div class="col-md-6 col-lg-4" data-category="${escapeAttr(a.category || '')}">
+          <div class="col-md-6 col-lg-4 post-card-col" data-category="${escapeAttr(aCategory)}">
             <a href="blog-post.html?slug=${escapeAttr(a.slug)}" class="text-decoration-none text-dark">
               <article class="card-warm-bg h-100">
                 <div style="height:200px; overflow:hidden; background-color:var(--color-muted);">
                   <img src="${escapeAttr(a.cover_image || '')}" alt="${escapeAttr(a.title)}" class="w-100 h-100 object-fit-cover"/>
                 </div>
                 <div class="p-4">
-                  <div class="category-badge-custom mb-2">${escapeHtml(a.category || 'Governance')}</div>
+                  <div class="category-badge-custom mb-2">${escapeHtml(aCategory)}</div>
                   <h3 class="h5 font-serif mb-2 text-dark">${escapeHtml(a.title)}</h3>
                   <p class="small text-muted-custom mb-4" style="line-height:1.7;">${escapeHtml(a.excerpt || '')}</p>
                   <div class="d-flex gap-2 align-items-center small text-muted-custom" style="font-size:12px;">

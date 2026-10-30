@@ -1327,7 +1327,7 @@
 
       // Free chapter signup (Formspree) and the PDF served after signup.
       CAPTURE_ENDPOINT: 'https://formspree.io/f/mbggazld',
-      CHAPTER_URL: 'UNSEEN%20Free%20Chapter%20The%20Messenger.pdf',
+      CHAPTER_URL: '/UNSEEN-Chapter-1-The-Messenger.pdf',
 
       // #11 / #12  Flip to true on launch day. This shows the top banner, switches the label
       //     to "New Release" and activates the Amazon link below.
@@ -1387,6 +1387,16 @@
           }).then(function (res) {
             if (!res.ok) throw new Error('HTTP ' + res.status);
             form.innerHTML = successHtml; // only shown after the backend confirms receipt
+
+            // Free chapter: start the download automatically (the button stays as a backup)
+            if (formType === 'free-chapter-signup') {
+              var a = document.createElement('a');
+              a.href = CONFIG.CHAPTER_URL;
+              a.download = '';
+              document.body.appendChild(a);
+              a.click();
+              a.remove();
+            }
           }).catch(function () {
             btn.disabled = false;
             btn.textContent = original;

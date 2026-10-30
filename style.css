@@ -167,7 +167,154 @@ header.sticky-header.scrolled {
   background-color: var(--color-background) !important;
   transform: translateY(-1px);
 }
+/* Book announcement banner */
 
+.book-announcement {
+  position: relative;
+  margin-top: 50px; 
+  margin-bottom: 0px;
+  overflow: hidden;
+  background: linear-gradient(
+    115deg,
+    #3b2a4a 0%,
+    #493456 55%,
+    #594064 100%
+  );
+  color: #fff;
+  padding: 38px 0;
+  isolation: isolate;
+}
+
+
+
+.book-announcement-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 35px;
+}
+
+.book-announcement-text {
+  max-width: 650px;
+}
+
+.book-label {
+  display: inline-block;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.book-announcement h2 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(25px, 3vw, 34px);
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0 0 10px;
+  color: #fff;
+}
+
+.book-announcement p {
+  max-width: 540px;
+  font-size: 14px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.78);
+  margin: 0;
+}
+
+.book-announcement-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 15px 25px;
+  background: #6E1E2E;
+  color: #ffffff;
+  border: 1px solid #6E1E2E;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.book-announcement-btn:hover {
+  background: transparent;
+  color: #e9c98d;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.book-announcement-btn i {
+  font-size: 12px;
+  transition: transform 0.3s ease;
+}
+
+.book-announcement-btn:hover i {
+  transform: translateX(4px);
+}
+
+/* Tablet and mobile */
+
+@media (max-width: 767px) {
+  .book-announcement {
+    padding: 32px 0;
+  }
+
+  .book-announcement-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 22px;
+  }
+
+  .book-announcement-text {
+    width: 100%;
+  }
+
+  .book-announcement h2 {
+    font-size: 28px;
+  }
+
+  .book-announcement p {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .book-announcement-btn {
+    width: 100%;
+    padding: 15px 20px;
+  }
+}
+
+/* Small phones */
+
+@media (max-width: 380px) {
+  .book-announcement h2 {
+    font-size: 25px;
+  }
+
+  .book-label {
+    font-size: 9px;
+    letter-spacing: 2px;
+  }
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  .book-announcement-btn,
+  .book-announcement-btn i {
+    transition: none;
+  }
+}
 /* 4. Layout & Card Enhancements */
 .card-hover-effect {
   background-color: var(--color-white);

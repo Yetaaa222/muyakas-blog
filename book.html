@@ -399,7 +399,7 @@
       background-color: #fff;
       border: 1px solid rgba(59, 42, 74, 0.10);
       border-radius: 10px;
-      padding: 32px 28px;
+      padding: 28px 22px;
       height: 100%;
       display: flex;
       flex-direction: column;
@@ -429,6 +429,92 @@
       text-transform: uppercase;
       color: var(--color-primary);
     }
+
+/* Testimonials carousel */
+
+#testimonialCarousel {
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 0 65px;
+}
+
+#testimonialCarousel .testimonial-card {
+  max-width: 720px;
+  min-height: 350px;
+  padding: 45px 40px;
+  text-align: center;
+  box-shadow: 0 12px 35px rgba(59, 42, 74, 0.07);
+}
+
+#testimonialCarousel .testimonial-text {
+  font-size: 16px;
+  line-height: 1.85;
+}
+
+#testimonialCarousel .testimonial-name {
+  margin-top: 25px;
+}
+
+#testimonialCarousel .carousel-control-prev,
+#testimonialCarousel .carousel-control-next {
+  width: 45px;
+  height: 45px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--color-primary);
+  border-radius: 50%;
+  opacity: 1;
+}
+
+#testimonialCarousel .carousel-control-prev {
+  left: 0;
+}
+
+#testimonialCarousel .carousel-control-next {
+  right: 0;
+}
+
+#testimonialCarousel .carousel-indicators {
+  bottom: -45px;
+}
+
+#testimonialCarousel .carousel-indicators button {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  border: 0;
+  opacity: 0.3;
+}
+
+#testimonialCarousel .carousel-indicators button.active {
+  opacity: 1;
+}
+  #testimonialCarousel .carousel-item {
+  transition: transform 0.7s ease-in-out;
+}
+
+@media (max-width: 576px) {
+  #testimonialCarousel {
+    padding: 0 38px;
+  }
+
+  #testimonialCarousel .testimonial-card {
+    padding: 30px 20px;
+    min-height: 420px;
+  }
+
+  #testimonialCarousel .testimonial-text {
+    font-size: 14px;
+  }
+
+  #testimonialCarousel .carousel-control-prev,
+  #testimonialCarousel .carousel-control-next {
+    width: 32px;
+    height: 32px;
+  }
+}
+
 
     /* ---- Email capture ---- */
     .capture-form {
@@ -641,13 +727,13 @@
     </div>
   </header>
 
-  <main id="mainContent" style="padding-top: 72px;">
+  <main id="mainContent" style="padding-top: 0px;">
 
     <!-- ============================================================ -->
     <!-- 1. HERO -->
     <!-- ============================================================ -->
     <section class="bg-warm-light py-5 py-md-5 position-relative overflow-hidden"
-      style="min-height: calc(100vh - 72px); display: flex; align-items: center;">
+      style="min-height: calc(100vh - 1px); display: flex; align-items: center;">
       <div class="header-accent-bar"></div>
       <div class="container-xxl px-4 px-md-5">
         <div class="row align-items-center g-5">
@@ -980,54 +1066,217 @@
     <!-- 9. WHAT READERS SAY (#8)
          NOTE: names are pending final approval. Fallback = replace each name with "A reader". -->
     <!-- ============================================================ -->
+
     <section class="bg-warm-light py-5 py-md-6" style="padding: 90px 0;">
       <div class="container-xxl px-4 px-md-5">
-        <div class="text-center mb-5 reveal">
+
+        <div class="text-center mb-5">
           <div class="text-primary-color fw-semibold text-uppercase mb-2"
-            style="font-size: 11px; letter-spacing: 0.18em;">Testimonials</div>
+            style="font-size: 11px; letter-spacing: 0.18em;">
+            Testimonials
+          </div>
           <h2 class="h1 font-serif">What Readers Say</h2>
+          <p class="text-muted-custom">
+            Words from people whose lives and journeys have been touched.
+          </p>
         </div>
 
-        <div class="row g-4 reveal-group">
-          <div class="col-md-6 col-lg-3">
-            <div class="testimonial-card">
-              <div>
-                <div class="quote-mark">&ldquo;</div>
-                <p class="testimonial-text">It&rsquo;s because of your words that I now believe in my dreams.</p>
+        <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="8000"
+          data-bs-pause="hover">
+
+          <div class="carousel-inner">
+
+            <!-- Testimonial 1 -->
+            <div class="carousel-item active">
+              <div class="testimonial-card mx-auto">
+                <div>
+                  <div class="quote-mark">&ldquo;</div>
+                  <p class="testimonial-text">
+                    Thank you for your profound impact on both my academic
+                    journey and my personal growth. When I asked you to write
+                    the recommendation letter for my doctoral degree, you
+                    didn't just write a standard letter, you took the time
+                    to truly understand my research goals and champion my
+                    potential. I will forever be grateful.
+                    Having experienced your mentorship firsthand, I can say
+                    that the insight, depth, wisdom and vulnerability you
+                    share in your brilliant memoir, UNSEEN, is a perfect
+                    reflection of how you uplift others in real life.
+                  </p>
+                </div>
+                <div class="testimonial-name">Dr. Barbara Hambaba</div>
               </div>
-              <div class="testimonial-name">Mubita Nyika</div>
             </div>
-          </div>
-          <div class="col-md-6 col-lg-3">
-            <div class="testimonial-card">
-              <div>
-                <div class="quote-mark">&ldquo;</div>
-                <p class="testimonial-text">I read your posts and I am inspired and I begin to hope again.</p>
+
+            <!-- Testimonial 2 -->
+            <div class="carousel-item">
+              <div class="testimonial-card mx-auto">
+                <div>
+                  <div class="quote-mark">&ldquo;</div>
+                  <p class="testimonial-text">
+                    From my personal experience as a keen follower of Muyaka
+                    Ngulube, I have learnt incredible and life-changing
+                    lessons. Through my interaction with you on Facebook,
+                    my faith in the Lord has grown tremendously. I've learnt
+                    to wait on the Lord patiently, knowing that in due time
+                    the Lord will answer.
+                    Your hard work and determination have also taught me
+                    not to give up on what I want and to pursue goals I once
+                    thought were impossible.
+                  </p>
+                </div>
+                <div class="testimonial-name">Ms. Gertrude Tembo</div>
               </div>
-              <div class="testimonial-name">Priscilla Nangwenya</div>
             </div>
-          </div>
-          <div class="col-md-6 col-lg-3">
-            <div class="testimonial-card">
-              <div>
-                <div class="quote-mark">&ldquo;</div>
-                <p class="testimonial-text">You spoke right into my worries.</p>
+
+            <!-- Testimonial 3 -->
+            <div class="carousel-item">
+              <div class="testimonial-card mx-auto">
+                <div>
+                  <div class="quote-mark">&ldquo;</div>
+                  <p class="testimonial-text">
+                    You have been a source of inspiration to me ever since
+                    we met in South Sudan and together fellowshipped with
+                    UCAN. Your writings have had a great impact in my life.
+                    One statement that was very timely for me was
+                    "There's obtaining after patiently waiting."
+                    After reading your writing, I was awakened to the
+                    faithfulness of the Living God and assuredly,
+                    things changed for the better.
+                    I sincerely testify to the great impact your writings
+                    have had and continue to have in my life.
+                  </p>
+                </div>
+                <div class="testimonial-name">Mr. Ebenezer Wilfred Tandoh</div>
               </div>
-              <div class="testimonial-name">Lutinala Nalomba</div>
             </div>
-          </div>
-          <div class="col-md-6 col-lg-3">
-            <div class="testimonial-card">
-              <div>
-                <div class="quote-mark">&ldquo;</div>
-                <p class="testimonial-text">I always remember your encouragement and you continue to inspire me.</p>
+
+            <!-- Testimonial 4 -->
+            <div class="carousel-item">
+              <div class="testimonial-card mx-auto">
+                <div>
+                  <div class="quote-mark">&ldquo;</div>
+                  <p class="testimonial-text">
+                    Muyaka's writings on her Facebook page personally
+                    widened my own lenses in the way I view life and
+                    transformed my faith overnight.
+                    At one of my lowest moments, I came across her post
+                    entitled "The beginning of everything is difficult."
+                    This encouraged me not to give up in life but gave me
+                    faith to face fear with hope when a dream is shattered.
+                    Today my physical space has widened and I celebrate
+                    life again.
+                  </p>
+                </div>
+                <div class="testimonial-name">Mr. Rueben Mwanza</div>
               </div>
-              <div class="testimonial-name">Clara Bwalya</div>
             </div>
+
+            <!-- Testimonial 5 -->
+            <div class="carousel-item">
+              <div class="testimonial-card mx-auto">
+                <div>
+                  <div class="quote-mark">&ldquo;</div>
+                  <p class="testimonial-text">
+                    Muyaka Ngulube has been one of the most inspiring
+                    figures in the early stages of my career, and I
+                    proudly consider her a mentor and role model.
+                    Throughout my CIMA journey, whenever it became tough,
+                    I would look up to her story and how successful she
+                    has become. She gave me the belief that it was possible.
+                    She continues to inspire me daily through her posts
+                    on career growth and living a life anchored in
+                    Christian values.
+                  </p>
+                </div>
+                <div class="testimonial-name">Ms. Clara Bwalya Chileshe</div>
+              </div>
+            </div>
+
+            <!-- Testimonial 6 -->
+            <div class="carousel-item">
+              <div class="testimonial-card mx-auto">
+                <div>
+                  <div class="quote-mark">&ldquo;</div>
+                  <p class="testimonial-text">
+                    Indeed, your writing week after week inspires me!
+                    The first thing I have learnt from you is consistency,
+                    and every new story begins with a scripture from the
+                    Holy Bible. Everything we have and do does not belong
+                    to us, and the glory we give is to God Almighty.
+                    Consistently your reference to scripture in both good
+                    and bad moments inspires me too much!
+                    I am encouraged and look forward to your every week
+                    writing.
+                  </p>
+                </div>
+                <div class="testimonial-name">Ms. Maambo Chilala</div>
+              </div>
+            </div>
+
+            <!-- Testimonial 7 -->
+            <div class="carousel-item">
+              <div class="testimonial-card mx-auto">
+                <div>
+                  <div class="quote-mark">&ldquo;</div>
+                  <p class="testimonial-text">
+                    Working with you at SFH Nigeria, where you served as
+                    my Group Leader, was a valuable part of my professional
+                    journey. Your leadership, guidance, encouragement, and
+                    willingness to help others grow had a significant
+                    impact on me.
+                    Your support gave me the confidence to aim higher and
+                    apply for the Finance Expert role, which I was
+                    fortunate to get. You are a leader who sees potential
+                    in people and inspires them to become better versions
+                    of themselves.
+                  </p>
+                </div>
+                <div class="testimonial-name">Ms. Nafisat Abdulsalam</div>
+              </div>
+            </div>
+
           </div>
+
+          <!-- Previous and Next buttons -->
+          <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev"
+            aria-label="Previous testimonial">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          </button>
+
+          <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next"
+            aria-label="Next testimonial">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          </button>
+
+          <!-- Indicator dots -->
+          <div class="carousel-indicators position-relative mt-4 mb-0">
+            <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="0" class="active"
+              aria-current="true" aria-label="Testimonial 1"></button>
+
+            <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="1"
+              aria-label="Testimonial 2"></button>
+
+            <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="2"
+              aria-label="Testimonial 3"></button>
+
+            <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="3"
+              aria-label="Testimonial 4"></button>
+
+            <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="4"
+              aria-label="Testimonial 5"></button>
+
+            <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="5"
+              aria-label="Testimonial 6"></button>
+
+            <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="6"
+              aria-label="Testimonial 7"></button>
+          </div>
+
         </div>
       </div>
     </section>
+
 
     <!-- ============================================================ -->
     <!-- 10. PRE-LAUNCH EMAIL CAPTURE (#10) — target of the "Read the Story" button -->
@@ -1322,21 +1571,21 @@
        CONFIG — the only values that need editing at setup / launch
        ===================================================================== */
     var CONFIG = {
-      // #1  Redemption form backend (Formspree).
-      REDEEM_ENDPOINT: 'https://formspree.io/f/mbdepgaj',
+      // Free chapter signup (MailerLite form -> "UNSEEN Chapter" group)
+      MAILERLITE_URL: 'https://assets.mailerlite.com/jsonp/2756625/forms/202786120840251195/subscribe',
 
-      // Free chapter signup (Formspree) and the PDF served after signup.
-      CAPTURE_ENDPOINT: 'https://formspree.io/f/mbggazld',
-      CHAPTER_URL: '/UNSEEN-Chapter-1-The-Messenger.pdf',
+      // Seasons Reflection Guide redemption (a SECOND MailerLite form -> its own group).
+      // Paste its action URL here once you create it (see notes below).
+      REDEEM_MAILERLITE_URL: 'REPLACE_WITH_REDEEM_FORM_URL',
 
-      // #11 / #12  Flip to true on launch day. This shows the top banner, switches the label
-      //     to "New Release" and activates the Amazon link below.
+      // Flip to true on launch day: shows the top banner, switches the label
+      // to "New Release" and activates the Amazon link below.
       LAUNCHED: false,
       AMAZON_URL: '#' // paste the live Amazon product link here at launch
     };
 
     (function () {
-      /* ---------- Launch-day switches (#11, #12) ---------- */
+      /* ---------- Launch-day switches ---------- */
       var banner = document.getElementById('launchBanner');
       var mainEl = document.getElementById('mainContent');
       var label = document.getElementById('releaseLabel');
@@ -1345,7 +1594,6 @@
       if (CONFIG.LAUNCHED) {
         if (banner) {
           banner.hidden = false;
-          // keep content clear of the sticky header now that the banner adds height
           mainEl.style.paddingTop = (72 + banner.offsetHeight) + 'px';
         }
         if (label) label.innerHTML = 'New Release &middot; By Muyaka Ngulube-Banda';
@@ -1356,95 +1604,100 @@
         amazonBtn.rel = 'noopener';
       }
 
-      /* ---------- Shared real form submission (#1, #10) ---------- */
-      function wireForm(form, errorEl, endpoint, formType, successHtml, validate) {
+      var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      /* ---------- Shared MailerLite submission ----------
+         form, errorEl: the form and its error box
+         url: the MailerLite form action URL
+         buildFields(d): returns { 'fields[email]': ..., ... } or a string error message
+         successHtml: what replaces the form after a successful signup */
+      function wireMailerLite(form, errorEl, url, buildFields, successHtml) {
         if (!form) return;
-        form.addEventListener('submit', function (e) {
-          e.preventDefault();
-          errorEl.classList.remove('is-visible');
-
-          var data = new FormData(form);
-          if (data.get('_gotcha')) return; // honeypot: silently drop bots
-
-          var problem = validate(data);
-          if (problem) { showError(problem); return; }
-
-          if (!endpoint || endpoint.indexOf('REPLACE_WITH') !== -1) {
-            showError('This form is not connected yet. Please email us directly and we will send your copy.');
-            return;
-          }
-
-          data.append('form_type', formType);
-          var btn = form.querySelector('button[type="submit"]');
-          var original = btn.textContent;
-          btn.disabled = true;
-          btn.textContent = 'Sending…';
-
-          fetch(endpoint, {
-            method: 'POST',
-            body: data,
-            headers: { 'Accept': 'application/json' }
-          }).then(function (res) {
-            if (!res.ok) throw new Error('HTTP ' + res.status);
-            form.innerHTML = successHtml; // only shown after the backend confirms receipt
-
-            // Free chapter: start the download automatically (the button stays as a backup)
-            if (formType === 'free-chapter-signup') {
-              var a = document.createElement('a');
-              a.href = CONFIG.CHAPTER_URL;
-              a.download = '';
-              document.body.appendChild(a);
-              a.click();
-              a.remove();
-            }
-          }).catch(function () {
-            btn.disabled = false;
-            btn.textContent = original;
-            showError('Something went wrong and your details were not sent. Please try again in a moment.');
-          });
-        });
 
         function showError(msg) {
           errorEl.textContent = msg;
           errorEl.classList.add('is-visible');
         }
+
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          errorEl.classList.remove('is-visible');
+
+          var d = new FormData(form);
+          if (d.get('_gotcha')) return; // honeypot: silently drop bots
+
+          var fields = buildFields(d);
+          if (typeof fields === 'string') { showError(fields); return; }
+
+          if (!url || url.indexOf('REPLACE_WITH') !== -1) {
+            showError('This form is not connected yet. Please email us directly and we will send your copy.');
+            return;
+          }
+
+          var btn = form.querySelector('button[type="submit"]');
+          var original = btn.textContent;
+          btn.disabled = true;
+          btn.textContent = 'Sending…';
+
+          var ml = new FormData();
+          Object.keys(fields).forEach(function (k) { ml.append(k, fields[k]); });
+          ml.append('ml-submit', '1');
+          ml.append('anticsrf', 'true');
+
+          fetch(url, { method: 'POST', body: ml })
+            .then(function (res) {
+              if (!res.ok) throw new Error('HTTP ' + res.status);
+              form.innerHTML = successHtml;
+            })
+            .catch(function () {
+              btn.disabled = false;
+              btn.textContent = original;
+              showError('Something went wrong and your details were not sent. Please try again in a moment.');
+            });
+        });
       }
 
-      var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-      // Redemption form: first name, email, Amazon order number (all required)
-      wireForm(
-        document.getElementById('redeemForm'),
-        document.getElementById('redeemError'),
-        CONFIG.REDEEM_ENDPOINT,
-        'seasons-reflection-guide-redemption',
-        '<h3 class="h5 font-serif mb-2">Guide On Its Way</h3>' +
-        '<p class="redeem-form-sub text-muted-custom mb-0">Check your inbox in the next few minutes ' +
-        '— and your spam folder, just in case.</p>',
-        function (d) {
-          if (!String(d.get('firstName') || '').trim()) return 'Please enter your first name.';
-          if (!emailRe.test(String(d.get('email') || '').trim())) return 'Please enter a valid email address.';
-          if (!String(d.get('orderNumber') || '').trim()) return 'Please enter your Amazon order number.';
-          return '';
-        }
-      );
-
-      // Free chapter signup: email required, name optional. The download link appears only
-      // after Formspree confirms receipt.
-      wireForm(
+      /* ---------- Free chapter signup ---------- */
+      wireMailerLite(
         document.getElementById('captureForm'),
         document.getElementById('captureError'),
-        CONFIG.CAPTURE_ENDPOINT,
-        'free-chapter-signup',
-        '<div class="w-100 text-center">' +
-        '<h3 class="h5 font-serif mb-2">Your chapter is ready</h3>' +
-        '<p class="redeem-form-sub text-muted-custom">Thank you. Download it below, and we will let you know when UNSEEN goes live.</p>' +
-        '<a class="btn-primary-custom px-4 py-3" href="' + CONFIG.CHAPTER_URL + '" download>Download Chapter 1</a>' +
-        '</div>',
+        CONFIG.MAILERLITE_URL,
         function (d) {
-          if (!emailRe.test(String(d.get('email') || '').trim())) return 'Please enter a valid email address.';
-          return '';
-        }
+          var email = String(d.get('email') || '').trim();
+          if (!emailRe.test(email)) return 'Please enter a valid email address.';
+          return {
+            'fields[email]': email,
+            'fields[name]': String(d.get('firstName') || '').trim()
+          };
+        },
+        '<div class="w-100 text-center">' +
+        '<h3 class="h5 font-serif mb-2">Your chapter is on its way</h3>' +
+        '<p class="redeem-form-sub text-muted-custom mb-0">Check your inbox for an email from us ' +
+        'with your free chapter. If you don\u2019t see it in a few minutes, look in your spam or promotions folder.</p>' +
+        '</div>'
+      );
+
+      /* ---------- Seasons Reflection Guide redemption ---------- */
+      wireMailerLite(
+        document.getElementById('redeemForm'),
+        document.getElementById('redeemError'),
+        CONFIG.REDEEM_MAILERLITE_URL,
+        function (d) {
+          var name = String(d.get('firstName') || '').trim();
+          var email = String(d.get('email') || '').trim();
+          var order = String(d.get('orderNumber') || '').trim();
+          if (!name) return 'Please enter your first name.';
+          if (!emailRe.test(email)) return 'Please enter a valid email address.';
+          if (!order) return 'Please enter your Amazon order number.';
+          return {
+            'fields[email]': email,
+            'fields[name]': name,
+            'fields[order_number]': order
+          };
+        },
+        '<h3 class="h5 font-serif mb-2">Guide On Its Way</h3>' +
+        '<p class="redeem-form-sub text-muted-custom mb-0">Check your inbox in the next few minutes ' +
+        '\u2014 and your spam folder, just in case.</p>'
       );
     })();
   </script>

@@ -1048,11 +1048,13 @@
                 <div class="form-error w-100" id="captureError" role="alert"></div>
                 <input type="text" name="firstName" placeholder="Name (optional)" autocomplete="given-name"
                   aria-label="Name (optional)" />
-                <input type="email" name="email" placeholder="Email" autocomplete="email" aria-label="Email"
-                  required />
+                <input type="email" name="email" placeholder="Email" autocomplete="email" aria-label="Email" required />
                 <input type="text" name="_gotcha" class="hp-field" tabindex="-1" autocomplete="off"
                   aria-hidden="true" />
                 <button type="submit">Send My Chapter</button>
+                <p class="w-100 small text-muted-custom mb-0" style="font-size: 12.5px;">
+                  By subscribing you agree to receive emails about UNSEEN. Unsubscribe any time.
+                </p>
               </form>
             </div>
           </div>
@@ -1209,8 +1211,7 @@
                 <label for="redeemOrder">Amazon order number</label>
                 <input type="text" id="redeemOrder" name="orderNumber" required />
               </div>
-              <input type="text" name="_gotcha" class="hp-field" tabindex="-1" autocomplete="off"
-                aria-hidden="true" />
+              <input type="text" name="_gotcha" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" />
               <button type="submit">Send My Guide</button>
             </form>
           </div>
@@ -1228,7 +1229,8 @@
           <div class="mb-3">
             <div class="font-serif fs-5 fw-semibold text-white mb-1">Muyaka Ngulube-Banda</div>
             <div class="text-uppercase tracking-wider small text-muted-custom"
-              style="font-size: 11px; letter-spacing: 0.12em; color: rgba(245,244,242,0.6) !important;">Finance & GRC Consultant
+              style="font-size: 11px; letter-spacing: 0.12em; color: rgba(245,244,242,0.6) !important;">Finance & GRC
+              Consultant
             </div>
           </div>
           <p class="small text-muted-custom mb-0"
@@ -1271,8 +1273,8 @@
             <!-- #12.3 Swap for a professional, domain-based address once it exists (e.g. hello@yourdomain.com) -->
             <a href="mailto:Alitan08@yahoo.com">Alitan08@yahoo.com</a>
             <span class="text-muted-custom" style="color: rgba(245,244,242,0.75) !important;">Melbourne, Australia · <a
-                href="tel:+61452361063" class="text-muted-custom"
-                style="color: rgba(245,244,242,0.75) !important;">+61 452 361 063</a></span>
+                href="tel:+61452361063" class="text-muted-custom" style="color: rgba(245,244,242,0.75) !important;">+61
+                452 361 063</a></span>
             <span class="text-muted-custom" style="color: rgba(245,244,242,0.75) !important;">Lusaka, Zambia · <a
                 href="tel:+260978960673" class="text-muted-custom"
                 style="color: rgba(245,244,242,0.75) !important;">+260 978 960 673</a></span>
@@ -1320,12 +1322,12 @@
        CONFIG — the only values that need editing at setup / launch
        ===================================================================== */
     var CONFIG = {
-      // #1  Redemption form backend. Create a form at formspree.io (or deploy a Google Apps Script
-      //     web app) and paste its endpoint URL here. Until this is set, the form shows an honest
-      //     "not available yet" error instead of a fake success message.
+      // #1  Redemption form backend (Formspree).
       REDEEM_ENDPOINT: 'https://formspree.io/f/mbdepgaj',
 
-      // #10 The chapter signup is wired in main.js (CAPTURE_FORMSPREE_ID), not here.
+      // Free chapter signup (Formspree) and the PDF served after signup.
+      CAPTURE_ENDPOINT: 'https://formspree.io/f/mbggazld',
+      CHAPTER_URL: 'UNSEEN%20Free%20Chapter%20The%20Messenger.pdf',
 
       // #11 / #12  Flip to true on launch day. This shows the top banner, switches the label
       //     to "New Release" and activates the Amazon link below.
@@ -1413,6 +1415,24 @@
           if (!String(d.get('firstName') || '').trim()) return 'Please enter your first name.';
           if (!emailRe.test(String(d.get('email') || '').trim())) return 'Please enter a valid email address.';
           if (!String(d.get('orderNumber') || '').trim()) return 'Please enter your Amazon order number.';
+          return '';
+        }
+      );
+
+      // Free chapter signup: email required, name optional. The download link appears only
+      // after Formspree confirms receipt.
+      wireForm(
+        document.getElementById('captureForm'),
+        document.getElementById('captureError'),
+        CONFIG.CAPTURE_ENDPOINT,
+        'free-chapter-signup',
+        '<div class="w-100 text-center">' +
+        '<h3 class="h5 font-serif mb-2">Your chapter is ready</h3>' +
+        '<p class="redeem-form-sub text-muted-custom">Thank you. Download it below, and we will let you know when UNSEEN goes live.</p>' +
+        '<a class="btn-primary-custom px-4 py-3" href="' + CONFIG.CHAPTER_URL + '" download>Download Chapter 1</a>' +
+        '</div>',
+        function (d) {
+          if (!emailRe.test(String(d.get('email') || '').trim())) return 'Please enter a valid email address.';
           return '';
         }
       );

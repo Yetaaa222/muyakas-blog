@@ -1,0 +1,23 @@
+{
+  "name": "muyakas-blog",
+  "version": "1.0.0",
+  "description": "Muyaka Ngulube-Banda's GRC Consultant & Advisor Website",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"No tests specified\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yetaaa222/muyakas-blog.git"
+  },
+  "keywords": ["GRC", "consultant", "governance", "risk", "compliance"],
+  "author": "Muyaka Ngulube-Banda",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Yetaaa222/muyakas-blog/issues"
+  },
+  "homepage": "https://github.com/Yetaaa222/muyakas-blog#readme",
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
+  }
+}

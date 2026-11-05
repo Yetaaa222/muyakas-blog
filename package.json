@@ -1,0 +1,21 @@
+{
+  "name": "muyakas-blog",
+  "version": "1.0.0",
+  "description": "Muyaka Ngulube-Banda's professional website featuring GRC consulting services, blog, and resources",
+  "private": true,
+  "scripts": {
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": [
+    "GRC",
+    "consulting",
+    "governance",
+    "risk",
+    "compliance"
+  ],
+  "author": "Muyaka Ngulube-Banda",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
+  }
+}

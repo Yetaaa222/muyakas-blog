@@ -31,6 +31,43 @@
       height: 100%;
       background-color: var(--color-secondary);
     }
+
+    .event-countdown {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+.event-countdown .cd-box {
+  min-width: 64px;
+  padding: 8px 10px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 6px;
+}
+.event-countdown .cd-num {
+  display: block;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+.event-countdown .cd-label {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+.event-countdown.is-live {
+  display: block;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+@media (max-width: 480px) {
+  .event-countdown .cd-box { min-width: 56px; }
+  .event-countdown .cd-num { font-size: 20px; }
+}
   </style>
 </head>
 
@@ -100,6 +137,13 @@
         <p>
           Join her for The Unseen Hour, a free live event on Friday 13 November 2026.
         </p>
+
+        <div class="event-countdown" id="eventCountdown" aria-live="off">
+          <div class="cd-box"><span class="cd-num" id="cdDays">0</span><span class="cd-label">Days</span></div>
+          <div class="cd-box"><span class="cd-num" id="cdHours">00</span><span class="cd-label">Hours</span></div>
+          <div class="cd-box"><span class="cd-num" id="cdMins">00</span><span class="cd-label">Mins</span></div>
+          <div class="cd-box"><span class="cd-num" id="cdSecs">00</span><span class="cd-label">Secs</span></div>
+        </div>
       </div>
 
       <a href="/live-event" class="book-announcement-btn">
@@ -108,7 +152,6 @@
     </div>
   </div>
 </section>
-
   <!-- Main Content Area -->
   <main >
 
@@ -582,6 +625,45 @@
         grid.innerHTML = '<div class="col-12 text-muted-custom small">Could not load insights at this time.</div>';
       }
     });
+// Countdown Timer for Event
+    (function () {
+    var box = document.getElementById('eventCountdown');
+    if (!box) return;
+
+    var start = new Date('2026-11-13T10:00:00Z').getTime(); // 12 noon CAT
+    var end = start + 2 * 60 * 60 * 1000;                    // hide 2 hours after start
+
+    var d = document.getElementById('cdDays');
+    var h = document.getElementById('cdHours');
+    var m = document.getElementById('cdMins');
+    var s = document.getElementById('cdSecs');
+
+    function pad(n) { return n < 10 ? '0' + n : String(n); }
+
+    function tick() {
+      var now = Date.now();
+      var diff = start - now;
+
+      if (now >= end) {
+        box.style.display = 'none';
+        clearInterval(timer);
+        return;
+      }
+      if (diff <= 0) {
+        box.classList.add('is-live');
+        box.textContent = 'The Unseen Hour is live now!';
+        return;
+      }
+
+      d.textContent = Math.floor(diff / 86400000);
+      h.textContent = pad(Math.floor(diff % 86400000 / 3600000));
+      m.textContent = pad(Math.floor(diff % 3600000 / 60000));
+      s.textContent = pad(Math.floor(diff % 60000 / 1000));
+    }
+
+    tick();
+    var timer = setInterval(tick, 1000);
+  })();
   </script>
 </body>
 
